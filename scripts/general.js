@@ -28,7 +28,7 @@ function useMusic() {
     if (el.paused || el.ended) {
       if (el.ended) el.currentTime = 0;
       now_playing.innerHTML = "&nbsp;&nbsp; | &nbsp;&nbsp;Now Playing";
-      now_playing_img.setAttribute("src", "/public/media/audio-wave.gif");
+      now_playing_img.setAttribute("src", "../public/media/audio-wave.gif");
       await el.play();
 
       let volume = 0;
@@ -43,7 +43,7 @@ function useMusic() {
       }, FADE_DELAY);
     } else {
       now_playing.innerHTML = "";
-      now_playing_img.setAttribute("src", "/public/media/musical-notes.gif");
+      now_playing_img.setAttribute("src", "../public/media/musical-notes.gif");
       let volume = el.volume;
       const fadeOut = setInterval(() => {
         if (volume > 0) {

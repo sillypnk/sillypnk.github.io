@@ -1,5 +1,7 @@
 // This automatically parses the JSON File
-import Songs from "../public/json/songs.json" with { type: "json" };
+import SongsJson from "../public/json/songs.json";
+
+const Songs = JSON.parse(SongsJson);
 
 window.addEventListener("DOMContentLoaded", () => {
   // (A) INITIALIZING PLAYER & ELEMENTS
@@ -19,7 +21,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const audioPlay = (currentSongIndex, noAutoStart) => {
     audioCurrentSong = currentSongIndex;
     audioAutoStart = noAutoStart ? false : true;
-    audio.src = encodeURI(Songs[currentSongIndex].source);
+    audio.src = Songs[currentSongIndex].source;
     for (let songIndex in Songs) {
       /**
        * @type {HTMLLIElement}
