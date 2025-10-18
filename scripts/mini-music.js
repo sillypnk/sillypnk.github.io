@@ -96,10 +96,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // -------- ACTIONS ---------
   audio.addEventListener("play", () => {
-    playEl.innerHTML = `<img src="../public/icons/pause.svg" alt="Play/Pause Icon" width="12" />`;
+    playEl.innerHTML = `<img src="/pumoreiichi.vanilla/public/icons/pause.svg" alt="Play/Pause Icon" width="12" />`;
   });
   audio.addEventListener("pause", () => {
-    playEl.innerHTML = `<img src="../public/icons/play.svg" alt="Play/Pause Icon" width="12" />`;
+    playEl.innerHTML = `<img src="/pumoreiichi.vanilla/public/icons/play.svg" alt="Play/Pause Icon" width="12" />`;
   });
 
   playEl.addEventListener("click", () => {
