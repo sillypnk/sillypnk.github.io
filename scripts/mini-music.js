@@ -1,5 +1,5 @@
 // This automatically parses the JSON File
-import Songs from "/public/json/songs.json" with { type: "json" };
+import Songs from "../public/json/songs.json" with { type: "json" };
 
 window.addEventListener("DOMContentLoaded", () => {
   // (A) INITIALIZING PLAYER & ELEMENTS
@@ -70,10 +70,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // -------- ACTIONS ---------
   audio.addEventListener("play", () => {
-    playEl.innerHTML = `<img src="./public/icons/pause.svg" alt="Play/Pause Icon" width="12" />`;
+    playEl.innerHTML = `<img src="../public/icons/pause.svg" alt="Play/Pause Icon" width="12" />`;
   });
   audio.addEventListener("pause", () => {
-    playEl.innerHTML = `<img src="./public/icons/play.svg" alt="Play/Pause Icon" width="12" />`;
+    playEl.innerHTML = `<img src="../public/icons/play.svg" alt="Play/Pause Icon" width="12" />`;
   });
 
   playEl.addEventListener("click", () => {
