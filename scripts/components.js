@@ -140,7 +140,7 @@ class StartMenu extends HTMLElement {
 
     &:after {
       content: "";
-      mask: url("../public/icons/arrow_right.svg") no-repeat;
+      mask: url("/public/icons/arrow_right.svg") no-repeat;
       mask-size: cover;
       background-color: var(--clr-base-content);
       width: 1.5em;
@@ -201,7 +201,7 @@ class StartMenu extends HTMLElement {
                   outline: 1px solid var(--clr-base-content);
                   outline-offset: 2px;
                 ">
-              <img src="../public/media/avatar.jpg" style="width: 140%; height: 140%; object-position: -2em -10px"
+              <img src="/public/media/avatar.jpg" style="width: 140%; height: 140%; object-position: -2em -10px"
                 alt="An avatar for the dialog" />
             </div>
           </div>
@@ -230,7 +230,7 @@ class StartMenu extends HTMLElement {
               border-top: 1px solid var(--clr-base-content);
             ">
           <ul class="startmenu__list">
-            <a href="/index.html">
+            <a href="/pumoreiichi.vanilla/">
               <li>Home</li>
             </a><a href="/pumoreiichi.vanilla/pages/about.html">
               <li>About</li>

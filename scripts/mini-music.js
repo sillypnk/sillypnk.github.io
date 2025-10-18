@@ -1,5 +1,5 @@
 // This automatically parses the JSON File
-import Songs from "../public/json/songs.json" with { type: "json" };
+import Songs from "/public/json/songs.json" with { type: "json" };
 
 window.addEventListener("DOMContentLoaded", () => {
   // (A) INITIALIZING PLAYER & ELEMENTS
