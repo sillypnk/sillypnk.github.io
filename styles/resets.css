@@ -1,0 +1,9 @@
+@layer resets {
+  *,
+  *::before,
+  *::after {
+    padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+  }
+}

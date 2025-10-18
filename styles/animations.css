@@ -1,0 +1,129 @@
+@keyframes rotate {
+  from {
+    transform: rotate(20deg);
+  }
+
+  to {
+    transform: rotate(-20deg);
+  }
+}
+
+@keyframes transform {
+  from {
+    transform: translateX(0) translateY(0);
+  }
+
+  to {
+    transform: auto;
+  }
+}
+
+@keyframes transformTop {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes scrollLeft {
+  from {
+    transform: translateX(0%);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes bg-scroll {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: -100% 100%;
+  }
+}
+
+@keyframes scroll-bottom {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 100%;
+  }
+}
+
+.animate--typewriter {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid transparent;
+  /* cursor */
+  width: 0ch;
+  margin-bottom: 0.4rem;
+  animation:
+    typing calc(var(--chars) * var(--char-speed)) steps(var(--chars)) forwards,
+    blink var(--cursor-blink) steps(1) infinite,
+    hideCursor calc(var(--chars) * var(--char-speed) + 0.2s) linear forwards;
+  animation-delay: var(--delay, 0s), var(--delay, 0s), var(--delay, 0s);
+}
+
+@keyframes typing {
+  from {
+    width: 0ch;
+    border-right-color: var(--clr-base-content);
+  }
+
+  to {
+    width: calc(var(--chars) * 1ch);
+    border-right-color: var(--clr-base-content);
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-right-color: transparent;
+  }
+}
+
+@keyframes hideCursor {
+
+  0%,
+  95% {
+    border-right-color: var(--clr-base-content);
+  }
+
+  100% {
+    border-right-color: transparent;
+  }
+}
+
+.loader {
+  /* width: fit-content; */
+  font-weight: bold;
+  font-family: monospace;
+  font-size: inherit;
+  clip-path: inset(0 3ch 0 0);
+  animation: loaderBlinking 3s steps(4) infinite;
+}
+
+.loader:before {
+  content: var(--loader-content, "Loading...");
+}
+
+@keyframes loaderBlinking {
+  to {
+    clip-path: inset(0 -1ch 0 0);
+  }
+}

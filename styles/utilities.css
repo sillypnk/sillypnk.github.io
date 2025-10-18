@@ -1,0 +1,82 @@
+@layer utilities {
+  /* Modifier */
+  .card--noshadow {
+    box-shadow: none;
+  }
+
+  .card--noborder {
+    border: none;
+  }
+
+  .pill--outlined {
+    border: 1px solid var(--pill-color);
+    color: var(--pill-color);
+    background-color: transparent;
+  }
+  
+  .pill--subtle {
+    border: 1px solid var(--pill-color);
+    background-color: oklch(
+      from var(--pill-color) l c h / 20%
+    );
+    color: var(--pill-color);
+  }
+
+  .pill--sm {
+    --pill-px: 0.5rem;
+
+    font-size: 0.65rem;
+  }
+
+  .animate--scrollBottom {
+    animation: scroll-bottom 20s linear forwards infinite;
+    font-size: 9rem;
+    color: oklch(from var(--clr-base-content) l c h / 10%);
+    position: fixed;
+    left: -31rem;
+    top: 10rem;
+    font-weight: 900;
+    transform: translateX(-100%);
+    font-family: "Yuruka STD", Arial, Helvetica, sans-serif;
+    rotate: 90deg;
+  }
+
+  .animate--scrollTop {
+    animation: scroll-bottom 15s linear backwards infinite;
+    font-size: 9rem;
+    font-family: "Yuruka STD", Arial, Helvetica, sans-serif;
+    color: oklch(from var(--clr-base-content) l c h / 10%);
+    position: fixed;
+    right: -31rem;
+    top: 10rem;
+    transform: translateX(-100%);
+    font-weight: 900;
+    rotate: -90deg;
+  }
+
+  .animate--snapRotate {
+    animation: rotate 300ms steps(2, end) alternate infinite;
+  }
+
+  .is-animate-scroll__container {
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    width: calc(100% - 10px - 1px);
+  }
+
+  .is-animate-scroll {
+    display: inline-block;
+    padding-left: 100%;
+    animation: scrollLeft 8000ms linear infinite;
+  }
+
+  .img--grayscaled {
+    filter: grayscale(100%);
+    transition: filter 350ms ease-in-out;
+
+    &:hover {
+      filter: grayscale(0%);
+    }
+  }
+}
