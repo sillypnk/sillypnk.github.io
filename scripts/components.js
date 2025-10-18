@@ -232,19 +232,19 @@ class StartMenu extends HTMLElement {
           <ul class="startmenu__list">
             <a href="/index.html">
               <li>Home</li>
-            </a><a href="/pages/about.html">
+            </a><a href="/pumoreiichi.vanilla/pages/about.html">
               <li>About</li>
-            </a><a href="/pages/gallery.html">
+            </a><a href="/pumoreiichi.vanilla/pages/gallery.html">
               <li>Gallery</li>
-            </a><a href="/pages/blog.html">
+            </a><a href="/pumoreiichi.vanilla/pages/blog.html">
               <li>Blog</li>
-            </a><a href="/pages/microblog.html">
+            </a><a href="/pumoreiichi.vanilla/pages/microblog.html">
               <li>Microblog</li>
-            </a><a href="/pages/projects.html">
+            </a><a href="/pumoreiichi.vanilla/pages/projects.html">
               <li>Projects</li>
-            </a><a href="/pages/resources.html">
+            </a><a href="/pumoreiichi.vanilla/pages/resources.html">
               <li>Resources</li>
-            </a><a href="/pages/resume.html">
+            </a><a href="/pumoreiichi.vanilla/pages/resume.html">
               <li>Resume</li>
             </a>
           </ul>
