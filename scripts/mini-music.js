@@ -1,7 +1,29 @@
-// This automatically parses the JSON File
-import SongsJson from "../public/json/songs.json";
-
-const Songs = JSON.parse(SongsJson);
+const Songs = [
+  {
+    title: "Machine Love - JamieP",
+    source: "../public/media/audio/[JamieP] Machine Love.mp3",
+  },
+  {
+    title: "Koala (Self Cover) - Will Stetson",
+    source: "../public/media/audio/[Will Stetson] Koala (Self cover).mp3",
+  },
+  {
+    title: "Heat Abnormal - Iyowa Ft. Adachi Rei",
+    source: "../public/media/audio/[Iyowa Ft. Adachi Rei] Heat Abnormal.mp3",
+  },
+  {
+    title: "Absolute Zero - Natori",
+    source: "../public/media/audio/[Natori] Absolute Zero.mp3",
+  },
+  {
+    title: "Theater - Natori",
+    source: "../public/media/audio/[Natori] Theater.mp3",
+  },
+  {
+    title: "∞ - Oguri Cap",
+    source: "../public/media/audio/[Oguri Cap] ∞.mp3",
+  },
+];
 
 window.addEventListener("DOMContentLoaded", () => {
   // (A) INITIALIZING PLAYER & ELEMENTS
@@ -32,7 +54,9 @@ window.addEventListener("DOMContentLoaded", () => {
       // console.log(songIndex);
       // console.log(el);
 
-      const hasActivePlayingClass = el.classList.contains("is-currently-playing");
+      const hasActivePlayingClass = el.classList.contains(
+        "is-currently-playing"
+      );
       if (songIndex == currentSongIndex && !hasActivePlayingClass) {
         el.classList.add("is-currently-playing");
       } else {
@@ -105,7 +129,7 @@ window.addEventListener("DOMContentLoaded", () => {
   // (D3) UPDATE TIME ON PLAYING
   audio.addEventListener(
     "timeupdate",
-    () => (durationNow.innerHTML = timeString(audio.currentTime)),
+    () => (durationNow.innerHTML = timeString(audio.currentTime))
   );
 
   // (E) SEEK BAR
