@@ -1,27 +1,27 @@
 const Songs = [
   {
     title: "Machine Love - JamieP",
-    source: "/pumoreiichi.vanilla/public/media/audio/[JamieP] Machine Love.mp3",
+    source: "../public/media/audio/[JamieP] Machine Love.mp3",
   },
   {
     title: "Koala (Self Cover) - Will Stetson",
-    source: "/pumoreiichi.vanilla/public/media/audio/[Will Stetson] Koala (Self cover).mp3",
+    source: "../public/media/audio/[Will Stetson] Koala (Self cover).mp3",
   },
   {
     title: "Heat Abnormal - Iyowa Ft. Adachi Rei",
-    source: "/pumoreiichi.vanilla/public/media/audio/[Iyowa Ft. Adachi Rei] Heat Abnormal.mp3",
+    source: "../public/media/audio/[Iyowa Ft. Adachi Rei] Heat Abnormal.mp3",
   },
   {
     title: "Absolute Zero - Natori",
-    source: "/pumoreiichi.vanilla/public/media/audio/[Natori] Absolute Zero.mp3",
+    source: "../public/media/audio/[Natori] Absolute Zero.mp3",
   },
   {
     title: "Theater - Natori",
-    source: "/pumoreiichi.vanilla/public/media/audio/[Natori] Theater.mp3",
+    source: "../public/media/audio/[Natori] Theater.mp3",
   },
   {
     title: "∞ - Oguri Cap",
-    source: "/pumoreiichi.vanilla/public/media/audio/[Oguri Cap] ∞.mp3",
+    source: "../public/media/audio/[Oguri Cap] ∞.mp3",
   },
 ];
 
@@ -96,10 +96,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // -------- ACTIONS ---------
   audio.addEventListener("play", () => {
-    playEl.innerHTML = `<img src="/pumoreiichi.vanilla/public/icons/pause.svg" alt="Play/Pause Icon" width="12" />`;
+    playEl.innerHTML = `<img src="../public/icons/pause.svg" alt="Play/Pause Icon" width="12" />`;
   });
   audio.addEventListener("pause", () => {
-    playEl.innerHTML = `<img src="/pumoreiichi.vanilla/public/icons/play.svg" alt="Play/Pause Icon" width="12" />`;
+    playEl.innerHTML = `<img src="../public/icons/play.svg" alt="Play/Pause Icon" width="12" />`;
   });
 
   playEl.addEventListener("click", () => {

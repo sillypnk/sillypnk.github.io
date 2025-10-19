@@ -31,9 +31,10 @@
   .animate--scrollBottom {
     animation: scroll-bottom 20s linear forwards infinite;
     font-size: 9rem;
-    color: oklch(from var(--clr-base-content) l c h / 10%);
+    color: var(--clr-base-content);
+    opacity: 10%;
     position: fixed;
-    left: -31rem;
+    left: -20rem;
     top: 10rem;
     font-weight: 900;
     transform: translateX(-100%);
@@ -45,9 +46,10 @@
     animation: scroll-bottom 15s linear backwards infinite;
     font-size: 9rem;
     font-family: "Yuruka STD", Arial, Helvetica, sans-serif;
-    color: oklch(from var(--clr-base-content) l c h / 10%);
+    color: var(--clr-base-content);
+    opacity: 10%;
     position: fixed;
-    right: -31rem;
+    right: -20rem;
     top: 10rem;
     transform: translateX(-100%);
     font-weight: 900;

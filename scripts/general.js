@@ -19,6 +19,13 @@ function useMusic() {
   let el = document.getElementById("music-player");
   let now_playing = document.getElementById("is-playing");
   let now_playing_img = document.getElementById("is-playing-img");
+  if (now_playing_img) {
+    if (document.documentElement.getAttribute("data-theme") === "dark") {
+      now_playing_img.style = `max-width: 100%; mix-blend-mode: lighten; filter: invert(100%);`;
+    } else {
+      now_playing_img.style = `max-width: 100%; mix-blend-mode: darken;`;
+    }
+  }
   const music_id = document.getElementById("music");
   if (el) el.volume = 0;
 

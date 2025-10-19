@@ -1,6 +1,5 @@
 @layer base {
 
-  /* Just for "aesthetic" purposes */
   ::-moz-selection {
     background-color: var(--clr-base-content);
     color: light-dark(var(--clr-secondary), var(--clr-base));
@@ -38,12 +37,14 @@
     --transition-ease: ease-in-out;
 
     /* animations */
-    --char-speed: 0.06s; /* speed per character */
+    --char-speed: 0.06s;
+    /* speed per character */
     --cursor-blink: 1s;
   }
 
   :root[data-theme="dark"] {
     /* --clr-base-content: oklch(78.211% 0.16941 69.512); */
+    text-shadow: 0 0 2.5px currentColor;
     color-scheme: dark;
   }
 
@@ -84,7 +85,14 @@
     line-height: 2em;
   }
 
+  mark {
+    background-color: var(--clr-base-content);
+    color: light-dark(var(--clr-secondary), var(--clr-base));
+    padding: 2px;
+  }
+
   body {
+    --bg-size: 30px;
     font-family: "Tickerbit", monospace, Arial, sans-serif;
     font-size: 0.8rem;
     line-height: 1.5;
@@ -99,9 +107,9 @@
     background-image: radial-gradient(circle at 1px 1px,
         light-dark(oklch(0.0772 0 299 / 25%), oklch(100% 0.00011 271.152 / 0.25)) 1px,
         transparent 0);
-    background-size: 30px 30px;
+    background-size: var(--bg-size) var(--bg-size);
     will-change: background-position;
-    animation: bg-scroll 26s linear infinite;
+    animation: bg-scroll 40s linear infinite;
 
     inset: 0;
     overflow-y: auto;
@@ -125,7 +133,7 @@
 
     &::-webkit-progress-bar {
       background-color: light-dark(var(--clr-primary),
-          oklch(from var(--clr-secondary) calc(l + 0.120) c h));
+          oklch(from var(--clr-secondary) calc(l + 0.12) c h));
     }
 
     &::-webkit-progress-value {
