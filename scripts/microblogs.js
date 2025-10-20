@@ -68,8 +68,7 @@ microblogsData.forEach((microblog) => {
                   color: light-dark(var(--clr-secondary), var(--clr-base));
                 "
               >
-                ${templateHasGallery}
-                <p style="line-height: 20px; margin-block: 10px">${microblog.content}</p>
+                <p style="line-height: 21px; margin-block: 10px; letter-spacing: 0.6px;">${microblog.content}</p>
                 <div style="display: block; margin-block: 5px; font-size: 0.7rem; color: grey; text-rendering: geometricPrecision;">
                   ${getRelativeTimeString(new Date(microblog.date))} - ${new Date(microblog.date).toLocaleString(navigator.language, { dateStyle: "short" })}
                 </div>
