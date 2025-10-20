@@ -1,5 +1,4 @@
 @layer base {
-
   ::-moz-selection {
     background-color: var(--clr-base-content);
     color: light-dark(var(--clr-secondary), var(--clr-base));
@@ -8,21 +7,6 @@
   ::selection {
     background-color: var(--clr-base-content);
     color: light-dark(var(--clr-secondary), var(--clr-base));
-  }
-
-  *,
-  *::before,
-  *::after {
-    scrollbar-color: oklch(from var(--clr-base-content) l c h / 0.648) transparent;
-    scrollbar-width: thin;
-    cursor: none;
-    scroll-behavior: smooth;
-  }
-
-  *:hover,
-  *:active,
-  *:focus {
-    cursor: none;
   }
 
   :root {
@@ -46,6 +30,22 @@
     /* --clr-base-content: oklch(78.211% 0.16941 69.512); */
     text-shadow: 0 0 2.5px currentColor;
     color-scheme: dark;
+
+    body {
+      background:
+        radial-gradient(circle at 1px 1px,
+          light-dark(oklch(0.0772 0 299 / 25%),
+            oklch(100% 0.00011 271.152 / 0.25)) 1px,
+          transparent 0),
+
+        /* Gradient at the bottom page */
+        radial-gradient(200% 115% at 50% 10%,
+          transparent 50%,
+          var(--clr-base-content) 100%) no-repeat fixed;
+      background-size:
+        var(--bg-size) var(--bg-size),
+        100% 100%;
+    }
   }
 
   :root[data-theme="light"] {
@@ -91,6 +91,20 @@
     padding: 2px;
   }
 
+  q {
+    font-style: italic;
+  }
+
+  code {
+    background-color: oklch(0.3632 0 83);
+    font-family: monospace;
+    letter-spacing: 1.5px;
+    color: var(--clr-base);
+    padding-block: 2px;
+    padding-inline: 5px;
+    border-radius: 3px;
+  }
+
   body {
     --bg-size: 30px;
     font-family: "Tickerbit", monospace, Arial, sans-serif;
@@ -104,9 +118,10 @@
       color var(--transition-duration) var(--transition-ease);
 
     background-color: light-dark(var(--clr-base), var(--clr-secondary));
-    background-image: radial-gradient(circle at 1px 1px,
+    background: radial-gradient(circle at 1px 1px,
         light-dark(oklch(0.0772 0 299 / 25%), oklch(100% 0.00011 271.152 / 0.25)) 1px,
         transparent 0);
+
     background-size: var(--bg-size) var(--bg-size);
     will-change: background-position;
     animation: bg-scroll 40s linear infinite;

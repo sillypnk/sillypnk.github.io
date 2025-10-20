@@ -23,9 +23,9 @@
   }
 
   .pill--sm {
-    --pill-px: 0.5rem;
+    --pill-px: 0.6rem;
 
-    font-size: 0.65rem;
+    font-size: 0.59rem;
   }
 
   .animate--scrollBottom {
