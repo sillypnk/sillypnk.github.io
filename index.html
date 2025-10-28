@@ -1,170 +1,34 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
+  <!-- 🎨 Color Scheme -->
   <script>
     const colorScheme = localStorage.getItem("theme");
     document.documentElement.setAttribute(
       "data-theme",
-      colorScheme || "light",
+      colorScheme || "light"
     );
   </script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- For preloading stylesheets -->
-  <link rel="preload" as="script" href="./scripts/general.js" />
-  <link rel="preload" as="image" href="./public/media/cursors/adachi_curious.gif" />
 
   <script src="./scripts/general.js" defer></script>
-  <script src="./scripts/mini-music.js" type="module" defer></script>
-  <!-- For preloading stylesheets -->
-  <link rel="preload" as="style" href="./styles.css" />
+  <script src="./scripts/mini-music.js" type="module"></script>
   <link rel="stylesheet" type="text/css" href="./styles.css" />
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const themeToggler = document.querySelector("#theme-toggler");
-      const themeIcon = document.querySelector("#theme-icon");
-      const root = document.documentElement;
-
-      const toggleTheme = function () {
-        let colorScheme = root.getAttribute("data-theme");
-
-        if (colorScheme === "light") {
-          themeIcon.innerHTML = `
-						<svg style="width: 0.85em; margin-right: 4px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracurrentColorerCarrier" stroke-linecurrentcap="round" stroke-linejoin="round"></g><g id="SVGRepo_icurrentColoronCarrier"> <path d="M10.5766 8.70419C11.2099 7.56806 11.5266 7 12 7C12.4734 7 12.7901 7.56806 13.4234 8.70419L13.5873 8.99812C13.7672 9.32097 13.8572 9.48239 13.9975 9.5889C14.1378 9.69541 14.3126 9.73495 14.6621 9.81402L14.9802 9.88601C16.2101 10.1643 16.825 10.3034 16.9713 10.7739C17.1176 11.2443 16.6984 11.7345 15.86 12.715L15.643 12.9686C15.4048 13.2472 15.2857 13.3865 15.2321 13.5589C15.1785 13.7312 15.1965 13.9171 15.2325 14.2888L15.2653 14.6272C15.3921 15.9353 15.4554 16.5894 15.0724 16.8801C14.6894 17.1709 14.1137 16.9058 12.9622 16.3756L12.6643 16.2384C12.337 16.0878 12.1734 16.0124 12 16.0124C11.8266 16.0124 11.663 16.0878 11.3357 16.2384L11.0378 16.3756C9.88634 16.9058 9.31059 17.1709 8.92757 16.8801C8.54456 16.5894 8.60794 15.9353 8.7347 14.6272L8.76749 14.2888C8.80351 13.9171 8.82152 13.7312 8.76793 13.5589C8.71434 13.3865 8.59521 13.2472 8.35696 12.9686L8.14005 12.715C7.30162 11.7345 6.88241 11.2443 7.02871 10.7739C7.17501 10.3034 7.78993 10.1643 9.01977 9.88601L9.33794 9.81402C9.68743 9.73495 9.86217 9.69541 10.0025 9.5889C10.1428 9.48239 10.2328 9.32097 10.4127 8.99812L10.5766 8.70419Z" fill="currentColor"></path> <path opacurrentcity="0.8" fill-rule="evenodd" currentclip-rule="evenodd" d="M12 1.25C12.4142 1.25 12.75 1.58579 12.75 2V4C12.75 4.41421 12.4142 4.75 12 4.75C11.5858 4.75 11.25 4.41421 11.25 4V2C11.25 1.58579 11.5858 1.25 12 1.25ZM1.25 12C1.25 11.5858 1.58579 11.25 2 11.25H4C4.41421 11.25 4.75 11.5858 4.75 12C4.75 12.4142 4.41421 12.75 4 12.75H2C1.58579 12.75 1.25 12.4142 1.25 12ZM19.25 12C19.25 11.5858 19.5858 11.25 20 11.25H22C22.4142 11.25 22.75 11.5858 22.75 12C22.75 12.4142 22.4142 12.75 22 12.75H20C19.5858 12.75 19.25 12.4142 19.25 12ZM12 19.25C12.4142 19.25 12.75 19.5858 12.75 20V22C12.75 22.4142 12.4142 22.75 12 22.75C11.5858 22.75 11.25 22.4142 11.25 22V20C11.25 19.5858 11.5858 19.25 12 19.25Z" fill="currentColor"></path> <g opacurrentcity="0.5"> <path d="M18.5304 5.46967C18.8233 5.76256 18.8233 6.23744 18.5304 6.53033L18.1872 6.87359C17.8943 7.16648 17.4194 7.16648 17.1265 6.87359C16.8336 6.5807 16.8336 6.10583 17.1265 5.81293L17.4698 5.46967C17.7627 5.17678 18.2376 5.17678 18.5304 5.46967Z" fill="currentColor"></path> <path d="M5.46967 5.46979C5.76256 5.17689 6.23744 5.17689 6.53033 5.46979L6.87359 5.81305C7.16648 6.10594 7.16648 6.58081 6.87359 6.87371C6.5807 7.1666 6.10583 7.1666 5.81293 6.87371L5.46967 6.53045C5.17678 6.23755 5.17678 5.76268 5.46967 5.46979Z" fill="currentColor"></path> <path d="M6.87348 17.1266C7.16637 17.4195 7.16637 17.8944 6.87348 18.1873L6.53043 18.5303C6.23754 18.8232 5.76266 18.8232 5.46977 18.5303C5.17688 18.2375 5.17688 17.7626 5.46977 17.4697L5.81282 17.1266C6.10571 16.8337 6.58058 16.8337 6.87348 17.1266Z" fill="currentColor"></path> <path d="M17.1265 17.1269C17.4194 16.834 17.8943 16.834 18.1872 17.1269L18.5302 17.4699C18.8231 17.7628 18.8231 18.2377 18.5302 18.5306C18.2373 18.8235 17.7624 18.8235 17.4695 18.5306L17.1265 18.1875C16.8336 17.8946 16.8336 17.4198 17.1265 17.1269Z" fill="currentColor"></path> </g> </g></svg>
-						`;
-          return "dark";
-        } else {
-          themeIcon.innerHTML = `
-							<svg
-							style="width: 0.85em; margin-right: 4px"
-							version="1.1"
-							id="Icons"
-							xmlns="http://www.w3.org/2000/svg"
-							xmlns:xlink="http://www.w3.org/1999/xlink"
-							viewBox="0 0 32 32"
-							xml:space="preserve"
-							fill="currentColor"
-							stroke="currentColor"
-							>
-							<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-							<g
-							id="SVGRepo_tracerCarrier"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							></g>
-							<g id="SVGRepo_iconCarrier">
-							<style type="text/css">
-							.st0 {
-								fill: none;
-								stroke: currentColor;
-								stroke-width: 2;
-								stroke-linecap: round;
-								stroke-linejoin: round;
-								stroke-miterlimit: 10;
-							}
-							
-							.st1 {
-								fill: none;
-								stroke: currentColor;
-								stroke-width: 2;
-								stroke-linejoin: round;
-								stroke-miterlimit: 10;
-							}
-							</style>
-							<path
-							class="st0"
-							d="M17,5c-0.27,0-0.54,0.02-0.8,0.04C19.05,6.55,21,9.55,21,13c0,4.97-4.03,9-9,9c-2.74,0-5.19-1.23-6.85-3.17 C6.04,24.59,11,29,17,29c6.63,0,12-5.37,12-12S23.63,5,17,5z"
-							></path>
-							<g>
-							<path
-							class="st0"
-							d="M11,9c-2.58,0.62-3.38,1.42-4,4c-0.62-2.58-1.42-3.38-4-4c2.58-0.62,3.38-1.42,4-4C7.62,7.58,8.42,8.38,11,9z"
-							></path>
-							</g>
-							<line class="st0" x1="12" y1="14" x2="12" y2="16"></line>
-							<line class="st0" x1="11" y1="15" x2="13" y2="15"></line>
-							</g>
-							</svg>
-							`;
-          return "light";
-        }
-      };
-
-      themeToggler.addEventListener("click", () => {
-        const theme = toggleTheme();
-        root.setAttribute("data-theme", theme);
-        localStorage.setItem("theme", theme);
-      });
-    });
+  <script type="module">
+    import {MICROBLOGS as microblogs} from "./scripts/microblogsData.js";
+    // Now returns an array sorted out from latest date to oldest date
+    /**
+     * @type {Array}
+     */
+    const recentMicroblogs = microblogs.sort(
+      (old, recent) => new Date(recent.date) - new Date(old.date)
+    );
+    const el = document.querySelector("#microblog-recent");
+    el.innerHTML = recentMicroblogs[0].content;
   </script>
-
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const colorScheme = document.documentElement.getAttribute("data-theme");
-      const themeToggler = document.querySelector("#theme-toggler");
-      const themeIcon = document.querySelector("#theme-icon");
-
-      if (colorScheme === "dark") {
-        themeIcon.innerHTML = `
-					<svg style="width: 0.85em; margin-right: 4px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracurrentColorerCarrier" stroke-linecurrentcap="round" stroke-linejoin="round"></g><g id="SVGRepo_icurrentColoronCarrier"> <path d="M10.5766 8.70419C11.2099 7.56806 11.5266 7 12 7C12.4734 7 12.7901 7.56806 13.4234 8.70419L13.5873 8.99812C13.7672 9.32097 13.8572 9.48239 13.9975 9.5889C14.1378 9.69541 14.3126 9.73495 14.6621 9.81402L14.9802 9.88601C16.2101 10.1643 16.825 10.3034 16.9713 10.7739C17.1176 11.2443 16.6984 11.7345 15.86 12.715L15.643 12.9686C15.4048 13.2472 15.2857 13.3865 15.2321 13.5589C15.1785 13.7312 15.1965 13.9171 15.2325 14.2888L15.2653 14.6272C15.3921 15.9353 15.4554 16.5894 15.0724 16.8801C14.6894 17.1709 14.1137 16.9058 12.9622 16.3756L12.6643 16.2384C12.337 16.0878 12.1734 16.0124 12 16.0124C11.8266 16.0124 11.663 16.0878 11.3357 16.2384L11.0378 16.3756C9.88634 16.9058 9.31059 17.1709 8.92757 16.8801C8.54456 16.5894 8.60794 15.9353 8.7347 14.6272L8.76749 14.2888C8.80351 13.9171 8.82152 13.7312 8.76793 13.5589C8.71434 13.3865 8.59521 13.2472 8.35696 12.9686L8.14005 12.715C7.30162 11.7345 6.88241 11.2443 7.02871 10.7739C7.17501 10.3034 7.78993 10.1643 9.01977 9.88601L9.33794 9.81402C9.68743 9.73495 9.86217 9.69541 10.0025 9.5889C10.1428 9.48239 10.2328 9.32097 10.4127 8.99812L10.5766 8.70419Z" fill="currentColor"></path> <path opacurrentcity="0.8" fill-rule="evenodd" currentclip-rule="evenodd" d="M12 1.25C12.4142 1.25 12.75 1.58579 12.75 2V4C12.75 4.41421 12.4142 4.75 12 4.75C11.5858 4.75 11.25 4.41421 11.25 4V2C11.25 1.58579 11.5858 1.25 12 1.25ZM1.25 12C1.25 11.5858 1.58579 11.25 2 11.25H4C4.41421 11.25 4.75 11.5858 4.75 12C4.75 12.4142 4.41421 12.75 4 12.75H2C1.58579 12.75 1.25 12.4142 1.25 12ZM19.25 12C19.25 11.5858 19.5858 11.25 20 11.25H22C22.4142 11.25 22.75 11.5858 22.75 12C22.75 12.4142 22.4142 12.75 22 12.75H20C19.5858 12.75 19.25 12.4142 19.25 12ZM12 19.25C12.4142 19.25 12.75 19.5858 12.75 20V22C12.75 22.4142 12.4142 22.75 12 22.75C11.5858 22.75 11.25 22.4142 11.25 22V20C11.25 19.5858 11.5858 19.25 12 19.25Z" fill="currentColor"></path> <g opacurrentcity="0.5"> <path d="M18.5304 5.46967C18.8233 5.76256 18.8233 6.23744 18.5304 6.53033L18.1872 6.87359C17.8943 7.16648 17.4194 7.16648 17.1265 6.87359C16.8336 6.5807 16.8336 6.10583 17.1265 5.81293L17.4698 5.46967C17.7627 5.17678 18.2376 5.17678 18.5304 5.46967Z" fill="currentColor"></path> <path d="M5.46967 5.46979C5.76256 5.17689 6.23744 5.17689 6.53033 5.46979L6.87359 5.81305C7.16648 6.10594 7.16648 6.58081 6.87359 6.87371C6.5807 7.1666 6.10583 7.1666 5.81293 6.87371L5.46967 6.53045C5.17678 6.23755 5.17678 5.76268 5.46967 5.46979Z" fill="currentColor"></path> <path d="M6.87348 17.1266C7.16637 17.4195 7.16637 17.8944 6.87348 18.1873L6.53043 18.5303C6.23754 18.8232 5.76266 18.8232 5.46977 18.5303C5.17688 18.2375 5.17688 17.7626 5.46977 17.4697L5.81282 17.1266C6.10571 16.8337 6.58058 16.8337 6.87348 17.1266Z" fill="currentColor"></path> <path d="M17.1265 17.1269C17.4194 16.834 17.8943 16.834 18.1872 17.1269L18.5302 17.4699C18.8231 17.7628 18.8231 18.2377 18.5302 18.5306C18.2373 18.8235 17.7624 18.8235 17.4695 18.5306L17.1265 18.1875C16.8336 17.8946 16.8336 17.4198 17.1265 17.1269Z" fill="currentColor"></path> </g> </g></svg>
-					`;
-      } else {
-        themeIcon.innerHTML = `
-						<svg
-						style="width: 0.85em; margin-right: 4px"
-						version="1.1"
-						id="Icons"
-						xmlns="http://www.w3.org/2000/svg"
-						xmlns:xlink="http://www.w3.org/1999/xlink"
-						viewBox="0 0 32 32"
-						xml:space="preserve"
-						fill="currentColor"
-						stroke="currentColor"
-						>
-						<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-						<g
-						id="SVGRepo_tracerCarrier"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						></g>
-						<g id="SVGRepo_iconCarrier">
-						<style type="text/css">
-						.st0 {
-							fill: none;
-							stroke: currentColor;
-							stroke-width: 2;
-							stroke-linecap: round;
-							stroke-linejoin: round;
-							stroke-miterlimit: 10;
-						}
-						
-						.st1 {
-							fill: none;
-							stroke: currentColor;
-							stroke-width: 2;
-							stroke-linejoin: round;
-							stroke-miterlimit: 10;
-						}
-						</style>
-						<path
-						class="st0"
-						d="M17,5c-0.27,0-0.54,0.02-0.8,0.04C19.05,6.55,21,9.55,21,13c0,4.97-4.03,9-9,9c-2.74,0-5.19-1.23-6.85-3.17 C6.04,24.59,11,29,17,29c6.63,0,12-5.37,12-12S23.63,5,17,5z"
-						></path>
-						<g>
-						<path
-						class="st0"
-						d="M11,9c-2.58,0.62-3.38,1.42-4,4c-0.62-2.58-1.42-3.38-4-4c2.58-0.62,3.38-1.42,4-4C7.62,7.58,8.42,8.38,11,9z"
-						></path>
-						</g>
-						<line class="st0" x1="12" y1="14" x2="12" y2="16"></line>
-						<line class="st0" x1="11" y1="15" x2="13" y2="15"></line>
-						</g>
-						</svg>
-						`;
-      }
-
       // Depends on the array value of the getDay()
       const gifSrc = [
         // Sunday (0)
@@ -223,44 +87,47 @@
   </script>
 
   <!-- [✨] SEO Stuff -->
-<link rel="icon" type="image/png" href="./public/favicon/favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="./public/favicon/favicon.svg" />
-<link rel="shortcut icon" href="./public/favicon/favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="./public/favicon/apple-touch-icon.png" />
-<meta name="apple-mobile-web-app-title" content="PUMOREIICHI" />
-<link rel="manifest" href="./public/favicon/site.webmanifest" />
+  <link rel="icon" type="image/png" href="./public/favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="./public/favicon/favicon.svg" />
+  <!-- <link rel="shortcuticon" href="./public/favicon/favicon.ico"> -->
+  <link rel="apple-touch-icon" sizes="180x180" href="./public/favicon/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="PumoReiichi!" />
+  <link rel="manifest" href="./public/favicon/site.webmanifest" />
 
-  <title>PUMOREIICHI</title>
+  <title>🧡 PumoReiichi!</title>
   <meta name="description"
-    content="A personal portfolio which heavily inspired by a neocities developer @nenrikido. Don't forget to check them out!">
+    content="A personal portfolio which heavily inspired by a neocities developer @nenrikido. Don't forget to check them out!" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Facebook Meta Tags -->
-  <meta property="og:url" content="https://sillypnk.github.io">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="PUMOREIICHI">
+  <meta property="og:url" content="https://sillypnk.github.io" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="PumoReiichi!" />
   <meta property="og:description"
-    content="A personal room which heavily inspired by a neocities developer @nenrikido. Don't forget to check them out!">
+    content="A personal room which heavily inspired by a neocities developer @nenrikido. Don't forget to check them out!" />
   <meta property="og:image"
-    content="https://opengraph.b-cdn.net/production/images/12044105-dd81-4b92-a2f2-010f9961830b.png?token=zw8LmFbfH3LIIH4ARZXzlSmxTqVKmRXePPUc1dDsUVQ&height=604&width=1200&expires=33296792141">
+    content="https://opengraph.b-cdn.net/production/images/12044105-dd81-4b92-a2f2-010f9961830b.png?token=zw8LmFbfH3LIIH4ARZXzlSmxTqVKmRXePPUc1dDsUVQ&height=604&width=1200&expires=33296792141" />
 
   <!-- Twitter Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta property="twitter:domain" content="sillypnk.github.io">
-  <meta property="twitter:url" content="https://sillypnk.github.io">
-  <meta name="twitter:title" content="PUMOREIICHI">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="twitter:domain" content="sillypnk.github.io" />
+  <meta property="twitter:url" content="https://sillypnk.github.io" />
+  <meta name="twitter:title" content="PumoReiichi!" />
   <meta name="twitter:description"
-    content="A personal portfolio which heavily inspired by a neocities developer @nenrikido. Don't forget to check them out!">
+    content="A personal portfolio which heavily inspired by a neocities developer @nenrikido. Don't forget to check them out!" />
   <meta name="twitter:image"
-    content="https://opengraph.b-cdn.net/production/images/12044105-dd81-4b92-a2f2-010f9961830b.png?token=zw8LmFbfH3LIIH4ARZXzlSmxTqVKmRXePPUc1dDsUVQ&height=604&width=1200&expires=33296792141">
+    content="https://opengraph.b-cdn.net/production/images/12044105-dd81-4b92-a2f2-010f9961830b.png?token=zw8LmFbfH3LIIH4ARZXzlSmxTqVKmRXePPUc1dDsUVQ&height=604&width=1200&expires=33296792141" />
 </head>
 
 <body>
   <!-- Cursor -->
+  <noscript> I recommend enabling JavaScript dear user! </noscript>
   <div id="cursor" class="cursor cursor--hidden"></div>
   <img class="adachiRei" style="pointer-events: none; z-index: 1" src="./public/media/adachi-victory.gif"
     alt="An orange haired girl stuff toy doing her victory pose!" />
 
-  <div class="desktop" style="height: 140%">
+  <main class="desktop" style="height: 140%">
     <div class="desktop__apps">
       <a href="/" class="desktop__icon">
         <img src="./public/icons/desktop/computer.png" alt="Computer Icon" />
@@ -277,9 +144,9 @@
         <span>GALLERY</span>
       </a>
 
-      <a href="/pages/resume.html" class="desktop__icon">
+      <a href="/pages/code.html" class="desktop__icon">
         <img src="./public/icons/desktop/windows-2.png" alt="File Blue Gradient Icon" />
-        <span>RESUME</span>
+        <span>CODE</span>
       </a>
 
       <a href="/pages/projects.html" class="desktop__icon">
@@ -321,7 +188,7 @@
           <div class="music-btn" style="
                 border-right: none;
                 border-left: 2px solid var(--clr-base-content);
-                  color: light-dark(var(--clr-secondary), var(--clr-base));
+                color: light-dark(var(--clr-secondary), var(--clr-base));
               ">
             <svg style="width: 1.2em" fill="currentColor" viewBox="0 0 400 400" id="Search" version="1.1"
               xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -383,19 +250,15 @@
         <div class="card__content">
           <h2>#WELCOME!</h2>
           <div>
-            <p>
             <aside>
-              <img style="
-                    max-width: 55%;
-                    margin: 1px;
-                    float: right;
-                  " src="./public/media/adachi_rei/adachi.png"
+              <img style="max-width: 55%; margin: 1px; float: right" src="./public/media/adachi_rei/adachi.png"
                 alt="An illustration of a orange haired girl staring at the viewer" />
             </aside>
-            Hello and welcome, to my personal site! This is a place where I
-            <em>will</em>
-            mostly share things. A lot of stuff are still in progress so...
-            yeah. (o′┏▽┓｀o)
+            <p>
+              Hello and welcome, to my personal site! This is a place where I
+              <em>will</em>
+              mostly share things. A lot of stuff are still in progress so...
+              yeah. (o′┏▽┓｀o)
             </p>
           </div>
         </div>
@@ -418,21 +281,75 @@
                 height: 80%;
               ">
             <ul>
-              <li><b>10-17-25</b>: Changed desktop icons</li>
               <li>
+                <span style="
+                      color: light-dark(var(--clr-secondary), var(--clr-base));
+                      margin-right: 5px;
+                    ">[✨]</span>
+                <b> 10-28-25 </b>: Gallery page is finally done and I added pictures :)
+              </li>
+              <li>
+                <span style="
+                      color: light-dark(var(--clr-secondary), var(--clr-base));
+                      margin-right: 5px;
+                    ">[✨]</span>
+                <b> 10-26-25 </b>: Added sound effects on modal
+              </li>
+              <li>
+                <span style="
+                      color: light-dark(var(--clr-secondary), var(--clr-base));
+                      margin-right: 5px;
+                    ">[✨]</span>
+                <b>10-17-25</b>: Changed desktop icons
+              </li>
+              <li>
+                <span style="
+                      color: light-dark(var(--clr-secondary), var(--clr-base));
+                      margin-right: 5px;
+                    ">[✨]</span>
                 <b>10-4-25</b>: Implemented light & dark theme out of boredom
               </li>
-              <li><b>10-3-25</b>: Added updates card</li>
               <li>
+                <span style="
+                      color: light-dark(var(--clr-secondary), var(--clr-base));
+                      margin-right: 5px;
+                    ">[✨]</span>
+                <b>10-3-25</b>: Added updates card
+              </li>
+              <li>
+                <span style="
+                      color: light-dark(var(--clr-secondary), var(--clr-base));
+                      margin-right: 5px;
+                    ">[🔧]</span>
                 <b>10-1-25</b>: Changed the looks of the cards in the main
                 page
               </li>
-              <li><b>9-20-25</b>: Microblogs were finally added</li>
-              <li><b>8-17-25</b>: Added few songs for the mini music player</li>
               <li>
+                <span style="
+                      color: light-dark(var(--clr-secondary), var(--clr-base));
+                      margin-right: 5px;
+                    ">[✨]</span>
+                <b>9-20-25</b>: Microblogs were finally added
+              </li>
+              <li>
+                <span style="
+                      color: light-dark(var(--clr-secondary), var(--clr-base));
+                      margin-right: 5px;
+                    ">[✨]</span>
+                <b>8-17-25</b>: Added few songs for the mini music player
+              </li>
+              <li>
+                <span style="
+                      color: light-dark(var(--clr-secondary), var(--clr-base));
+                      margin-right: 5px;
+                    ">[✨]</span>
                 <b>9-15-25</b>: Start Menu implementation
               </li>
               <li>
+                <span style="
+                      color: light-dark(var(--clr-secondary), var(--clr-base));
+                      margin-right: 5px;
+                    ">[✨]</span>
                 <b>8-15-25</b>: Added a background pattern with animation
               </li>
             </ul>
@@ -473,8 +390,7 @@
                 <span style="text-decoration: underline">PLAYLIST</span>
               </div>
               <div class="music-player__playlist">
-                <ul class="list" id="mini-playlist" style="--list-style: url(&quot;../public/icons/star-01.svg&quot;)">
-                </ul>
+                <ul class="list" id="mini-playlist" style="--list-style: url('../public/icons/star-01.svg')"></ul>
               </div>
             </div>
           </div>
@@ -494,9 +410,21 @@
 
         <div class="card__content">
           <h2>#MICROBLOG</h2>
-          <div class="card card--noshadow" style="position: static; margin: 0; border-width: 1px">
-            <div class="card__content" style="height: 100%; margin: 0 auto; text-align: center">
-              <div class="loader" style="--loader-content: &quot;No content yet...&quot;"></div>
+          <div class="card card--noshadow" style="
+                position: static;
+                margin: 0;
+                border-width: 1px;
+                height: 10rem;
+              ">
+            <div class="card__content" style="margin: 0 auto">
+              <p id="microblog-recent" style="
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 6;
+                    overflow: hidden;
+                    color: light-dark(var(--clr-secondary), var(--clr-base));
+                  "></p>
+              <a href="/pages/microblog.html" style="display: inline-block;" class="link">...see more</a>
             </div>
           </div>
         </div>
@@ -516,9 +444,9 @@
         <div class="card__content">
           <h2>#THEME</h2>
           <div style="text-align: center">
-            <svg style="width: 9em;" viewBox="0 0 512 512"
-              enable-background="new 0 0 512 512" id="flat" version="1.1" xml:space="preserve"
-              xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
+            <svg style="width: 9em" viewBox="0 0 512 512" enable-background="new 0 0 512 512" id="flat" version="1.1"
+              xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+              fill="#000000">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
               <g id="SVGRepo_iconCarrier">
@@ -573,9 +501,9 @@
           </div>
           <p>
             <strong style="letter-spacing: 2px; font-style: italic">Light & Dark Theme</strong>
-            are supported! You can change it in the <u>Start Menu</u> and
-            click the moon/star icon to change between light and dark. Just a
-            note, dark theme is still yet to fully implement.
+            are supported! You can change it in the <u>Start Menu</u>
+            and click the moon/star icon to change between light and dark.
+            Just a note, dark theme is still yet to fully implement.
           </p>
         </div>
       </article>
@@ -653,7 +581,7 @@
 
         <div class="card__content">
           <h2>#TODO</h2>
-          <ul class="card card--noshadow card--noborder" style="
+          <div class="card card--noshadow card--noborder" style="
                 width: 100%;
                 margin: 0;
                 margin-left: 1rem;
@@ -663,34 +591,29 @@
                 left: 0;
                 bottom: 0;
               ">
-            <div class="card__content">
-              <li><del>Fix sticky taskbar</del></li>
-              <li><del>Music player implementation</del></li>
-              <li><del>Microblog</del></li>
+            <ul class="card__content">
+              <li><s>Fix sticky taskbar</s></li>
+              <li><s>Microblog</s></li>
+              <li><s>Music player implementation</s></li>
+              <li><s>Carousel for Images</s></li>
+              <li>Responsive layout(?)</li>
               <li>
-                Blogs
-              </li>
-              <li>
-                Carousel for Images
-              </li>
-              <li>Responsive Layout</li>
-              <li>
-                Pages:
+                Web Pages:
                 <ul style="margin-left: 1.5rem">
-                  <li><del>Projects</del></li>
-                  <li><del>Microblog</del></li>
+                  <li><s>Projects</s></li>
+                  <li><s>Microblog</s></li>
                   <li>Gallery</li>
-                  <li>Resume</li>
+                  <li>Code</li>
                   <li>Links</li>
                   <li>Blogs</li>
                 </ul>
               </li>
-            </div>
-          </ul>
+            </ul>
+          </div>
         </div>
       </article>
     </div>
-  </div>
+  </main>
 
   <!-- TASKBAR COMPONENT -->
   <footer class="desktop__taskbar">
@@ -774,7 +697,7 @@
       <div class="modal__action">
         <form method="dialog">
           <h2>START MENU</h2>
-          <button class="btn" style="
+          <button class="btn--menu" style="
                 margin-left: auto;
                 color: inherit;
                 background: transparent;
@@ -820,18 +743,17 @@
                   outline-offset: 2px;
                 ">
               <picture>
-                <!-- Fallbacks -->
-                <source srcset="./public/media/avatar.webp" type="image/webp" />
-                <source srcset="./public/media/avatar.jpg" type="image/jpeg" />
-                <img src="./public/media/avatar.jpg" style="
-                      width: 140%;
-                      height: 140%;
-                      object-position: -2em -10px;
+                <source sizes="100vw" srcset="./public/media/avatar.webp 100w" type="image/webp" />
+                <source sizes="100vw" srcset="./public/media/avatar.jpg 100w" type="image/jpeg" />
+                <img src="../public/media/avatar.jpg" style="
+                      width: 110%;
+                      height: 110%;
+                      object-position: -10px -15px;
                     " alt="An avatar for the dialog" />
               </picture>
             </div>
           </div>
-          <h4>PUMOREIICHI</h4>
+          <h4>PumoReiichi</h4>
           <p style="
                 font-size: 0.6em;
                 padding-left: 2rem;
@@ -840,7 +762,7 @@
               ">
             OS: AdachiOS
             <br />
-            Version: 1.0.0
+            Version: 1.1.0
             <br />
             Host: Github Pages
             <br />
@@ -856,23 +778,30 @@
               border-top: 1px solid var(--clr-base-content);
             ">
           <ul class="startmenu__list">
-            <a href="./">
-              <li>Home</li>
-            </a><a href="/pages/about.html">
-              <li>About</li>
-            </a><a href="/pages/gallery.html">
-              <li>Gallery</li>
-            </a><a href="/pages/blog.html">
-              <li>Blog</li>
-            </a><a href="/pages/microblog.html">
-              <li>Microblog</li>
-            </a><a href="/pages/projects.html">
-              <li>Projects</li>
-            </a><a href="/pages/resources.html">
-              <li>Resources</li>
-            </a><a href="/pages/resume.html">
-              <li>Resume</li>
-            </a>
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="/pages/about.html">About</a>
+            </li>
+            <li>
+              <a href="/pages/gallery.html">Gallery</a>
+            </li>
+            <li>
+              <a href="/pages/blog.html">Blog</a>
+            </li>
+            <li>
+              <a href="/pages/microblog.html">Microblog</a>
+            </li>
+            <li>
+              <a href="/pages/projects.html">Projects</a>
+            </li>
+            <li>
+              <a href="/pages/resources.html">Links</a>
+            </li>
+            <li>
+              <a href="/pages/code.html">Code</a>
+            </li>
           </ul>
         </div>
         <div style="
@@ -985,8 +914,5 @@
     </div>
   </dialog>
 </body>
-</body>
-
-</html>
 
 </html>

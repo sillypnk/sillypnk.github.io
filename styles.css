@@ -1,10 +1,11 @@
-/* The main css entry. Mostly used to import other css modules */
+/* The main css entry. Used to import other css modules. */
 @layer resets, base, components, utilities;
 
 /* Importing all css themes */
-@import "./styles/resets.css";
-@import "./styles/base.css";
-@import "./styles/animations.css";
-@import "./styles/typography.css";
-@import "./styles/components.css";
-@import "./styles/utilities.css";
+@import './styles/resets.css';
+@import './styles/variables.css';
+@import './styles/base.css';
+@import './styles/animations.css';
+@import './styles/typography.css';
+@import './styles/components.css';
+@import './styles/utilities.css';

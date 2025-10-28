@@ -134,7 +134,7 @@
 
     &:before {
       --tw-content: "";
-      content: "✔︎";
+      content: "√";
       display: block;
       transform: translate(0, 0) rotate(45deg) skewX(0) skewY(0) scaleX(1) scaleY(1);
       background-color: white;
@@ -183,7 +183,7 @@
         &:before {
           transform: translate(0, 0) rotate(0deg) skewX(0) skewY(0) scaleX(1) scaleY(1);
           background-color: transparent;
-          --tw-content: "✔︎";
+          --tw-content: "√";
           clip-path: none;
         }
       }
@@ -192,7 +192,7 @@
         &:before {
           transform: translate(0, 0) rotate(0deg) skewX(0) skewY(0) scaleX(1) scaleY(1);
           background-color: transparent;
-          --tw-content: "✔︎";
+          --tw-content: "√";
           clip-path: none;
         }
       }
@@ -218,7 +218,8 @@
     border-radius: 50em;
     position: relative;
     display: inline-flex;
-    alignment-baseline: middle;
+    /* alignment-baseline: middle; */
+    vertical-align: middle;
 
     &>div {
       display: block;
@@ -263,7 +264,8 @@
     white-space: nowrap;
     background-color: light-dark(oklch(from var(--clr-secondary) calc(l + 0.08) c h),
         oklch(from var(--clr-secondary) calc(l + 0.1) c h));
-    color: light-dark(var(--clr-base), oklch(from var(--clr-base) calc(l - 0.10) c h));
+    color: light-dark(var(--clr-base),
+        oklch(from var(--clr-base) calc(l - 0.1) c h));
 
     border-radius: 2px;
 
@@ -291,7 +293,7 @@
       border-bottom: var(--arrow-size) solid transparent;
 
       border-right: var(--arrow-size) solid light-dark(oklch(from var(--clr-secondary) calc(l + 0.08) c h),
-        oklch(from var(--clr-secondary) calc(l + 0.1) c h));
+          oklch(from var(--clr-secondary) calc(l + 0.1) c h));
     }
   }
 
@@ -363,34 +365,79 @@
   .list li {
     line-height: 1.2rem;
 
+    >a {
+      display: inline-block;
+    }
+
     &:before {
       display: inline-block;
       width: var(--list-size, 1em);
       height: var(--list-size, 1em);
-      margin-right: var(--list-gap, 0.5em);
+      margin-right: var(--list-gap, 0.1em);
       content: "";
       background: var(--list-style, url("../public/icons/hash.svg")) no-repeat;
       vertical-align: middle;
     }
   }
 
-  .btn {
-    --btn-size: 2.5rem;
-    cursor: pointer;
-    border: none;
-    padding: 0.9em;
-    display: inline-flex;
-    align-items: center;
-    alignment-baseline: middle;
-    user-select: none;
-    justify-content: center;
-    background: oklch(from var(--clr-secondary) l c h / 0.171);
+  .action-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3em;
+    /* border: 1px solid var(--clr-base); */
+    text-align: center;
+    line-height: 1.5rem;
+    corner-shape: squircle;
+    border-radius: 5em;
+    height: auto;
+    width: auto;
+    padding-block: 1.2rem;
+    padding-inline: 0.3rem;
+  }
 
-    &.btn--rounded {
-      padding: 0;
-      width: var(--btn-size);
-      height: var(--btn-size);
-      border-radius: 50%;
+  .action-bar__item {
+    color: light-dark(var(--clr-secondary), var(--clr-base));
+    transition: all 0.3s cubic-bezier(1, 0.01, 0, 0.6);
+
+    label {
+      display: block;
+      font-size: 1rem;
+    }
+
+    &:hover {
+      color: var(--btn-clr-bg);
+    }
+  }
+
+  .btn {
+    --_btn-h: var(--btn-height);
+    --_btn-w: var(--btn-width);
+    --_btn-r: var(--btn-radius);
+    --_btn-bg: var(--btn-clr-bg);
+    --_btn-text: var(--btn-clr);
+
+    display: inline-flex;
+    padding-block: var(--_btn-h);
+    padding-inline: var(--_btn-w);
+    aspect-ratio: 1 / 1;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1rem;
+    font-weight: 550;
+    content-shape: squircle;
+
+    color: var(--_btn-text);
+    background-color: var(--_btn-bg);
+
+    border-radius: var(--_btn-r);
+    border: none;
+
+    transition: all 0.3s cubic-bezier(1, 0.01, 0, 0.6);
+
+    &:hover {
+      background-color: oklch(from var(--_btn-bg) l c h / 82%);
+      color: oklch(from var(--_btn-text) l c h / 82%);
     }
   }
 
@@ -524,8 +571,7 @@
       pointer-events: auto;
       visibility: visible;
       opacity: 100%;
-      background-color: oklch(from var(--clr-base-content) l c h / 0.32);
-      backdrop-filter: blur(3px);
+      background-color: oklch(from var(--clr-base-content) l c h / 0.60);
 
       .modal__content {
         transform: translateY(0);
@@ -548,17 +594,21 @@
       /* margin-bottom: 1.2rem; */
     }
 
+    /* For an unknown reason, it still adds the default cursor even with the cursor being disabled universally (resets.css) */
+    button {
+      cursor: none;
+    }
+
     .modal__content {
       transition:
         translate 0.3s ease-out,
-        transform 0.5s cubic-bezier(0.845, 0.23, 0.25, 0.99),
-        box-shadow 0.3s ease-out;
+        transform 0.5s cubic-bezier(0.845, 0.23, 0.25, 0.99);
       will-change: transform;
       align-self: end;
       margin-bottom: 3rem;
       grid-column: 2;
       transform: translateY(100vh);
-      border-radius: 0.5rem;
+      border-radius: 0.2rem;
       background-color: light-dark(var(--clr-base), var(--clr-secondary));
       /* scale: 95%; */
       border: 1px solid var(--clr-base-content);
@@ -568,8 +618,7 @@
       z-index: 2000;
       max-width: 32rem;
       /* opacity: 0; */
-      overflow-y: auto;
-      overscroll-behavior: contain;
+      overflow: hidden;
       font-size: 1.5rem;
     }
   }
@@ -580,17 +629,8 @@
     height: 100%;
     font-size: 1rem;
 
-    >a {
+    a {
       text-decoration: none !important;
-    }
-
-    >a:checked,
-    >a:visited,
-    >a:any-link {
-      color: oklch(from var(--clr-base-content) l c h / 0.266);
-    }
-
-    a>li {
       border-bottom: 1px solid var(--clr-base-content);
       color: var(--clr-base-content);
       display: flex;
@@ -599,16 +639,16 @@
       padding-block: 0.59rem;
       padding-left: 1rem;
       transition:
-        background 0.2s ease-in-out,
-        color 0.5s ease-out;
+        background-color 0.2s ease-in,
+        color 0.3s ease-in;
 
       &:hover {
         background-color: var(--clr-base-content);
         color: light-dark(var(--clr-base), var(--clr-secondary));
-        /* color: light-dark(var(--clr-secondary), var(--clr-base)); */
 
         &:after {
           background-color: light-dark(var(--clr-base), var(--clr-secondary));
+          transform: translateX(10px);
         }
       }
 
@@ -620,11 +660,12 @@
         width: 1.5em;
         height: 1.5em;
         position: absolute;
-        right: 1em;
+        transition: transform 0.25s ease-in-out;
+        right: 1.3em;
       }
     }
 
-    a:last-child>li {
+    li:last-child>a {
       /* border-top: 1px solid var(--clr-base-content); */
       border-bottom: none;
     }
@@ -687,75 +728,70 @@
 
   /* [ GALLERY ] */
   .gallery {
-    >.gallery__action {
+    .gallery__container {
       display: flex;
-      align-items: center;
-      gap: 0.5em;
+      overflow-x: auto;
+      overflow-y: hidden;
+      overscroll-behavior-x: contain;
+      padding-left: 0;
+      scroll-snap-type: x mandatory;
+      scroll-snap-align: start;
+      scroll-marker-group: after;
+      scrollbar-width: none;
+    }
 
-      >button {
-        border-radius: 50%;
-        border: none;
-        box-shadow: none;
+    .gallery__container>div {
+      display: flex;
+      inline-size: 100%;
+      aspect-ratio: 1 / 1;
+
+      &::scroll-marker {
+        content: "";
+        background: light-dark(oklch(from var(--clr-base) calc(l - 0.1) c h),
+            oklch(from var(--clr-secondary) calc(l + 0.1) c h));
+        display: inline-block;
+        border-radius: 5em;
+        cursor: none;
+        transition:
+          background-color 0.2s ease-in,
+          transform 0.1s ease-in-out;
+        padding: 0.25rem;
         aspect-ratio: 1 / 1;
-        width: 2rem;
-        transition: all 300ms ease-in-out;
-        background: none;
-
-        &:hover {
-          background-color: oklch(from var(--clr-secondary) 0.543 c h / 30%);
-        }
-
-        >img {
-          pointer-events: none;
-        }
       }
 
-      >.bookmark {
-        margin-left: auto;
+      &::scroll-marker:hover {
+        background-color: light-dark(oklch(from var(--clr-base) calc(l - 0.3) c h),
+            oklch(from var(--clr-secondary) calc(l + 0.3) c h));
+      }
 
-        >img {
-          width: 2.2em;
-        }
+      &::scroll-marker:target-current {
+        background: light-dark(oklch(from var(--clr-base) calc(l - 0.5) c h),
+            oklch(from var(--clr-secondary) calc(l + 0.5) c h));
       }
     }
 
-    >.gallery__image {
-      margin-bottom: 0.5em;
-      vertical-align: middle;
-      position: relative;
+    .gallery__container>div>img {
+      object-fit: cover;
+      height: 100%;
+      flex: 0 0 100%;
+      scroll-snap-align: center;
       text-align: center;
-
-      >div {
-        display: block;
-        overflow: hidden;
-        border-radius: 2%;
-      }
-
-      img {
-        object-fit: cover;
-        height: 100%;
-        width: 100%;
-      }
+      border-radius: 5px;
     }
 
-    >.gallery__description {
-      margin-inline: 3px;
-      color: light-dark(var(--clr-secondary), var(--clr-base));
-
-      span {
-        font-weight: 800;
-        margin-top: 5px;
-      }
-
-      p {
-        margin-top: 3px;
-      }
+    .gallery__tags {
+      border-top: 1px solid darkgray;
+      margin-top: 1rem;
+      padding-top: 1rem;
     }
+  }
 
-    >.gallery__time {
-      color: oklch(from var(--clr-secondary) 0.5312 c h);
-      margin-inline: 3px;
-    }
+  .avatar-group>*~* {
+    display: inline-flex;
+    overflow: hidden;
+    margin-left: -0.9rem;
+    border-radius: 5em;
+    border: 4px solid light-dark(var(--clr-base), var(--clr-secondary));
   }
 
   /* [ DIVIDER ] */
@@ -901,7 +937,9 @@
         letter-spacing: 2px;
         padding-inline: 0.5rem;
         background: none;
+
         border: 2px solid var(--clr-base-content);
+
         margin-right: 1rem;
         gap: 1.2em;
         transition: all 450ms ease-in-out;
@@ -957,7 +995,7 @@
   .cursor {
     left: 0%;
     top: 0%;
-    transform: translate(-20%, -20%);
+    transform: translate(-6%, -21%);
     scale: 100%;
     position: fixed;
     pointer-events: none;

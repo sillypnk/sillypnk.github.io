@@ -3,20 +3,11 @@ import { getRelativeTimeString } from "./getRelativeTimeString.js";
 import { MICROBLOGS as microblogsData } from "./microblogsData.js";
 
 const microblogsContainer = document.querySelector("#microblogs");
-
-// Sorting out the date first
+// Sorting date
 microblogsData.sort((a, b) => new Date(b.date) - new Date(a.date));
 
 // Loop through the microblog data and put it in each card
 microblogsData.forEach((microblog) => {
-  let templateHasGallery = "";
-  if (microblog.images)
-    templateHasGallery = `
-      <div class="post__images">
-        ${microblog.images.map((img) => `<img src='${img.src}'/>`)}
-      </div>
-    `;
-
   let comments = randomInt(100, 1000);
   let hearts = randomInt(100, 5000);
   let reposts = randomInt(100, 1000);
@@ -42,9 +33,9 @@ microblogsData.forEach((microblog) => {
                       <source srcset="../public/media/avatar.webp" type="image/webp" />
                       <source srcset="../public/media/avatar.jpg" type="image/jpeg" />
                       <img src="../public/media/avatar.jpg" style="
-                          width: 145%;
-                          height: 145%;
-                          object-position: -1.07em -5px;
+                          width: 110%;
+                          height: 110%;
+                          object-position: -3px -7px;
                           " alt="Avatar Image" />
                     </picture>
                   </div>
@@ -68,12 +59,28 @@ microblogsData.forEach((microblog) => {
                   color: light-dark(var(--clr-secondary), var(--clr-base));
                 "
               >
-                <p style="line-height: 21px; margin-block: 10px; letter-spacing: 0.6px;">${microblog.content}</p>
+                <p style="line-height: 21px; margin-block: 10px; letter-spacing: 0.6px;">${
+                  microblog.content
+                }</p>
                 <div style="display: block; margin-block: 5px; font-size: 0.7rem; color: grey; text-rendering: geometricPrecision;">
-                  ${getRelativeTimeString(new Date(microblog.date))} - ${new Date(microblog.date).toLocaleString(navigator.language, { dateStyle: "short" })}
+                  ${getRelativeTimeString(
+                    new Date(microblog.date)
+                  )} - ${new Date(microblog.date).toLocaleString(
+    navigator.language,
+    { dateStyle: "short" }
+  )}
                 </div>
                 <div>
-                    ${microblog.tags ? microblog.tags.map((tag) => `<span class="link" style="display: inline;">#${tag}</span>`).join(" ") : ""}
+                    ${
+                      microblog.tags
+                        ? microblog.tags
+                            .map(
+                              (tag) =>
+                                `<span class="link" style="display: inline;">#${tag}</span>`
+                            )
+                            .join(" ")
+                        : ""
+                    }
                 </div>
               <div style="
                 --_divider-color: light-dark(oklch(0.7448 0 0), oklch(0.3264 0 0));
@@ -92,31 +99,37 @@ microblogsData.forEach((microblog) => {
                       </g>
                     </svg>
                   </button>
-                    <span>${comments > 1000
-      ? comments.toString().slice(0, 1) + "k"
-      : comments
-    }</span>
+                    <span>${
+                      comments > 1000
+                        ? comments.toString().slice(0, 1) + "k"
+                        : comments
+                    }</span>
                   </div>
                 <div>
                   <button title="Repost">
                     <svg style="width: 20px;" viewBox="0 0 24 24" id="_24x24_On_Light_Repeat" data-name="24x24/On Light/Repeat" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracurrentColorerCarrier" stroke-linecurrentcap="round" stroke-linejoin="round"></g><g id="SVGRepo_icurrentColoronCarrier"> <recurrentct id="view-box" width="24" height="24" fill="none"></recurrentct> <path id="Shape" d="M10.22,17.28a.75.75,0,0,1,0-1.06l1.72-1.72H5.75A5.757,5.757,0,0,1,0,8.75a.75.75,0,0,1,1.5,0A4.254,4.254,0,0,0,5.75,13h6.188L10.22,11.281a.75.75,0,0,1,1.061-1.061l3,3a.75.75,0,0,1,0,1.06l-3,3a.75.75,0,0,1-1.061,0ZM16,8.75A4.255,4.255,0,0,0,11.75,4.5H5.56L7.28,6.22A.75.75,0,0,1,6.22,7.28l-3-3a.751.751,0,0,1,0-1.061l3-3A.75.75,0,0,1,7.28,1.281L5.561,3H11.75A5.756,5.756,0,0,1,17.5,8.75a.75.75,0,0,1-1.5,0Z" transform="translate(3.25 3.25)" fill="currentColor"></path> </g></svg>
                   </button>
-                  <span>${reposts > 1000
-      ? reposts.toString().slice(0, 1) + "k"
-      : reposts
-    }</span>
+                  <span>${
+                    reposts > 1000
+                      ? reposts.toString().slice(0, 1) + "k"
+                      : reposts
+                  }</span>
                 </div>
                 <div style="--hovered-btn: oklch(0.6426 0.2557 7 / 96.76%);">
                   <button title="Like">
                     <svg style="width: 20px; color: oklch(0.6426 0.2557 7 / 96.76%);" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracurrentColorerCarrier" stroke-linecurrentcap="round" stroke-linejoin="round"></g><g id="SVGRepo_icurrentColoronCarrier"> <path d="M2 9.1371C2 14 6.01943 16.5914 8.96173 18.9109C10 19.7294 11 20.5 12 20.5C13 20.5 14 19.7294 15.0383 18.9109C17.9806 16.5914 22 14 22 9.1371C22 4.27416 16.4998 0.825464 12 5.50063C7.50016 0.825464 2 4.27416 2 9.1371Z" fill="currentColor"></path> </g></svg>
                   </button>
-                  <span>${hearts > 1000 ? hearts.toString().slice(0, 1) + "k" : hearts}</span>
+                  <span>${
+                    hearts > 1000 ? hearts.toString().slice(0, 1) + "k" : hearts
+                  }</span>
                 </div>
                 <div>
                   <button title="Views">
                     <svg style="width: 25px;" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve" fill="currentColor"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill="currentColor" d="M9.037,40.763h4.286c0.552,0,1-0.447,1-1v-7.314c0-0.553-0.448-1-1-1H9.037c-0.552,0-1,0.447-1,1v7.314 C8.037,40.315,8.485,40.763,9.037,40.763z M10.037,33.448h2.286v5.314h-2.286V33.448z"></path> <path fill="currentColor" d="M21.894,40.763c0.552,0,1-0.447,1-1v-20.64c0-0.553-0.448-1-1-1h-4.286c-0.552,0-1,0.447-1,1v20.64 c0,0.553,0.448,1,1,1H21.894z M18.608,20.123h2.286v18.64h-2.286V20.123z"></path> <path fill="currentColor" d="M30.465,40.763c0.552,0,1-0.447,1-1V25.96c0-0.553-0.448-1-1-1H26.18c-0.552,0-1,0.447-1,1v13.803 c0,0.553,0.448,1,1,1H30.465z M27.18,26.96h2.286v11.803H27.18V26.96z"></path> <path fill="currentColor" d="M33.751,9.763v30c0,0.553,0.448,1,1,1h4.286c0.552,0,1-0.447,1-1v-30c0-0.553-0.448-1-1-1h-4.286 C34.199,8.763,33.751,9.21,33.751,9.763z M35.751,10.763h2.286v28h-2.286V10.763z"></path> </g></svg>
                   </button>
-                  <span>${views > 1000 ? views.toString().slice(0, 1) + "k" : views}</span>
+                  <span>${
+                    views > 1000 ? views.toString().slice(0, 1) + "k" : views
+                  }</span>
                 </div>
                 <div style="margin-left: auto; margin-right: 0; --hovered-btn: oklch(0.8754 0.1776 99);">
                   <button title="Bookmark">
@@ -132,6 +145,7 @@ microblogsData.forEach((microblog) => {
               </div>
             </div>
           </div>`;
+
   const postContainer = document.createElement("section");
   postContainer.innerHTML = templatePost;
   microblogsContainer.appendChild(postContainer);

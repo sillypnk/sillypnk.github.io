@@ -1,0 +1,24 @@
+:root {
+  /* Colors */
+  --clr-secondary: oklch(23.929% 0.00003 271.152);
+  --clr-base: oklch(97.586% 0.0112 71.721);
+  --clr-primary: oklch(94.73% 0.05046 81.644);
+  --clr-base-content: oklch(74.664% 0.17633 58.951);
+
+  /* ------- 🧩 COMPONENTS -------- */
+  /* 🧩 .btn */
+  --btn-height: 0.7rem;
+  --btn-width: 0.9rem;
+  --btn-clr: light-dark(var(--clr-secondary), var(--clr-base));
+  --btn-clr-bg: light-dark(var(--clr-secondary), var(--clr-base));
+  --btn-radius: 0.5rem;
+
+  /* transitions */
+  --transition-duration: 130ms;
+  --transition-ease: ease-in-out;
+
+  /* animations */
+  --char-speed: 0.06s;
+  /* speed per character */
+  --cursor-blink: 1s;
+}

@@ -9,23 +9,6 @@
     color: light-dark(var(--clr-secondary), var(--clr-base));
   }
 
-  :root {
-    /* Colors */
-    --clr-secondary: oklch(23.929% 0.00003 271.152);
-    --clr-base: oklch(97.586% 0.0112 71.721);
-    --clr-primary: oklch(94.73% 0.05046 81.644);
-    --clr-base-content: oklch(74.664% 0.17633 58.951);
-
-    /* transitions */
-    --transition-duration: 130ms;
-    --transition-ease: ease-in-out;
-
-    /* animations */
-    --char-speed: 0.06s;
-    /* speed per character */
-    --cursor-blink: 1s;
-  }
-
   :root[data-theme="dark"] {
     /* --clr-base-content: oklch(78.211% 0.16941 69.512); */
     text-shadow: 0 0 2.5px currentColor;
@@ -37,7 +20,6 @@
           light-dark(oklch(0.0772 0 299 / 25%),
             oklch(100% 0.00011 271.152 / 0.25)) 1px,
           transparent 0),
-
         /* Gradient at the bottom page */
         radial-gradient(200% 115% at 50% 10%,
           transparent 50%,
@@ -85,10 +67,47 @@
     line-height: 2em;
   }
 
+  ::scroll-marker-group {
+    position: absolute;
+    anchor-name: --carousel;
+    top: anchor(bottom);
+    left: calc(anchor(left) - 10%);
+    right: calc(anchor(right) - 10%);
+    inline-size: 45px;
+
+    overflow-x: auto;
+    scroll-snap-type: mandatory;
+    overscroll-behavior-x: contain;
+
+    display: grid;
+    gap: 0.6em;
+    place-content: safe center;
+    justify-self: center;
+    grid-auto-columns: 0.5rem;
+    grid-auto-flow: column;
+    margin-block: 0.5rem;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+
+    padding: 5px 10px;
+    /* space for focus and scroll */
+    scroll-padding-inline: 10px;
+    mask: linear-gradient(to right,
+        transparent 0,
+        black 10px,
+        black calc(100% - 10px),
+        transparent 100%);
+  }
+
   mark {
     background-color: var(--clr-base-content);
     color: light-dark(var(--clr-secondary), var(--clr-base));
     padding: 2px;
+  }
+
+  del,
+  s {
+    text-decoration-color: light-dark(var(--clr-secondary), var(--clr-base));
   }
 
   q {

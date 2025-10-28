@@ -5,7 +5,8 @@
     padding: 0;
     box-sizing: border-box;
     margin: 0;
-    scrollbar-color: oklch(from var(--clr-base-content) l c h / 0.648) transparent;
+    scrollbar-color: oklch(from var(--clr-base-content) l c h / 0.648)
+      transparent;
     scrollbar-width: thin;
     cursor: none;
     scroll-behavior: smooth;

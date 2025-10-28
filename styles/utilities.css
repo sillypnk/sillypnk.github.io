@@ -8,22 +8,101 @@
     border: none;
   }
 
+  /* Component -- Button */
+  .btn--error,
+  .action-bar__item--heart {
+    --btn-clr: var(--clr-base);
+    --btn-clr-bg: oklch(0.632 0.2437 25.94);
+  }
+
+  .btn--warning,
+  .action-bar__item--bookmark {
+    --btn-clr: oklch(0.2074 0 94.76);
+    --btn-clr-bg: oklch(0.8779 0.2171 94.76);
+  }
+  
+  .btn--info,
+  .action-bar__item--share {
+    --btn-clr: var(--clr-base);
+    --btn-clr-bg: oklch(0.575 0.2245 239.82);
+  }
+
+  .btn--rounded {
+    border-radius: 5em;
+  }
+
+  .btn--lg {
+    --btn-height: 1.7rem;
+    --btn-width: 1.9rem;
+  }
+
+  .btn--outline {
+    color: var(--_btn-bg);
+    border: 1px solid var(--_btn-bg);
+    background: none;
+
+    &:hover {
+      background-color: var(--_btn-bg);
+      color: var(--_btn-text);
+    }
+  }
+
+  .btn--soft {
+    background-color: oklch(from var(--_btn-bg) l c h / 15%);
+    color: var(--_btn-bg);
+
+    &:hover {
+      background-color: var(--_btn-bg);
+      color: var(--_btn-text);
+    }
+  }
+
+  .btn--soft-on-hover {
+    background: none;
+    color: var(--_btn-bg);
+
+    &:hover {
+      background-color: oklch(from var(--_btn-bg) l c h / 15%);
+      color: var(--_btn-bg);
+    }
+  }
+
+  .btn--menu {
+    --btn-size: 2.5rem;
+    /* cursor: pointer; */
+    border: none;
+    padding: 0.9em;
+    display: inline-flex;
+    align-items: center;
+    alignment-baseline: middle;
+    user-select: none;
+    justify-content: center;
+    background: oklch(from var(--clr-secondary) l c h / 0.171);
+  }
+
   .pill--outlined {
     border: 1px solid var(--pill-color);
     color: var(--pill-color);
     background-color: transparent;
   }
-  
+
   .pill--subtle {
     border: 1px solid var(--pill-color);
-    background-color: oklch(
-      from var(--pill-color) l c h / 20%
-    );
+    background-color: oklch(from var(--pill-color) l c h / 20%);
     color: var(--pill-color);
   }
 
+  .pill--success {
+    --pill-color: oklch(0.7691 0.2146 147);
+  }
+
+  .pill--warning {
+    --pill-color: oklch(0.8333 0.1579 82.06);
+  }
+
   .pill--sm {
-    --pill-px: 0.6rem;
+    --pill-px: 0.8rem;
+    --pill-py: 0.15rem;
 
     font-size: 0.59rem;
   }
