@@ -1,31 +1,31 @@
 const Songs = [
   {
     title: 'Waiting for a sign - Lilypichu',
-    source: '../public/media/audio/[Lilypichu] Waiting For A Sign.mp3',
+    source: '../assets/media/audio/[Lilypichu] Waiting For A Sign.mp3',
   },
   {
     title: 'Anone - Yuika',
-    source: '../public/media/audio/[Yuika] Anone.mp3',
+    source: '../assets/media/audio/[Yuika] Anone.mp3',
   },
   {
     title: 'Machine Love - JamieP',
-    source: '../public/media/audio/[JamieP] Machine Love.mp3',
+    source: '../assets/media/audio/[JamieP] Machine Love.mp3',
   },
   {
     title: 'Koala (Self Cover) - Will Stetson',
-    source: '../public/media/audio/[Will Stetson] Koala (Self cover).mp3',
+    source: '../assets/media/audio/[Will Stetson] Koala (Self cover).mp3',
   },
   {
     title: 'Heat Abnormal - Iyowa Ft. Adachi Rei',
-    source: '../public/media/audio/[Iyowa Ft. Adachi Rei] Heat Abnormal.mp3',
+    source: '../assets/media/audio/[Iyowa Ft. Adachi Rei] Heat Abnormal.mp3',
   },
   {
     title: 'Theater - Natori',
-    source: '../public/media/audio/[Natori] Theater.mp3',
+    source: '../assets/media/audio/[Natori] Theater.mp3',
   },
   {
     title: '∞ - Oguri Cap',
-    source: '../public/media/audio/[Oguri Cap] ∞.mp3',
+    source: '../assets/media/audio/[Oguri Cap] ∞.mp3',
   },
 ]
 
@@ -93,10 +93,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // -------- ACTIONS ---------
   audio.addEventListener('play', () => {
-    playEl.innerHTML = `<img src="../public/icons/pause.svg" alt="Play/Pause Icon" width="12" />`
+    playEl.innerHTML = `<img src="../assets/icons/pause.svg" alt="Play/Pause Icon" width="12" />`
   })
   audio.addEventListener('pause', () => {
-    playEl.innerHTML = `<img src="../public/icons/play.svg" alt="Play/Pause Icon" width="12" />`
+    playEl.innerHTML = `<img src="../assets/icons/play.svg" alt="Play/Pause Icon" width="12" />`
   })
 
   playEl.addEventListener('click', () => {

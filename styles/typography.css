@@ -1,13 +1,13 @@
 /* ---------------------- */
 @font-face {
   font-family: 'Tickerbit';
-  src: url('../public/fonts/Tickerbit/Tickerbit-regular.otf');
+  src: url('../assets/fonts/Tickerbit/Tickerbit-regular.otf');
   font-weight: normal;
 }
 
 @font-face {
   font-family: 'Tickerbit';
-  src: url('../public/fonts/Tickerbit/Tickerbit-italic.otf');
+  src: url('../assets/fonts/Tickerbit/Tickerbit-italic.otf');
   font-weight: normal;
   font-style: italic;
 }
@@ -16,18 +16,18 @@
 
 @font-face {
   font-family: 'Yuruka STD';
-  src: url('../public/fonts/fot-yuruka-std.ttf');
+  src: url('../assets/fonts/fot-yuruka-std.ttf');
   font-weight: normal;
 }
 
 @font-face {
   font-family: 'Raster Forge';
-  src: url('../public/fonts/Raster Forge.ttf');
+  src: url('../assets/fonts/Raster Forge.ttf');
   font-weight: normal;
 }
 
 @font-face {
   font-family: 'Kirom';
-  src: url('../public/fonts/Kirom.otf');
+  src: url('../assets/fonts/Kirom.otf');
   font-weight: normal;
 }

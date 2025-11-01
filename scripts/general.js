@@ -173,7 +173,7 @@ function useMusic() {
     if (el.paused || el.ended) {
       if (el.ended) el.currentTime = 0;
       now_playing.innerHTML = "&nbsp;&nbsp; | &nbsp;&nbsp;Now Playing";
-      now_playing_img.setAttribute("src", "../public/media/audio-wave.gif");
+      now_playing_img.setAttribute("src", "../assets/media/audio-wave.gif");
       await el.play();
 
       let volume = 0;
@@ -188,7 +188,7 @@ function useMusic() {
       }, FADE_DELAY);
     } else {
       now_playing.innerHTML = "";
-      now_playing_img.setAttribute("src", "../public/media/musical-notes.gif");
+      now_playing_img.setAttribute("src", "../assets/media/musical-notes.gif");
       let volume = el.volume;
       const fadeOut = setInterval(() => {
         if (volume > 0) {
@@ -347,7 +347,7 @@ document.addEventListener("keydown", (e) => {
     e.preventDefault();
     modal.open === false ? showModal() : modal.close();
 
-    const sfx_two = new Audio("../public/media/audio/umamusume_sfx_01.mp3");
+    const sfx_two = new Audio("../assets/media/audio/umamusume_sfx_01.mp3");
     sfx_two.play();
     sfx_two.currentTime = 0.2;
   }
@@ -362,8 +362,8 @@ document.addEventListener("DOMContentLoaded", () => {
   useCustomCursor();
   useTheme();
 
-  const sfx_two = new Audio("../public/media/audio/umamusume_sfx_01.mp3");
-  const sfx_one = new Audio("../public/media/audio/umamusume_sfx_02.mp3");
+  const sfx_two = new Audio("../assets/media/audio/umamusume_sfx_01.mp3");
+  const sfx_one = new Audio("../assets/media/audio/umamusume_sfx_02.mp3");
   document.querySelectorAll(".startmenu__list li").forEach((menuList) => {
     menuList.addEventListener("mouseover", () => {
       sfx_one.play();

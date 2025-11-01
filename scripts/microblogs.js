@@ -30,9 +30,9 @@ microblogsData.forEach((microblog) => {
                   >
                   <picture>
                       <!-- Fallbacks -->
-                      <source srcset="../public/media/avatar.webp" type="image/webp" />
-                      <source srcset="../public/media/avatar.jpg" type="image/jpeg" />
-                      <img src="../public/media/avatar.jpg" style="
+                      <source srcset="../assets/media/avatar.webp" type="image/webp" />
+                      <source srcset="../assets/media/avatar.jpg" type="image/jpeg" />
+                      <img src="../assets/media/avatar.jpg" style="
                           width: 110%;
                           height: 110%;
                           object-position: -3px -7px;
@@ -133,7 +133,7 @@ microblogsData.forEach((microblog) => {
                 </div>
                 <div style="margin-left: auto; margin-right: 0; --hovered-btn: oklch(0.8754 0.1776 99);">
                   <button title="Bookmark">
-                    <img style="width: 25px;" src="../public/icons/bookmark.svg" alt="" />
+                    <img style="width: 25px;" src="../assets/icons/bookmark.svg" alt="" />
                   </button>
                 </div>
                 <div style="margin-right: 0;">
