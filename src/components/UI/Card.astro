@@ -1,0 +1,93 @@
+---
+import type { CSSProperty, HTMLAttributes } from 'astro/types'
+import { Icon } from 'astro-iconset/components'
+
+interface Props extends HTMLAttributes<'div'> {
+	header?: string
+	contentStyles?: CSSProperty
+	noIcon?: boolean
+	alternate?: boolean
+}
+
+const { header, contentStyles, noIcon, alternate, ...props } = Astro.props
+---
+
+{!alternate ? (
+<article class="card" {...props}>
+	<section class="card__header">
+		<div class="u-group--flex items--x-start" style="gap: 1rem;">
+			{!noIcon && (
+                <slot name="header_icon">
+                    <svg style="outline: 1px solid currentColor; outline-offset: 0.5px;" fill="currentColor" viewBox="0 0 512.00 512.00" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="0.00512"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>ionicons-v5-q</title><rect x="48" y="48" width="416" height="416"></rect></g></svg>
+                </slot>
+            )}
+			{header && (
+              <span>{header}</span>
+            )}
+		</div>
+
+		<div
+			class="u-group--grid items--x-end"
+			style="grid-template-columns: auto auto auto; height: 100%;"
+		>
+			<button class="btn btn--window">
+				<Icon name="card/minimize" />
+			</button>
+			<button class="btn btn--window">
+				<Icon name="card/restore_down" />
+			</button>
+			<button class="btn btn--window"><Icon name="card/close" /></button>
+		</div>
+	</section>
+
+	<section class="card__content" style={contentStyles}><slot /></section>
+
+	<section class="card__design">
+		<div class="block-one"></div>
+		<div class="u-group--flex" style="column-gap: 2px">
+			<div class="miniblock"></div>
+			<div class="miniblock"></div>
+			<div class="miniblock"></div>
+		</div>
+	</section>
+</article>
+) : (
+<article class="box" {...props}>
+	 <section class="box__header">
+        <Icon name="card/minimize" />
+        <Icon name="card/restore_down" />
+        <Icon name="card/close" />
+    </section>
+
+	<section class="box__content" style={contentStyles}><slot /></section>
+</article>
+)}
+
+<style>
+	.box {
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+		padding: 0;
+		height: auto;
+		width: auto;
+	}
+
+	.box__header {
+		display: inline-flex;
+		gap: 0.5rem;
+		align-items: center;
+		justify-content: end;
+		background-color: var(--clr-base-content);
+		color: light-dark(var(--clr-base), var(--clr-secondary));
+		padding: 0.8rem 0.5rem;
+	}
+
+	.box__content {
+		overflow: hidden;
+		padding-inline: 1.2rem;
+		padding-block: 1rem;
+		color: light-dark(var(--clr-base), var(--clr-secondary));
+		height: 100%;
+	}
+</style>

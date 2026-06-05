@@ -1,0 +1,162 @@
+---
+// ﹒⭒﹒⭒﹒⭒﹒ Stylesheets ﹒⭒﹒⭒﹒⭒﹒ //
+import '🧡/styles/main.css'
+
+// ﹒⭒﹒⭒﹒⭒﹒ Components ﹒⭒﹒⭒﹒⭒﹒ //
+import Head from '🧡/components/Head.astro'
+import UICursor from '🧡/components/UI/Cursor.astro'
+import UIMenu from '🧡/components/UI/Menu.astro'
+import UITaskbar from '🧡/components/UI/Taskbar.astro'
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<Head>
+			<slot name="head" />
+		</Head>
+	</head>
+	<body>
+		<UICursor />
+
+		<!-- For loading screen purposes -->
+		<!-- <div class="content"> -->
+		<main class="desktop">
+			<slot name="apps" />
+			<slot name="nav" />
+
+			<div class="desktop__cards">
+				{Astro.slots.has('apps') || Astro.slots.has('nav') ? (
+					<div
+						style="display: flex; justify-content: end; margin-bottom: 0.55rem;"
+					>
+						<label
+							class="toggle-maximize link"
+							style="font-size: var(--text-xs);"
+						>
+							<input type="checkbox" id="checkbox_card" />
+
+							<div class="u-group--flex">
+								<span id="checkbox_card-value">Maximize Cards</span>
+								<svg
+									style="width: 1.2em;"
+									xmlns="http://www.w3.org/2000/svg"
+									fill="none"
+									stroke="currentColor"
+									viewBox="-.5 0 25 25"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="1.5"
+										d="M11.5 4.25h-5a4 4 0 0 0-4 4v10a4 4 0 0 0 4 4h10a4 4 0 0 0 4-4v-5m-9.07.13 9.49-9.49m-5.13-.64h3.7a2 2 0 0 1 2 2v3.71"
+									/>
+								</svg>
+							</div>
+						</label>
+					</div>
+				) : null}
+				<slot />
+			</div>
+		</main>
+		<!-- </div> -->
+		<UITaskbar transition:persist />
+		<!-- <img
+			class="adachiRei"
+			style="pointer-events: none; z-index: 1"
+			src="/adachi-victory.gif"
+			alt="An adorable plushie with an appearance of a orange haired girl dancing happily"
+		> -->
+		<UIMenu transition:persist />
+	</body>
+</html>
+
+<script>
+	document.addEventListener('astro:page-load', () => {
+		const observer = new IntersectionObserver(
+			entries => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('cards-reveal')
+						observer.unobserve(entry.target)
+					}
+				})
+			},
+			{ threshold: 0.3 },
+		)
+
+		document
+			.querySelectorAll('.card, .box')
+			.forEach(el => observer.observe(el))
+	})
+</script>
+
+<script>
+	document.addEventListener('astro:page-load', () => {
+		const checkbox_card = document.querySelector(
+			'input[type="checkbox"]#checkbox_card',
+		) as HTMLInputElement
+		const checkbox_card_val = document.querySelector(
+			'span#checkbox_card-value',
+		) as HTMLElement
+
+		checkbox_card.addEventListener('change', (e: Event) => {
+			const target = e?.target as HTMLInputElement
+
+			if (target.checked) {
+				checkbox_card_val.textContent = 'Minimize Cards'
+			} else {
+				checkbox_card_val.textContent = 'Maximize Cards'
+			}
+		})
+	})
+</script>
+<!-- TODO: Collapse/Uncollapse sidebar animation -->
+<!-- <script>
+	import { createLayout, utils } from 'animejs'
+
+	document.addEventListener('astro:page-load', () => {
+		const checkbox_card = document.querySelector(
+			'input[type="checkbox"]#checkbox_card',
+		) as HTMLInputElement
+		const [$checkbox_card_val] = utils.$('span#checkbox_card-value')
+
+		const layout = createLayout('.desktop', {
+			duration: 250,
+			ease: 'outQuad',
+			enterFrom: {
+				transform: 'translateX(-100px)',
+				opacity: 0,
+				duration: 350,
+				ease: 'out(3)',
+			},
+			leaveTo: {
+				transform: 'translateX(-100px)',
+				opacity: 0,
+				duration: 350,
+				ease: 'out(3)',
+			},
+		})
+
+		checkbox_card.addEventListener('change', (e: Event) => {
+			const target = e?.target as HTMLInputElement
+
+			const sidebar = document.querySelector(
+				'.desktop__apps, .desktop__nav',
+			) as HTMLElement
+			if (target.checked) {
+				layout.update(({ root }) => {
+					root.style = 'display: block;'
+					sidebar.classList.add('u-hidden')
+				})
+				$checkbox_card_val.textContent = 'Minimize Cards'
+			} else {
+				layout.update(({ root }) => {
+					root.style = 'display: grid;'
+					sidebar.classList.remove('u-hidden')
+				})
+				$checkbox_card_val.textContent = 'Maximize Cards'
+			}
+		})
+	})
+</script> -->

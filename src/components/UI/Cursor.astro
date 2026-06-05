@@ -1,0 +1,124 @@
+<div class="cursor"></div>
+
+<style>
+	.cursor {
+		inset: 0;
+		translate: -10% -20%;
+		scale: 100%;
+		position: fixed;
+		width: 50px;
+		height: 50px;
+		background-image: url("/static/cursors/adachi_normal.gif");
+		background-size: cover;
+		z-index: 1000;
+		pointer-events: none;
+
+		@media screen and (pointer: coarse) {
+			display: none;
+		}
+	}
+
+	.cursor-move {
+		background-image: url("/static/cursors/adachi_move.gif");
+	}
+	.cursor-input {
+		background-image: url("/static/cursors/adachi_input.gif");
+	}
+	.cursor-curious {
+		background-image: url("/static/cursors/adachi_curious.gif");
+	}
+</style>
+
+<script>
+	const init = () => {
+		const cursor = document.querySelector('.cursor') as HTMLDivElement
+		if (!cursor) return
+
+		// Restore last known position so cursor doesn't snap on page load
+		let mouseX = Number(sessionStorage.getItem('cursorX') ?? 0)
+		let mouseY = Number(sessionStorage.getItem('cursorY') ?? 0)
+
+		let rafId: number
+
+		const reset_cursors = () => {
+			cursor.classList.remove(
+				'cursor-move',
+				'cursor-input',
+				'cursor-curious',
+			)
+		}
+
+		document.addEventListener('mousemove', e => {
+			mouseX = e.clientX
+			mouseY = e.clientY
+		})
+
+		document.addEventListener('mouseover', e => {
+			const target = e.target as Element
+			reset_cursors()
+			if (target.closest('a, button, label, input[type="checkbox"]')) {
+				cursor.classList.add('cursor-curious')
+			} else if (target.closest('.card__header')) {
+				cursor.classList.add('cursor-move')
+			} else if (target.closest('input')) {
+				cursor.classList.add('cursor-input')
+			}
+		})
+
+		document.addEventListener('mouseout', e => {
+			const target = e.target as Element
+			if (
+				!target.closest(
+					'a, button, label, input[type="checkbox"], .card__header, input',
+				)
+			) {
+				reset_cursors()
+			}
+		})
+
+		const animateCursor = () => {
+			cursor.style.transform = `translate(${mouseX}px, ${mouseY}px)`
+			rafId = requestAnimationFrame(animateCursor)
+		}
+
+		animateCursor()
+
+		const popover = document.querySelector<HTMLElement>('[popover]')
+		if (!popover) return
+		popover.addEventListener('toggle', e => {
+			if (e.newState === 'open') {
+				popover.appendChild(cursor)
+			} else {
+				document.body.appendChild(cursor) // move it back
+			}
+		})
+
+		document.addEventListener(
+			'astro:before-swap',
+			() => {
+				// Persist position before the DOM is replaced
+				sessionStorage.setItem('cursorX', String(mouseX))
+				sessionStorage.setItem('cursorY', String(mouseY))
+				cancelAnimationFrame(rafId)
+			},
+			{ once: true },
+		)
+	}
+
+	document.addEventListener('astro:page-load', () => {
+		const isTouchscreen = window.matchMedia('(pointer: coarse)')
+
+		function handlePointerChange(e: any) {
+			if (e.matches)
+				console.log(
+					'%c[DEBUG]:',
+					'background-color: skyblue; color: black; font-weight: bold; padding-inline: 0.5em; padding-block: 0.25em; border-radius: 5px;',
+					'Currently at touchscreen',
+				)
+			else init()
+		}
+
+		handlePointerChange(isTouchscreen)
+		isTouchscreen.addEventListener('change', handlePointerChange)
+	})
+</script>

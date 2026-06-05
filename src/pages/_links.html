@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <script>
+            const colorScheme = localStorage.getItem('theme')
+            document.documentElement.setAttribute(
+                'data-theme',
+                colorScheme || 'light',
+            )
+        </script>
+
+        <link rel="stylesheet" type="text/css" href="../styles.css">
+        <script src="../scripts/components/menu.js" type="module"></script>
+        <script src="../scripts/components/statusbar.js" type="module"></script>
+        <script src="../scripts/utils/custom-cursor.js" type="module"></script>
+
+        <!-- [✨] SEO Stuff -->
+        <link
+            rel="icon"
+            type="image/png"
+            href="../assets/favicon/favicon-96x96.png"
+            sizes="96x96"
+        >
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            href="../assets/favicon/favicon.svg"
+        >
+        <!-- <link rel="shortcut icon" href="../assets/favicon/favicon.ico"> -->
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="../assets/favicon/apple-touch-icon.png"
+        >
+        <meta
+            name="apple-mobile-web-app-title"
+            content="PumoReiichi! - 🔗 Links"
+        >
+        <link rel="manifest" href="../assets/favicon/site.webmanifest">
+
+        <title>PumoReiichi! - 🔗 Links</title>
+        <meta
+            name="description"
+            content="A personal portfolio which heavily inspired by a neocities developer @nenrikido. Don't forget to check them out!"
+        >
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Facebook Meta Tags -->
+        <meta property="og:url" content="https://sillypnk.github.io">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="PumoReiichi! - 🔗 Links">
+        <meta
+            property="og:description"
+            content="A personal portfolio which heavily inspired by a neocities developer @nenrikido. Don't forget to check them out!"
+        >
+        <meta
+            property="og:image"
+            content="https://opengraph.b-cdn.net/production/images/12044105-dd81-4b92-a2f2-010f9961830b.png?token=zw8LmFbfH3LIIH4ARZXzlSmxTqVKmRXePPUc1dDsUVQ&height=604&width=1200&expires=33296792141"
+        >
+
+        <!-- Twitter Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta property="twitter:domain" content="sillypnk.github.io">
+        <meta property="twitter:url" content="https://sillypnk.github.io">
+        <meta name="twitter:title" content="PumoReiichi!">
+        <meta
+            name="twitter:description"
+            content="A personal portfolio which heavily inspired by a neocities developer @nenrikido. Don't forget to check them out!"
+        >
+        <meta
+            name="twitter:image"
+            content="https://opengraph.b-cdn.net/production/images/12044105-dd81-4b92-a2f2-010f9961830b.png?token=zw8LmFbfH3LIIH4ARZXzlSmxTqVKmRXePPUc1dDsUVQ&height=604&width=1200&expires=33296792141"
+        >
+    </head>
+
+    <body>
+        <!--  -->
+        <audio src="../assets/media/audio/sans.mp3" id="music-player"></audio>
+
+        <img
+            class="adachiRei"
+            src="../assets/media/adachi-victory.gif"
+            alt="Adachi Rei Plushie Dancing"
+        >
+
+        <pumo-statusbar></pumo-statusbar>
+        <pumo-menu></pumo-menu>
+
+        <div class="desktop" style="height: 100%">
+            <nav class="desktop__nav" style="margin-right: 5em">
+                <article
+                    class="card"
+                    style="
+						position: static;
+						padding: 1em 0.2em;
+						height: 100%;
+						width: 100%;
+					"
+                >
+                    <div class="card__content">
+                        <!-- Nav Icon -->
+                        <img
+                            style="pointer-events: none"
+                            src="../assets/icons/desktop/world.png"
+                            alt="Directory Icon"
+                        >
+
+                        <a href="/pages/links.html" class="link">Links</a>
+                        <img
+                            src="../assets/icons/down_arrow.svg"
+                            style="margin-block: 0.5rem"
+                            alt="Down Arrow Icon"
+                            width="25"
+                        >
+                        <ul
+                            class="list"
+                            style="margin-inline: 45px; --list-gap: 0.3em"
+                        >
+                            <li>
+                                <a href="#credits" class="link"> credits </a>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article
+                    class="card"
+                    style="position: static; width: 15rem; margin-block: 1.2rem"
+                >
+                    <div
+                        class="card__content"
+                        style="padding: 0; display: flex; align-items: center"
+                    >
+                        <div id="music" class="music-btn">
+                            <img
+                                id="is-playing-img"
+                                src="../assets/media/musical-notes.gif"
+                                alt="Musical Note"
+                                style="max-width: 100%; mix-blend-mode: darken"
+                            >
+                        </div>
+                        <div class="scroll-container">
+                            <span class="animate-scroll"
+                                >sans. - Toby Fox<span
+                                    id="is-playing"
+                                ></span></span
+                            >
+                        </div>
+                    </div>
+                </article>
+
+                <article
+                    class="card"
+                    style="position: static; width: 15rem; margin-top: 0"
+                >
+                    <search
+                        class="card__content"
+                        style="padding: 0; display: flex; align-items: center"
+                    >
+                        <div
+                            class="scroll-container"
+                            style="
+								text-align: left;
+								margin-left: 0.4rem;
+								height: 2.2rem;
+							"
+                        >
+                            <input
+                                id="search"
+                                type="text"
+                                style="
+									height: 100%;
+									font-family: Tickerbit;
+									background: none;
+									color: light-dark(
+										var(--clr-secondary),
+										var(--clr-base)
+									);
+									width: 100%;
+								"
+                                placeholder="Search..."
+                            >
+                        </div>
+                        <div
+                            class="music-btn"
+                            style="
+								border-right: none;
+								border-left: 2px solid var(--clr-base-content);
+								color: light-dark(
+									var(--clr-secondary),
+									var(--clr-base)
+								);
+							"
+                        >
+                            <svg
+                                style="width: 1.2em"
+                                fill="currentColor"
+                                viewBox="0 0 400 400"
+                                id="Search"
+                                version="1.1"
+                                xml:space="preserve"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                stroke="currentColor"
+                            >
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g
+                                    id="SVGRepo_tracerCarrier"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                ></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <g id="XMLID_14_">
+                                        <polygon
+                                            id="XMLID_15_"
+                                            points="160,26.7 186.7,26.7 213.3,26.7 213.3,0 186.7,0 160,0 133.3,0 106.7,0 106.7,26.7 133.3,26.7 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_126_"
+                                            points="106.7,53.3 106.7,26.7 80,26.7 53.3,26.7 53.3,53.3 80,53.3 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_127_"
+                                            points="240,53.3 266.7,53.3 266.7,26.7 240,26.7 213.3,26.7 213.3,53.3 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_128_"
+                                            points="53.3,80 53.3,53.3 26.7,53.3 26.7,80 26.7,106.7 53.3,106.7 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_130_"
+                                            points="266.7,106.7 293.3,106.7 293.3,80 293.3,53.3 266.7,53.3 266.7,80 "
+                                        ></polygon>
+                                        <rect
+                                            height="26.7"
+                                            id="XMLID_131_"
+                                            width="26.7"
+                                            x="80"
+                                            y="106.7"
+                                        ></rect>
+                                        <rect
+                                            height="26.7"
+                                            id="XMLID_132_"
+                                            width="26.7"
+                                            x="106.7"
+                                            y="80"
+                                        ></rect>
+                                        <polygon
+                                            id="XMLID_133_"
+                                            points="293.3,160 293.3,186.7 293.3,213.3 320,213.3 320,186.7 320,160 320,133.3 320,106.7 293.3,106.7 293.3,133.3 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_134_"
+                                            points="26.7,160 26.7,133.3 26.7,106.7 0,106.7 0,133.3 0,160 0,186.7 0,213.3 26.7,213.3 26.7,186.7 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_135_"
+                                            points="53.3,213.3 26.7,213.3 26.7,240 26.7,266.7 53.3,266.7 53.3,240 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_136_"
+                                            points="293.3,240 293.3,213.3 266.7,213.3 266.7,240 266.7,266.7 293.3,266.7 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_137_"
+                                            points="80,266.7 53.3,266.7 53.3,293.3 80,293.3 106.7,293.3 106.7,266.7 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_138_"
+                                            points="213.3,266.7 213.3,293.3 240,293.3 266.7,293.3 266.7,266.7 240,266.7 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_139_"
+                                            points="160,293.3 133.3,293.3 106.7,293.3 106.7,320 133.3,320 160,320 186.7,320 213.3,320 213.3,293.3 186.7,293.3 "
+                                        ></polygon>
+                                        <rect
+                                            height="26.7"
+                                            id="XMLID_140_"
+                                            width="26.7"
+                                            x="293.3"
+                                            y="293.3"
+                                        ></rect>
+                                        <rect
+                                            height="26.7"
+                                            id="XMLID_141_"
+                                            width="26.7"
+                                            x="320"
+                                            y="320"
+                                        ></rect>
+                                        <rect
+                                            height="26.7"
+                                            id="XMLID_142_"
+                                            width="26.7"
+                                            x="346.7"
+                                            y="346.7"
+                                        ></rect>
+                                        <rect
+                                            height="26.7"
+                                            id="XMLID_143_"
+                                            width="26.7"
+                                            x="373.3"
+                                            y="373.3"
+                                        ></rect>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                    </search>
+                </article>
+            </nav>
+
+            <main
+                class="desktop__cards"
+                style="height: clamp(max-content, 100vw, auto)"
+            >
+                <article
+                    class="card"
+                    style="width: 40rem; height: auto; position: static"
+                    id="credits"
+                >
+                    <div class="card__titleBar" id="coming_soon">
+                        <img
+                            src="../assets/icons/minimize.svg"
+                            alt="Minimize Icon"
+                            width="16"
+                        >
+                        <img
+                            src="../assets/icons/restore_down.svg"
+                            alt="Restore Down Icon"
+                            height="12"
+                        >
+                        <img
+                            src="../assets/icons/close.svg"
+                            alt="Close Icon"
+                            width="16"
+                        >
+                    </div>
+
+                    <div
+                        class="card__content"
+                        style="width: 100%; height: 100%"
+                    >
+                        <h2>#CREDITS</h2>
+
+                        <div
+                            style="
+								overflow: auto;
+								height: 90%;
+								width: 100%;
+								display: flex;
+								flex-direction: column;
+								gap: 15px;
+								margin-top: 20px;
+							"
+                        >
+                            <section
+                                style="
+									display: grid;
+									grid-template-columns: repeat(4, 9rem);
+									grid-template-rows: auto 20px;
+									place-items: center;
+								"
+                            >
+                                <div>
+                                    <a
+                                        href="https://www.svgrepo.com/"
+                                        target="_blank"
+                                    >
+                                        <img
+                                            style="width: 5.5em"
+                                            src="https://www.svgrepo.com/logo.svg"
+                                            alt="SVG Repo Logo"
+                                        >
+                                    </a>
+                                </div>
+                                <span style="grid-row: 2">Icons</span>
+
+                                <div>
+                                    <a
+                                        href="https://nenrikido.neocities.org/"
+                                        target="_blank"
+                                    >
+                                        <img
+                                            style="width: 5em"
+                                            src="https://dl.dropbox.com/s/265wg2om8bjr5g6/nenrikido_button.gif"
+                                            alt="Nenrikido button"
+                                        >
+                                    </a>
+                                </div>
+                                <span style="grid-row: 2">Design</span>
+
+                                <div>
+                                    <a
+                                        href="https://code-boxx.com/custom-audio-player-playlist/"
+                                        target="_blank"
+                                    >
+                                        <img
+                                            style="width: 5em"
+                                            src="https://code-boxx.com/wp-content/uploads/2019/02/code-boxx-logo.png"
+                                            alt="Code boxx Button"
+                                        >
+                                    </a>
+                                </div>
+                                <span style="grid-row: 2">Playlist</span>
+
+                                <div>
+                                    <a
+                                        href="https://win98icons.alexmeub.com/"
+                                        target="_blank"
+                                    >
+                                        <img
+                                            style="width: 5em"
+                                            src="https://alexmeub.com/assets/win98-icons-1.png"
+                                            alt="Windows 98 Icons"
+                                        >
+                                    </a>
+                                </div>
+                                <span style="grid-row: 2">Desktop Icons</span>
+                            </section>
+
+                            <section
+                                style="
+									display: grid;
+									grid-template-columns: repeat(4, 9rem);
+									grid-template-rows: auto 20px;
+									place-items: center;
+								"
+                            >
+                                <div>
+                                    <a
+                                        href="https://www.github.com/"
+                                        target="_blank"
+                                    >
+                                        <svg
+                                            style="width: 3.5em"
+                                            viewBox="0 0 20 20"
+                                            version="1.1"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                                            fill="#000000"
+                                        >
+                                            <g
+                                                id="SVGRepo_bgCarrier"
+                                                stroke-width="0"
+                                            ></g>
+                                            <g
+                                                id="SVGRepo_tracerCarrier"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            ></g>
+                                            <g id="SVGRepo_iconCarrier">
+                                                <title>github [#142]</title>
+                                                <desc>
+                                                    Created with Sketch.
+                                                </desc>
+                                                <defs></defs>
+                                                <g
+                                                    id="Page-1"
+                                                    stroke="none"
+                                                    stroke-width="1"
+                                                    fill="none"
+                                                    fill-rule="evenodd"
+                                                >
+                                                    <g
+                                                        id="Dribbble-Light-Preview"
+                                                        transform="translate(-140.000000, -7559.000000)"
+                                                        fill="#000000"
+                                                    >
+                                                        <g
+                                                            id="icons"
+                                                            transform="translate(56.000000, 160.000000)"
+                                                        >
+                                                            <path
+                                                                d="M94,7399 C99.523,7399 104,7403.59 104,7409.253 C104,7413.782 101.138,7417.624 97.167,7418.981 C96.66,7419.082 96.48,7418.762 96.48,7418.489 C96.48,7418.151 96.492,7417.047 96.492,7415.675 C96.492,7414.719 96.172,7414.095 95.813,7413.777 C98.04,7413.523 100.38,7412.656 100.38,7408.718 C100.38,7407.598 99.992,7406.684 99.35,7405.966 C99.454,7405.707 99.797,7404.664 99.252,7403.252 C99.252,7403.252 98.414,7402.977 96.505,7404.303 C95.706,7404.076 94.85,7403.962 94,7403.958 C93.15,7403.962 92.295,7404.076 91.497,7404.303 C89.586,7402.977 88.746,7403.252 88.746,7403.252 C88.203,7404.664 88.546,7405.707 88.649,7405.966 C88.01,7406.684 87.619,7407.598 87.619,7408.718 C87.619,7412.646 89.954,7413.526 92.175,7413.785 C91.889,7414.041 91.63,7414.493 91.54,7415.156 C90.97,7415.418 89.522,7415.871 88.63,7414.304 C88.63,7414.304 88.101,7413.319 87.097,7413.247 C87.097,7413.247 86.122,7413.234 87.029,7413.87 C87.029,7413.87 87.684,7414.185 88.139,7415.37 C88.139,7415.37 88.726,7417.2 91.508,7416.58 C91.513,7417.437 91.522,7418.245 91.522,7418.489 C91.522,7418.76 91.338,7419.077 90.839,7418.982 C86.865,7417.627 84,7413.783 84,7409.253 C84,7403.59 88.478,7399 94,7399"
+                                                                id="github-[#142]"
+                                                            ></path>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </svg>
+                                    </a>
+                                </div>
+                                <span style="grid-row: 2">Host</span>
+
+                                <div>
+                                    <a
+                                        href="https://easingwizard.com/"
+                                        target="_blank"
+                                    >
+                                        <img
+                                            style="width: 7em"
+                                            src="../assets/media/easing-wizard.png"
+                                            alt="Easing Wizard Logo"
+                                        >
+                                    </a>
+                                </div>
+                                <span style="grid-row: 2"
+                                    >Animation Easing</span
+                                >
+                            </section>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </div>
+    </body>
+</html>

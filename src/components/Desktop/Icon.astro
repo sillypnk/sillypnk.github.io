@@ -1,0 +1,18 @@
+---
+import { Image } from 'astro:assets'
+
+interface Props {
+    opts: {
+        src: any
+        alt?: string
+        to?: string
+    }
+}
+
+const { opts } = Astro.props
+---
+
+<a href={opts.to || "/"} class="desktop__icon">
+    <Image src={opts.src} alt={opts.alt || ""} priority />
+    <span><slot /></span>
+</a>

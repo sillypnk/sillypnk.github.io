@@ -1,0 +1,136 @@
+@keyframes width-anim {
+	from {
+		transform: scaleX(0);
+	}
+	to {
+		/*width: calc-size(auto, size);*/
+		transform: scaleX(1);
+	}
+}
+@keyframes height-anim {
+	from {
+		transform: scaleY(0);
+	}
+	to {
+		/*width: calc-size(auto, size);*/
+		transform: scaleY(1);
+	}
+}
+
+@keyframes text-reveal-01 {
+	0% {
+		clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+	}
+
+	50% {
+		clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+	}
+
+	100% {
+		clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
+	}
+}
+
+@keyframes appear-from-bottom {
+	from {
+		transform: translateY(50%);
+	}
+
+	to {
+		transform: translateY(0);
+	}
+}
+
+@keyframes transform-top {
+	from {
+		transform: translateY(-110%);
+	}
+
+	to {
+		transform: translateY(0);
+	}
+}
+
+@keyframes transform-bottom {
+	from {
+		transform: translateY(101%);
+	}
+
+	to {
+		transform: translateY(0);
+	}
+}
+
+@keyframes scroll-left {
+	from {
+		transform: translateX(0%);
+	}
+
+	to {
+		/*transform: translateX(-50%);*/
+		transform: translateX(-100%);
+	}
+}
+
+.scroll-container {
+	overflow: hidden;
+	white-space: nowrap;
+	width: 100%;
+
+	& > .animate-scroll {
+		display: inline-block;
+		width: max-content;
+		padding-left: 100%;
+		animation: scroll-left attr(data-scroll-speed s, 10s) linear infinite;
+	}
+}
+
+@keyframes bg-scroll {
+	from {
+		background-position: 0 0;
+	}
+
+	to {
+		background-position: -100% 100%;
+	}
+}
+
+@keyframes bg-scroll-alt {
+	from {
+		background-position:
+			0 0,
+			0 0;
+	}
+
+	to {
+		background-position:
+			-100% -100%,
+			0 0;
+	}
+}
+
+@keyframes scroll-bottom {
+	to {
+		transform: translateX(100%);
+	}
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes fade-out {
+	from {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0;
+	}
+}

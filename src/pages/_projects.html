@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script>
+            const colorScheme = localStorage.getItem('theme')
+            document.documentElement.setAttribute(
+                'data-theme',
+                colorScheme || 'light',
+            )
+        </script>
+
+        <link rel="stylesheet" type="text/css" href="../styles.css">
+        <script src="../scripts/utils/custom-cursor.js" type="module"></script>
+        <script src="../scripts/components/menu.js" type="module"></script>
+        <script src="../scripts/components/statusbar.js" type="module"></script>
+
+        <!-- [✨] SEO Stuff -->
+        <link
+            rel="icon"
+            type="image/png"
+            href="/favicon/favicon-96x96.png"
+            sizes="96x96"
+        >
+        <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg">
+        <!-- <link rel="shortcut icon" href="../favicon/favicon.ico"> -->
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/favicon/apple-touch-icon.png"
+        >
+        <meta
+            name="apple-mobile-web-app-title"
+            content="PumoReiichi! - 💻 Projects"
+        >
+        <link rel="manifest" href="/favicon/site.webmanifest">
+
+        <title>PumoReiichi! - 💻 Projects</title>
+        <meta
+            name="description"
+            content="A personal portfolio which heavily inspired by a neocities developer @nenrikido. Don't forget to check them out!"
+        >
+
+        <!-- Facebook Meta Tags -->
+        <meta property="og:url" content="https://sillypnk.github.io">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="PumoReiichi! - 💻 Projects">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta
+            property="og:description"
+            content="A personal room which heavily inspired by a neocities developer @nenrikido. Don't forget to check them out!"
+        >
+        <meta
+            property="og:image"
+            content="https://opengraph.b-cdn.net/production/images/12044105-dd81-4b92-a2f2-010f9961830b.png?token=zw8LmFbfH3LIIH4ARZXzlSmxTqVKmRXePPUc1dDsUVQ&height=604&width=1200&expires=33296792141"
+        >
+
+        <!-- Twitter Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta property="twitter:domain" content="sillypnk.github.io">
+        <meta property="twitter:url" content="https://sillypnk.github.io">
+        <meta name="twitter:title" content="PumoReiichi!">
+        <meta
+            name="twitter:description"
+            content="A personal portfolio which heavily inspired by a neocities developer @nenrikido. Don't forget to check them out!"
+        >
+        <meta
+            name="twitter:image"
+            content="https://opengraph.b-cdn.net/production/images/12044105-dd81-4b92-a2f2-010f9961830b.png?token=zw8LmFbfH3LIIH4ARZXzlSmxTqVKmRXePPUc1dDsUVQ&height=604&width=1200&expires=33296792141"
+        >
+    </head>
+
+    <body>
+        <audio
+            src="../assets/media/audio/[Blue Archive] OST 47. Coffee Cats.mp3"
+            id="music-player"
+        ></audio>
+
+        <pumo-statusbar></pumo-statusbar>
+        <pumo-menu></pumo-menu>
+
+        <img
+            class="adachiRei"
+            src="/assets/media/adachi-victory.gif"
+            alt="Adachi Rei Plushie Dancing"
+        >
+
+        <div class="desktop">
+            <nav class="desktop__nav">
+                <article
+                    class="card"
+                    style="
+            position: static;
+            padding: 1em 0.2em;
+            height: 100%;
+            width: 100%;
+            margin-bottom: 0;
+          "
+                >
+                    <div class="card__content">
+                        <!-- Nav Icon -->
+                        <img
+                            style="width: 4em; pointer-events: none"
+                            src="../assets/icons/desktop/program.png"
+                            alt="Directory Icon"
+                        >
+
+                        <a href="/pages/projects.html" class="link">
+                            Projects
+                        </a>
+                        <img
+                            src="../assets/icons/down_arrow.svg"
+                            style="margin-block: 0.5rem"
+                            alt="Down Arrow Icon"
+                            width="25"
+                        >
+                        <ul class="list">
+                            <li>
+                                <a href="#helloworld" class="link">
+                                    helloworld
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#schedule" class="link"> schedule </a>
+                            </li>
+                            <li><a href="#resume" class="link"> resume </a></li>
+                            <li>
+                                <a href="#placeyourorder" class="link">
+                                    placeyourorder
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#orvwindow" class="link">
+                                    orvwindow
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article
+                    class="card"
+                    style="position: static; width: 15rem; margin-block: 1.2rem"
+                >
+                    <div
+                        class="card__content"
+                        style="padding: 0; display: flex; align-items: center"
+                    >
+                        <div id="music" class="music-btn">
+                            <img
+                                id="is-playing-img"
+                                src="../assets/media/musical-notes.gif"
+                                alt="Musical Note"
+                                style="max-width: 100%; mix-blend-mode: darken"
+                            >
+                        </div>
+                        <div class="scroll-container">
+                            <span class="animate-scroll">
+                                OST 47. Coffee Cats - Blue Archive
+                                <span id="is-playing"></span>
+                            </span>
+                        </div>
+                    </div>
+                </article>
+                <article
+                    class="card"
+                    style="position: static; width: 15rem; margin-top: 0"
+                >
+                    <div
+                        class="card__content"
+                        style="padding: 0; display: flex; align-items: center"
+                    >
+                        <div
+                            class="scroll-container"
+                            style="text-align: left; margin-left: 0.4rem; height: 2.2rem"
+                        >
+                            <input
+                                id="search"
+                                type="text"
+                                style="
+                  height: 100%;
+                  font-family: Tickerbit;
+                  background: none;
+                  color: light-dark(var(--clr-secondary), var(--clr-base));
+                  width: 100%;
+                "
+                                placeholder="Search..."
+                            >
+                        </div>
+                        <div
+                            class="music-btn"
+                            style="
+                border-right: none;
+                border-left: 2px solid var(--clr-base-content);
+                color: light-dark(var(--clr-secondary), var(--clr-base));
+              "
+                        >
+                            <svg
+                                style="width: 1.2em"
+                                fill="currentColor"
+                                viewBox="0 0 400 400"
+                                id="Search"
+                                version="1.1"
+                                xml:space="preserve"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                stroke="currentColor"
+                            >
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g
+                                    id="SVGRepo_tracerCarrier"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                ></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <g id="XMLID_14_">
+                                        <polygon
+                                            id="XMLID_15_"
+                                            points="160,26.7 186.7,26.7 213.3,26.7 213.3,0 186.7,0 160,0 133.3,0 106.7,0 106.7,26.7 133.3,26.7 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_126_"
+                                            points="106.7,53.3 106.7,26.7 80,26.7 53.3,26.7 53.3,53.3 80,53.3 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_127_"
+                                            points="240,53.3 266.7,53.3 266.7,26.7 240,26.7 213.3,26.7 213.3,53.3 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_128_"
+                                            points="53.3,80 53.3,53.3 26.7,53.3 26.7,80 26.7,106.7 53.3,106.7 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_130_"
+                                            points="266.7,106.7 293.3,106.7 293.3,80 293.3,53.3 266.7,53.3 266.7,80 "
+                                        ></polygon>
+                                        <rect
+                                            height="26.7"
+                                            id="XMLID_131_"
+                                            width="26.7"
+                                            x="80"
+                                            y="106.7"
+                                        ></rect>
+                                        <rect
+                                            height="26.7"
+                                            id="XMLID_132_"
+                                            width="26.7"
+                                            x="106.7"
+                                            y="80"
+                                        ></rect>
+                                        <polygon
+                                            id="XMLID_133_"
+                                            points="293.3,160 293.3,186.7 293.3,213.3 320,213.3 320,186.7 320,160 320,133.3 320,106.7 293.3,106.7 293.3,133.3 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_134_"
+                                            points="26.7,160 26.7,133.3 26.7,106.7 0,106.7 0,133.3 0,160 0,186.7 0,213.3 26.7,213.3 26.7,186.7 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_135_"
+                                            points="53.3,213.3 26.7,213.3 26.7,240 26.7,266.7 53.3,266.7 53.3,240 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_136_"
+                                            points="293.3,240 293.3,213.3 266.7,213.3 266.7,240 266.7,266.7 293.3,266.7 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_137_"
+                                            points="80,266.7 53.3,266.7 53.3,293.3 80,293.3 106.7,293.3 106.7,266.7 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_138_"
+                                            points="213.3,266.7 213.3,293.3 240,293.3 266.7,293.3 266.7,266.7 240,266.7 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_139_"
+                                            points="160,293.3 133.3,293.3 106.7,293.3 106.7,320 133.3,320 160,320 186.7,320 213.3,320 213.3,293.3 186.7,293.3 "
+                                        ></polygon>
+                                        <rect
+                                            height="26.7"
+                                            id="XMLID_140_"
+                                            width="26.7"
+                                            x="293.3"
+                                            y="293.3"
+                                        ></rect>
+                                        <rect
+                                            height="26.7"
+                                            id="XMLID_141_"
+                                            width="26.7"
+                                            x="320"
+                                            y="320"
+                                        ></rect>
+                                        <rect
+                                            height="26.7"
+                                            id="XMLID_142_"
+                                            width="26.7"
+                                            x="346.7"
+                                            y="346.7"
+                                        ></rect>
+                                        <rect
+                                            height="26.7"
+                                            id="XMLID_143_"
+                                            width="26.7"
+                                            x="373.3"
+                                            y="373.3"
+                                        ></rect>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                </article>
+            </nav>
+
+            <main class="desktop__cards">
+                <div class="divider" style="width: 50rem; --_divider-m: 3rem 0">
+                    SHS PROJECTS
+                </div>
+
+                <article
+                    class="card"
+                    style="
+            width: clamp(45rem, 42vw, 52rem);
+            margin-bottom: 4rem;
+            height: auto;
+            position: static;
+          "
+                >
+                    <div class="card__titleBar">
+                        <img
+                            src="../assets/icons/minimize.svg"
+                            alt="Minimize Icon"
+                            width="16"
+                        >
+                        <img
+                            src="../assets/icons/restore_down.svg"
+                            alt="Restore Down Icon"
+                            height="12"
+                        >
+                        <img
+                            src="../assets/icons/close.svg"
+                            alt="Close Icon"
+                            width="16"
+                        >
+                    </div>
+
+                    <div
+                        class="card__content"
+                        style="letter-spacing: 1px; padding: 2rem"
+                    >
+                        <h2>#NOTE</h2>
+                        <p
+                            style="font-size: var(--size-md); font-style: italic;"
+                        >
+                            These are the projects that I have made in SHS for
+                            the past few months
+                        </p>
+                    </div>
+                </article>
+
+                <article
+                    class="card"
+                    style="
+            width: clamp(45rem, 42vw, 52rem);
+            height: auto;
+            position: static;
+          "
+                >
+                    <div class="card__titleBar" id="helloworld">
+                        <img
+                            src="../assets/icons/minimize.svg"
+                            alt="Minimize Icon"
+                            width="16"
+                        >
+                        <img
+                            src="../assets/icons/restore_down.svg"
+                            alt="Restore Down Icon"
+                            height="12"
+                        >
+                        <img
+                            src="../assets/icons/close.svg"
+                            alt="Close Icon"
+                            width="16"
+                        >
+                    </div>
+
+                    <div class="card__content" style="margin-top: 1rem">
+                        <div
+                            style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 100%;
+                margin-bottom: 20px;
+              "
+                        >
+                            <h2 style="display: inline-block; margin: 0">
+                                #HELLO WORLD
+                            </h2>
+                            <div
+                                class="pill pill--subtle pill--sm pill--success"
+                            >
+                                ✅ SUCCESS
+                            </div>
+                        </div>
+                        <img
+                            src="../assets/media/hello_world.jpg"
+                            style="
+                width: 100%;
+                border: 1px solid var(--clr-base-content);
+                box-shadow: 2px 2px 2px 0 var(--clr-base-content);
+              "
+                            alt="A picture of my first project, hello world."
+                        >
+                    </div>
+                </article>
+
+                <article
+                    class="card"
+                    style="
+            width: clamp(45rem, 42vw, 52rem);
+            height: auto;
+            position: static;
+          "
+                >
+                    <div class="card__titleBar" id="schedule">
+                        <img
+                            src="../assets/icons/minimize.svg"
+                            alt="Minimize Icon"
+                            width="16"
+                        >
+                        <img
+                            src="../assets/icons/restore_down.svg"
+                            alt="Restore Down Icon"
+                            height="12"
+                        >
+                        <img
+                            src="../assets/icons/close.svg"
+                            alt="Close Icon"
+                            width="16"
+                        >
+                    </div>
+
+                    <div class="card__content" style="margin-top: 1rem">
+                        <div
+                            style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 100%;
+                margin-bottom: 20px;
+              "
+                        >
+                            <h2 style="display: inline-block; margin: 0">
+                                #SCHEDULE
+                            </h2>
+                            <div
+                                class="pill pill--subtle pill--sm pill--success"
+                            >
+                                ✅ SUCCESS
+                            </div>
+                        </div>
+                        <img
+                            src="../assets/media/schedule.jpg"
+                            style="
+                width: 100%;
+                border: 1px solid var(--clr-base-content);
+                box-shadow: 2px 2px 2px 0 var(--clr-base-content);
+              "
+                            alt="A second project, schedule with html & css"
+                        >
+                    </div>
+                </article>
+
+                <article
+                    class="card"
+                    style="
+            width: clamp(45rem, 42vw, 52rem);
+            height: auto;
+            position: static;
+          "
+                >
+                    <div class="card__titleBar" id="resume">
+                        <img
+                            src="../assets/icons/minimize.svg"
+                            alt="Minimize Icon"
+                            width="16"
+                        >
+                        <img
+                            src="../assets/icons/restore_down.svg"
+                            alt="Restore Down Icon"
+                            height="12"
+                        >
+                        <img
+                            src="../assets/icons/close.svg"
+                            alt="Close Icon"
+                            width="16"
+                        >
+                    </div>
+
+                    <div class="card__content" style="margin-top: 1rem">
+                        <div
+                            style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 100%;
+                margin-bottom: 20px;
+              "
+                        >
+                            <h2 style="display: inline-block; margin: 0">
+                                #RESUME
+                            </h2>
+                            <div
+                                class="pill pill--subtle pill--sm pill--success"
+                            >
+                                ✅ SUCCESS
+                            </div>
+                        </div>
+                        <img
+                            src="../assets/media/resume.jpg"
+                            style="
+                width: 100%;
+                border: 1px solid var(--clr-base-content);
+                box-shadow: 2px 2px 2px 0 var(--clr-base-content);
+              "
+                            alt="The third project, resume with html & css"
+                        >
+                    </div>
+                </article>
+
+                <article
+                    class="card"
+                    style="
+            width: clamp(45rem, 42vw, 52rem);
+            height: auto;
+            position: static;
+          "
+                >
+                    <div class="card__titleBar" id="placeyourorder">
+                        <img
+                            src="../assets/icons/minimize.svg"
+                            alt="Minimize Icon"
+                            width="16"
+                        >
+                        <img
+                            src="../assets/icons/restore_down.svg"
+                            alt="Restore Down Icon"
+                            height="12"
+                        >
+                        <img
+                            src="../assets/icons/close.svg"
+                            alt="Close Icon"
+                            width="16"
+                        >
+                    </div>
+
+                    <div class="card__content" style="margin-top: 1rem">
+                        <div
+                            style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 100%;
+                margin-bottom: 20px;
+              "
+                        >
+                            <h2 style="display: inline-block; margin: 0">
+                                #PLACE YOUR ORDER
+                            </h2>
+                            <div
+                                class="pill pill--subtle pill--sm pill--success"
+                            >
+                                ✅ SUCCESS
+                            </div>
+                        </div>
+                        <img
+                            src="../assets/media/Place_your_order.jfif"
+                            style="
+                width: 100%;
+                border: 1px solid var(--clr-base-content);
+                box-shadow: 2px 2px 2px 0 var(--clr-base-content);
+              "
+                            alt="A lab examination we did :))"
+                        >
+                    </div>
+                </article>
+
+                <div class="divider" style="width: 50rem; --_divider-m: 4rem 0">
+                    HOBBY PROJECTS
+                </div>
+
+                <article
+                    class="card"
+                    style="
+            width: clamp(45rem, 42vw, 52rem);
+            margin-bottom: 4rem;
+            height: auto;
+            position: static;
+          "
+                >
+                    <div class="card__titleBar">
+                        <img
+                            src="../assets/icons/minimize.svg"
+                            alt="Minimize Icon"
+                            width="16"
+                        >
+                        <img
+                            src="../assets/icons/restore_down.svg"
+                            alt="Restore Down Icon"
+                            height="12"
+                        >
+                        <img
+                            src="../assets/icons/close.svg"
+                            alt="Close Icon"
+                            width="16"
+                        >
+                    </div>
+
+                    <div
+                        class="card__content"
+                        style="letter-spacing: 1px; padding: 2rem"
+                    >
+                        <h2>#NOTE</h2>
+                        <p
+                            style="font-size: var(--size-md); font-style: italic;"
+                        >
+                            My other projects that isn't associated with
+                            educational stuff.
+                            <br>
+                            Just some hobbies and fun projects =￣ω￣=
+                        </p>
+                    </div>
+                </article>
+
+                <article
+                    class="card"
+                    style="
+            width: clamp(45rem, 42vw, 52rem);
+            height: auto;
+            position: static;
+          "
+                >
+                    <div class="card__titleBar" id="orvwindow">
+                        <img
+                            src="../assets/icons/minimize.svg"
+                            alt="Minimize Icon"
+                            width="16"
+                        >
+                        <img
+                            src="../assets/icons/restore_down.svg"
+                            alt="Restore Down Icon"
+                            height="12"
+                        >
+                        <img
+                            src="../assets/icons/close.svg"
+                            alt="Close Icon"
+                            width="16"
+                        >
+                    </div>
+
+                    <div class="card__content" style="margin-top: 1rem">
+                        <div
+                            style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 100%;
+                margin-bottom: 20px;
+              "
+                        >
+                            <h2 style="display: inline-block; margin: 0">
+                                #ORV WINDOW
+                            </h2>
+                            <div
+                                class="pill pill--subtle pill--sm pill--warning"
+                            >
+                                ⚠ IN PROGRESS
+                            </div>
+                        </div>
+
+                        <p
+                            style="
+                color: light-dark(var(--clr-secondary), var(--clr-base));
+                margin-bottom: 15px;
+              "
+                        >
+                            Heavily inspired from the "Window Scenarios" from my
+                            favourite novel/webtoon called
+                            <a
+                                class="link"
+                                style="display: inline"
+                                href="https://www.webtoons.com/en/action/omniscient-reader/list?title_no=2154"
+                                target="_blank"
+                            >
+                                Omniscient Reader's Viewpoint
+                                <br>
+                            </a>
+                            <span
+                                style="font-style: italic; line-height: 2.5rem"
+                                >&gt; It's actually
+                                <a
+                                    href="https://a91ec5d6.pinkmin.pages.dev/"
+                                    style="display: inline"
+                                    target="_blank"
+                                    class="link"
+                                    >currently online!</a
+                                >
+                                Though, it can only be viewed normally at
+                                desktop.
+                            </span>
+                        </p>
+
+                        <p
+                            style="
+                border-left: 4px solid oklch(0.3926 0 159);
+                color: oklch(0.5074 0 159);
+                font-style: italic;
+                padding-left: 10px;
+                margin-bottom: 20px;
+              "
+                        >
+                            ✨ Window Layout Inspiration:
+                            <a
+                                class="link"
+                                style="display: inline; margin-left: 5px"
+                                href="https://x.com/1864shiix/status/1582002150816612353"
+                                target="_blank"
+                            >
+                                @1864shiix
+                            </a>
+
+                            <br>
+                            💻 Source Code:
+                            <a
+                                class="link"
+                                style="display: inline; margin-left: 5px"
+                                href="https://github.com/sillypnk/pumoreiichi.ORV"
+                                target="_blank"
+                            >
+                                Github
+                            </a>
+                        </p>
+
+                        <img
+                            src="../assets/media/projects/orv-project.png"
+                            style="
+                width: 100%;
+                border: 1px solid var(--clr-base-content);
+                box-shadow: 2px 2px 2px 0 var(--clr-base-content);
+              "
+                            alt="A neo-window looking design which is based from ORV"
+                        >
+                    </div>
+                </article>
+            </main>
+        </div>
+
+        <pumo-taskbar></pumo-taskbar>
+        <pumo-menu></pumo-menu>
+    </body>
+</html>

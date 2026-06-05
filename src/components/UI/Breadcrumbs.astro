@@ -1,0 +1,84 @@
+---
+import Link from '../Link.astro'
+import { Icon } from 'astro-iconset/components'
+
+type BreadcrumbsItem = {
+		href?: string
+		label?: string
+		icon?: string
+}
+
+interface Props {
+	items: BreadcrumbsItem[]
+}
+
+const { items } = Astro.props
+---
+
+<nav class="box" style="padding-inline: 1.5rem; padding-block: 0.75rem;" aria-label="breadcrumb">
+	<ol class="c-breadcrumbs">
+		<li>
+			<Link href="/" style="display: inline-flex; color: color-mix(in oklab, var(--clr-secondary), var(--clr-primary) 50%);">
+				<svg style="width: 1.05em; flex-shrink: 0;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M21.45 10.28 12 3.18l-9.45 7.1.45 1.35h.75v8.62h16.5v-8.62H21zm-16.2 8.47v-8.62L12 5.06l6.75 5.07v8.62H15v-4.42l-.75-.75h-4.5l-.75.75v4.42zm5.25 0h3v-3.67h-3z" fill="currentColor"/></svg>
+			</Link>
+		</li>
+
+		{items.map((item, index) => (
+		<span class="u-group--flex" style="gap: 0.5rem;">
+			<Icon name="arrow_right" />
+			<li>
+				{index === items.length - 1 ? (
+				    <span
+		      			role="link"
+					    aria-disabled="true"
+					    aria-current="page"
+						style="font-size: var(--text-xs);  color: var(--clr-base-content);"
+				      >
+						<span class="u-group--flex" style="gap: 5.5px;">
+							{item.icon && (
+								<Icon name={item.icon} />
+							)}
+							<span>{item.label}</span>
+						</span>
+					</span>
+				) : (
+					<Link style="font-size: var(--text-xs); color: currentColor;" href={item.href as string} noUnderline>
+						<span class="u-group--flex" style="gap: 5.5px;">
+							{item.icon && (
+								<Icon name={item.icon} />
+							)}
+							<span>{item.label}</span>
+						</span>
+					</Link>
+				)}
+			</li>
+		</span>
+		))}
+	</ol>
+</nav>
+
+<style>
+	[data-icon] {
+		width: 1.35em;
+		flex-shrink: 0;
+	}
+
+	.c-breadcrumbs {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		font-size: var(--text-xs);
+		color: color-mix(
+			in oklab,
+			var(--clr-secondary),
+			var(--clr-primary) 50%
+		);
+	}
+	.c-breadcrumbs li {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+</style>

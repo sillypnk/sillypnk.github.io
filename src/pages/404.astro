@@ -1,0 +1,54 @@
+---
+import Desktop from '🧡/layouts/Desktop.astro'
+
+import PageHead from '🧡/components/PageHead.astro'
+import Link from '🧡/components/Link.astro'
+import Card from '🧡/components/UI/Card.astro'
+
+import { Icon } from 'astro-iconset/components'
+---
+
+<Desktop>
+	<PageHead title="404 Error: Page Not Found" slot="head" />
+
+	<div
+		class="u-group--flex items--centered"
+		style="height: 100%; width: 100%;"
+	>
+		<Card
+			header="Code Error: 404"
+			style="width: min(50rem, 100%);"
+			contentStyles="display: flex; flex-direction: column; text-align: center; align-items: center; justify-content: center; height: 100%; width: 100%;"
+		>
+			<img
+				src="/static/adachi_rei/chibi-02.png"
+				alt="Mini version of Adachi Rei holding an umbrella while sweating profusely."
+				style="height: auto; width: min(19em, 100%);"
+			>
+			<h5 style="margin-bottom: 0;">404 Error</h5>
+			<p>I can't seem to find what you're looking for</p>
+			<Link
+				class="btn u-group--flex"
+				style="width: max-content; gap: 0.95em;"
+				href="/"
+				aria-label="Go back"
+				noUnderline
+			>
+				<Icon name="arrow_left" />
+				<span>Okay, let me go home</span>
+			</Link>
+		</Card>
+	</div>
+</Desktop>
+
+<style>
+	:global(.desktop) {
+		padding: 0;
+		grid-template-columns: 1fr;
+
+		@media screen and (max-width: 769px) {
+			padding-inline: 1rem;
+			padding-block: 0.5rem;
+		}
+	}
+</style>

@@ -1,0 +1,45 @@
+:root {
+	/* 🎨 Colors */
+	--clr-base: oklch(97.586% 0.0112 71.721deg);
+	--clr-base-content: oklch(0.7544 0.1825 57.12deg);
+	--clr-primary: oklch(94.73% 0.0505 81.644deg);
+	--clr-secondary: oklch(23.929% 0 271.152deg);
+	--clr-shion: oklch(0.5721 0.259 316.06);
+	--clr-non-avail: oklch(from var(--clr-secondary) calc(l + 0.1) c h);
+
+	/* 🎯 Sizes */
+	--base-unit: 1rem;
+	--size-3xs: calc(var(--base-unit) * 0.25);
+	/* 4px if base is 16px */
+	--size-2xs: calc(var(--base-unit) * 0.5);
+	/* 8px */
+	--size-xs: calc(var(--base-unit) * 0.75);
+	/* 12px */
+	--size-sm: calc(var(--base-unit) * 0.875);
+	/* 14px */
+	--size-md: calc(var(--base-unit) * 1);
+	/* 16px */
+	--size-lg: calc(var(--base-unit) * 1.25);
+	/* 20px */
+	--size-xl: calc(var(--base-unit) * 1.5);
+	/* 24px */
+	--size-2xl: calc(var(--base-unit) * 2);
+	/* 32px */
+	--size-3xl: calc(var(--base-unit) * 2.5);
+	/* 40px */
+	--size-4xl: calc(var(--base-unit) * 3);
+	/* 48px */
+	--size-5xl: calc(var(--base-unit) * 4);
+	/* 64px */
+	--size-6xl: calc(var(--base-unit) * 5);
+	/* 80px */
+
+	--text-xs: clamp(0.75rem, 1vw, 0.875rem);
+	--text-sm: clamp(0.75rem, 1.5vw, 1rem);
+	--text-base: clamp(1rem, 2vw, 1.125rem);
+	--text-lg: clamp(1.125rem, 2.5vw, 1.25rem);
+	--text-xl: clamp(1.25rem, 3vw, 1.5rem);
+	--text-2xl: clamp(1.5rem, 4vw, 2rem);
+	--text-3xl: clamp(2rem, 5vw, 3rem);
+	--text-4xl: clamp(2.5rem, 6vw, 4rem);
+}

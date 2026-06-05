@@ -1,0 +1,184 @@
+---
+import DesktopIcon from './Icon.astro'
+import { APPS } from '🧡/consts'
+---
+
+<aside class="desktop__apps">
+	{APPS.map(({ icon, label }) => (
+            <DesktopIcon opts={{ src: icon, alt: `${label} Icon`, to: label === "Home" ? "" : label.toLowerCase() }}>
+            	{label}
+            </DesktopIcon>
+			)
+		)}
+
+	<article
+		class="box"
+		style="
+						grid-column: 1 / -1;
+						width: 100%;
+						height: unset;
+						padding: 0;
+						margin: 0;
+						align-self: start;
+						background: linear-gradient(
+      180deg,
+      light-dark(
+          var(--clr-base),
+          oklch(from var(--clr-base-content) l c h / 21%)
+        )
+        5%,
+      light-dark(
+          var(--clr-base),
+          oklch(from var(--clr-secondary) calc(l - 0.1) c h / 80%)
+        )
+        100%
+    );
+					"
+	>
+		<div style="display: flex;">
+			<div
+				class="scroll-container"
+				style="
+								text-align: left;
+								margin-left: 0.4rem;
+							"
+			>
+				<input
+					id="search"
+					type="text"
+					style="
+									height: 100%;
+									font-family: var(--font-tickerbit);
+									background: inherit;
+									color: light-dark(
+										var(--clr-secondary),
+										var(--clr-base)
+									);
+									width: 100%;
+								"
+					placeholder="Search..."
+				>
+			</div>
+			<div
+				class="music-btn"
+				style="
+								border-right: none;
+								border-left: 2px solid var(--clr-base-content);
+								color: light-dark(
+									var(--clr-secondary),
+									var(--clr-base)
+								);
+							"
+			>
+				<svg
+					style="width: 1.2em"
+					fill="currentColor"
+					viewBox="0 0 400 400"
+					id="Search"
+					version="1.1"
+					xml:space="preserve"
+					xmlns="http://www.w3.org/2000/svg"
+					xmlns:xlink="http://www.w3.org/1999/xlink"
+					stroke="currentColor"
+				>
+					<g stroke-width="0"></g>
+					<g stroke-linecap="round" stroke-linejoin="round"></g>
+					<g>
+						<g id="XMLID_14_">
+							<polygon
+								id="XMLID_15_"
+								points="160,26.7 186.7,26.7 213.3,26.7 213.3,0 186.7,0 160,0 133.3,0 106.7,0 106.7,26.7 133.3,26.7 "
+							></polygon>
+							<polygon
+								id="XMLID_126_"
+								points="106.7,53.3 106.7,26.7 80,26.7 53.3,26.7 53.3,53.3 80,53.3 "
+							></polygon>
+							<polygon
+								id="XMLID_127_"
+								points="240,53.3 266.7,53.3 266.7,26.7 240,26.7 213.3,26.7 213.3,53.3 "
+							></polygon>
+							<polygon
+								id="XMLID_128_"
+								points="53.3,80 53.3,53.3 26.7,53.3 26.7,80 26.7,106.7 53.3,106.7 "
+							></polygon>
+							<polygon
+								id="XMLID_130_"
+								points="266.7,106.7 293.3,106.7 293.3,80 293.3,53.3 266.7,53.3 266.7,80 "
+							></polygon>
+							<rect
+								height="26.7"
+								id="XMLID_131_"
+								width="26.7"
+								x="80"
+								y="106.7"
+							></rect>
+							<rect
+								height="26.7"
+								id="XMLID_132_"
+								width="26.7"
+								x="106.7"
+								y="80"
+							></rect>
+							<polygon
+								id="XMLID_133_"
+								points="293.3,160 293.3,186.7 293.3,213.3 320,213.3 320,186.7 320,160 320,133.3 320,106.7 293.3,106.7 293.3,133.3 "
+							></polygon>
+							<polygon
+								id="XMLID_134_"
+								points="26.7,160 26.7,133.3 26.7,106.7 0,106.7 0,133.3 0,160 0,186.7 0,213.3 26.7,213.3 26.7,186.7 "
+							></polygon>
+							<polygon
+								id="XMLID_135_"
+								points="53.3,213.3 26.7,213.3 26.7,240 26.7,266.7 53.3,266.7 53.3,240 "
+							></polygon>
+							<polygon
+								id="XMLID_136_"
+								points="293.3,240 293.3,213.3 266.7,213.3 266.7,240 266.7,266.7 293.3,266.7 "
+							></polygon>
+							<polygon
+								id="XMLID_137_"
+								points="80,266.7 53.3,266.7 53.3,293.3 80,293.3 106.7,293.3 106.7,266.7 "
+							></polygon>
+							<polygon
+								id="XMLID_138_"
+								points="213.3,266.7 213.3,293.3 240,293.3 266.7,293.3 266.7,266.7 240,266.7 "
+							></polygon>
+							<polygon
+								id="XMLID_139_"
+								points="160,293.3 133.3,293.3 106.7,293.3 106.7,320 133.3,320 160,320 186.7,320 213.3,320 213.3,293.3 186.7,293.3 "
+							></polygon>
+							<rect
+								height="26.7"
+								id="XMLID_140_"
+								width="26.7"
+								x="293.3"
+								y="293.3"
+							></rect>
+							<rect
+								height="26.7"
+								id="XMLID_141_"
+								width="26.7"
+								x="320"
+								y="320"
+							></rect>
+							<rect
+								height="26.7"
+								id="XMLID_142_"
+								width="26.7"
+								x="346.7"
+								y="346.7"
+							></rect>
+							<rect
+								height="26.7"
+								id="XMLID_143_"
+								width="26.7"
+								x="373.3"
+								y="373.3"
+							></rect>
+						</g>
+					</g>
+				</svg>
+			</div>
+		</div>
+	</article>
+</aside>

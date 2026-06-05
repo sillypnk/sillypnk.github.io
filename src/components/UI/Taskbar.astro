@@ -1,0 +1,230 @@
+---
+import { Icon } from 'astro-iconset/components'
+import Bars from '🧡/components/UI/Bars.astro'
+
+import umamusumeSFXAlt from '🧡/assets/media/audio/sfx/umamusume_sfx_01.mp3'
+import umamusumeSFX from '🧡/assets/media/audio/sfx/umamusume_sfx_02.mp3'
+---
+
+<pumo-taskbar
+	data-sfx={JSON.stringify({ sfx: umamusumeSFX, alt: umamusumeSFXAlt })}
+>
+	<footer class="desktop__taskbar">
+		<section class="desktop__taskbar--position-start">
+			<button class="taskbar__menu">
+				<Icon name="statusbar/windows" />
+			</button>
+			<!--
+            <div class="u-group--flex items--y-centered" style="gap: 0.5em;">
+                <Icon name="white_circle" />
+                <Icon name="white_circle" />
+                <Icon name="white_circle" />
+                <Icon name="white_circle" />
+            </div>
+
+            <div
+                class="items--y-centered"
+                style="display: inline-flex; justify-content: start; gap: 1em; margin-left: 1rem; width: 12rem;"
+            >
+                <Icon name="music" />
+                <div class="fade-container" style="width: 50%;">
+                    <div
+                        class="fade--horizontal scroll-container"
+                        style="display: flex; place-items: center;"
+                    >
+                        <span id="statusbar-music" class="animate-scroll"
+                            >Listening to \`Heat Abnormal\` by Iyowa</span
+                        >
+                    </div>
+                </div>
+            </div> -->
+		</section>
+
+		<section
+			class="desktop__taskbar--position-center"
+			style="padding-block: 0.5rem;"
+		>
+			<!-- <span id="taskbar-time"></span> -->
+			<!-- <span>Adachi Rei</span> -->
+			<Bars bars={10} size="xs" />
+		</section>
+
+		<section class="desktop__taskbar--position-end">
+			<div class="u-group--flex items--y-centered" style="gap: 1.5em;">
+				<span id="taskbar-time"></span>
+				<!-- <div class="taskbar-icon u-group--flex items--y-centered">
+					<a
+						href="https://github.com/sillypnk/pumoreiichi.pages.dev"
+						style="display: inline-flex; color: currentColor;"
+						target="_blank"
+					>
+						<Icon name="terminal" />
+					</a>
+
+					<a
+						href="https://github.com/sillypnk"
+						style="display: inline-flex; color: currentColor;"
+						target="_blank"
+					>
+						<Icon name="github" />
+					</a>
+
+					<a
+						href="#"
+						style="display: inline-flex; color: currentColor;"
+						target="_blank"
+					>
+						<Icon name="discord" />
+					</a>
+				</div> -->
+			</div>
+		</section>
+	</footer>
+</pumo-taskbar>
+
+<style>
+	[data-icon] {
+		width: 1.8em;
+		height: 1.8em;
+	}
+</style>
+
+<script>
+	import { Howl } from 'howler'
+
+	class PumoTaskbar extends HTMLElement {
+		/**
+		 * This gets something from the pumo-menu component inside our shadow DOM
+		 */
+		#menu: HTMLElement | null = null
+		#sfx: any = ''
+		#sfx_alt: any = ''
+
+		#handleClick = () => this.showMenu()
+		#handleKeys = (e: KeyboardEvent) => this.#handleMenuKeys(e)
+		// #hasAnimated = false
+		// #handlePageLoad = () => {
+		//     if (!this.#hasAnimated) {
+		//         this.querySelector<HTMLElement>(
+		//             '.desktop__taskbar',
+		//         )?.classList.add('animate-taskbar')
+		//         this.#hasAnimated = true
+		//     }
+		// }
+
+		connectedCallback() {
+			// Debugging
+			console.log(
+				'%c[PumoComponents]:',
+				'background-color: orange; color: black; font-weight: bold; padding-inline: 0.5em; padding-block: 0.25em; border-radius: 5px;',
+				'pumo-taskbar is successfully connected!',
+			)
+
+			this.#menu = document.querySelector('pumo-menu')
+			this.#getCurrentTime()
+
+			const { sfx, alt } = JSON.parse(
+				this.getAttribute('data-sfx') as string,
+			)
+			this.#sfx = new Howl({ src: [sfx] })
+			this.#sfx_alt = new Howl({ src: [alt] })
+
+			this.querySelector('button.taskbar__menu')?.addEventListener(
+				'click',
+				this.#handleClick,
+			)
+			document.addEventListener('keydown', this.#handleKeys)
+
+			// document.addEventListener('astro:page-load', this.#handlePageLoad)
+		}
+
+		disconnectedCallback() {
+			console.log(
+				'%c[PumoComponents]:',
+				'background-color: black; color: orange; font-weight: bold; padding-inline: 0.5em; padding-block: 0.25em; border-radius: 5px;',
+				'pumo-taskbar is disconnected!',
+			)
+			this.querySelector('button.taskbar__menu')?.removeEventListener(
+				'click',
+				this.#handleClick,
+			)
+			document.removeEventListener('keydown', this.#handleKeys)
+			this.#sfx?.unload()
+			this.#sfx_alt?.unload()
+
+			// document.removeEventListener(
+			//     'astro:page-load',
+			//     this.#handlePageLoad,
+			// )
+			// this.querySelector<HTMLElement>(
+			//     '.desktop__taskbar',
+			// )?.classList.remove('animate-taskbar')
+		}
+
+		// ============== Other methods ================= //
+		// ===================================================== //
+		#handleMenuKeys(e: KeyboardEvent) {
+			const menu = this.#menu?.querySelector(
+				'dialog#modal__start',
+			) as HTMLDialogElement
+
+			if (e.altKey && e.code === 'KeyN') {
+				e.preventDefault()
+				const close = () => {
+					menu?.close()
+					const sfx = this.#sfx
+					sfx.play()
+					sfx.seek(0.25)
+				}
+				menu.open === false ? this.showMenu() : close()
+			}
+		}
+
+		#getCurrentTime() {
+			const taskbarTime = this.querySelector('#taskbar-time')
+			const locale = navigator.language
+
+			const time = new Intl.DateTimeFormat(locale, {
+				hour: '2-digit',
+				minute: '2-digit',
+				hour12: false,
+			})
+			const day = new Intl.DateTimeFormat(locale, {
+				weekday: 'short',
+				day: 'numeric',
+				month: 'short',
+			})
+
+			let updateClock = () => {
+				const date = new Date()
+				if (taskbarTime)
+					taskbarTime.textContent = `${day.format(date)} - ${time.format(date)}`
+			}
+
+			setInterval(updateClock, 1000)
+			updateClock()
+		}
+
+		/**
+		 * Used for showing the modal
+		 */
+		showMenu() {
+			const menu = this.#menu?.querySelector(
+				'dialog#modal__start',
+			) as HTMLDialogElement
+
+			if (menu.open) {
+				this.#sfx.play()
+				this.#sfx.seek(0.25)
+				menu.close()
+				return
+			}
+			menu.show()
+			// Also plays a sound effect when clicked
+			this.#sfx_alt.play()
+			this.#sfx_alt.seek(0.2)
+		}
+	}
+
+	customElements.define('pumo-taskbar', PumoTaskbar)
+</script>

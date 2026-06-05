@@ -1,0 +1,387 @@
+---
+import umamusumeSFX from '🧡/assets/media/audio/sfx/umamusume_sfx_02.mp3'
+// import Avatar from '../../assets/media/avatar.png'
+import Avatar from '🧡/components/UI/Avatar.astro'
+
+import { APPS } from '🧡/consts'
+---
+
+<pumo-menu sfx={umamusumeSFX}>
+	<dialog id="modal__start" class="modal">
+		<div class="modal__content">
+			<div class="modal__action">
+				<form method="dialog">
+					<h5
+						style="font-family: var(--font-tickerbit); margin-block: 0;"
+					>
+						START MENU
+					</h5>
+					<button class="menu-btn">
+						<svg
+							fill="currentColor"
+							style="width: clamp(1.5em, 2vw, 2.5em)"
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 512 512"
+							xml:space="preserve"
+						>
+							<path
+								d="M365.7 231.6V195h36.6v-36.5h36.6v-36.6h36.5V85.3H512V36.6h-36.6V0h-48.7v36.6h-36.6v36.5h-36.6v36.6H317v36.6h-36.6v36.6h-48.8v-36.6H195v-36.6h-36.5V73.1h-36.6V36.6H85.3V0H36.6v36.6H0v48.7h36.6v36.6h36.5v36.6h36.6V195h36.6v36.6h36.6v48.8h-36.6V317h-36.6v36.5H73.1v36.6H36.6v36.6H0v48.7h36.6V512h48.7v-36.6h36.6v-36.5h36.6v-36.6H195v-36.6h36.6v-36.6h48.8v36.6H317v36.6h36.5v36.6h36.6v36.5h36.6V512h48.7v-36.6H512v-48.7h-36.6v-36.6h-36.5v-36.6h-36.6V317h-36.6v-36.6h-36.6v-48.8z"
+							/>
+						</svg>
+					</button>
+				</form>
+			</div>
+			<div class="modal__info">
+				<Avatar
+					email="kumukuro@gmail.com"
+					alt="Adachi Rei looking at the camera"
+					imgStyles="outline: 1px solid var(--clr-base-content); outline-offset: 2px;"
+					style="grid-area: avatar; width: min(8rem, 30vw);"
+					size={70}
+				/>
+
+				<!-- <div class="avatar" style="grid-area: avatar">
+					<div
+						style="
+                            width: min(8rem, 30vw);
+                            border-radius: 50em;
+                            outline: 1px solid var(--clr-base-content);
+                            outline-offset: 2px;
+                        "
+					>
+						<Picture
+							src={Avatar}
+							formats={["webp"]}
+							alt="Avatar"
+							priority
+						/>
+					</div>
+				</div> -->
+				<h6 class="name" style="grid-area: name;">PumoReiichi</h6>
+				<p
+					style="
+						grid-area: details;
+                    "
+				>
+					OS: ReiOS
+					<br>
+					Version: 1.1.0
+					<br>
+					Host: Cloudflare Pages
+					<br>
+					Processor: Vanilla
+					<br>
+					Since: August
+				</p>
+			</div>
+			<div class="modal__links">
+				<ul class="startmenu__list">
+					{APPS.map(({ label }) => (
+                        <li>
+                            <a
+                                href={
+                                    label === "Home"
+                                        ? "/"
+                                        : "/" + label.toLowerCase()
+                                }
+                            >
+                                {label}
+                            </a>
+                        </li>
+                    ))}
+				</ul>
+			</div>
+
+			<div class="modal__options">
+				<div style="display: inline-flex; align-items: center;">
+					<!-- <p style="font-size: 0.8rem"><span id="pro-tip"></span></p> -->
+					<p style="font-size: var(--text-xs);">
+						&copy; {new Date().getFullYear()} PumoReiichi.
+					</p>
+				</div>
+
+				<div style="margin-left: auto;">
+					<!-- [Icon] - Restart -->
+					<svg
+						style="width: 0.85em"
+						viewBox="0 0 24 24"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							d="m18.36 8.05-.7-.7A8 8 0 1 0 19.94 12m-1.58-3.95h-4.24m4.24 0V3.81"
+							stroke="currentColor"
+							stroke-width="1.5"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						/>
+					</svg>
+
+					<div id="theme-toggler">
+						<!-- [Icon] - Moon -->
+						<svg
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 24 24"
+						>
+							<g fill="currentColor">
+								<path
+									d="M10.58 8.7C11.2 7.57 11.53 7 12 7s.79.57 1.42 1.7l.17.3c.18.32.27.48.4.59.15.1.32.14.67.22l.32.08c1.23.27 1.84.41 2 .88.14.47-.28.96-1.12 1.95l-.22.25c-.24.28-.35.42-.4.59s-.04.36 0 .73l.03.34c.12 1.3.19 1.96-.2 2.25-.38.3-.96.03-2.1-.5l-.3-.14c-.33-.15-.5-.23-.67-.23s-.34.08-.66.23l-.3.14c-1.15.53-1.73.8-2.11.5-.39-.3-.32-.94-.2-2.25l.04-.34c.03-.37.05-.56 0-.73s-.17-.31-.41-.6l-.22-.25c-.84-.98-1.26-1.47-1.11-1.94s.76-.6 1.99-.88l.32-.08c.35-.08.52-.11.66-.22s.23-.27.41-.6z"
+								/>
+								<path
+									fill-rule="evenodd"
+									d="M12 1.25c.41 0 .75.34.75.75v2a.75.75 0 0 1-1.5 0V2c0-.41.34-.75.75-.75M1.25 12c0-.41.34-.75.75-.75h2a.75.75 0 0 1 0 1.5H2a.75.75 0 0 1-.75-.75m18 0c0-.41.34-.75.75-.75h2a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1-.75-.75M12 19.25c.41 0 .75.34.75.75v2a.75.75 0 0 1-1.5 0v-2c0-.41.34-.75.75-.75"
+								/>
+								<path
+									d="M18.53 5.47c.3.3.3.77 0 1.06l-.34.34a.75.75 0 0 1-1.06-1.06l.34-.34c.3-.3.77-.3 1.06 0m-13.06 0c.3-.3.77-.3 1.06 0l.34.34a.75.75 0 0 1-1.06 1.06l-.34-.34a.75.75 0 0 1 0-1.06m1.4 11.66c.3.29.3.76 0 1.06l-.34.34a.75.75 0 0 1-1.06-1.06l.34-.34c.3-.3.77-.3 1.06 0m10.26 0c.29-.3.76-.3 1.06 0l.34.34a.75.75 0 0 1-1.06 1.06l-.34-.34a.75.75 0 0 1 0-1.06"
+								/>
+							</g>
+						</svg>
+
+						<!-- [Icon] - Sun -->
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							xml:space="preserve"
+							fill="currentColor"
+							stroke="currentColor"
+							viewBox="0 0 32 32"
+						>
+							<path
+								d="M17 5q-.4 0-.8.04A9.01 9.01 0 0 1 12 22a9 9 0 0 1-6.85-3.17A12 12 0 1 0 17 5m-6 4c-2.58.62-3.38 1.42-4 4-.62-2.58-1.42-3.38-4-4 2.58-.62 3.38-1.42 4-4 .62 2.58 1.42 3.38 4 4m1 5v2m-1-1h2"
+								fill="none"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-miterlimit="10"
+							/>
+						</svg>
+					</div>
+
+					<!-- [Icon] - Shutdown -->
+					<svg
+						style="width: 0.8em"
+						fill="currentColor"
+						version="1.1"
+						id="Layer_1"
+						xmlns="http://www.w3.org/2000/svg"
+						xmlns:xlink="http://www.w3.org/1999/xlink"
+						viewBox="0 0 482.462 482.462"
+						xml:space="preserve"
+						stroke="currentColor"
+					>
+						<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+						<g
+							id="SVGRepo_tracerCarrier"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						></g>
+						<g id="SVGRepo_iconCarrier">
+							<g>
+								<g>
+									<rect
+										x="231.385"
+										width="19.692"
+										height="245.199"
+									></rect>
+								</g>
+							</g>
+							<g>
+								<g>
+									<path
+										d="M287.038,47.534l-4.086,19.26C374.76,86.26,441.394,168.611,441.394,262.606c0,110.37-89.793,200.163-200.163,200.163 S41.067,372.976,41.067,262.606c0-94,66.639-176.351,158.452-195.813l-4.087-19.264C94.577,68.909,21.375,159.361,21.375,262.606 c0,121.231,98.625,219.856,219.856,219.856s219.856-98.625,219.856-219.856C461.087,159.365,387.889,68.913,287.038,47.534z"
+									></path>
+								</g>
+							</g>
+						</g>
+					</svg>
+				</div>
+			</div>
+		</div>
+	</dialog>
+</pumo-menu>
+
+<script>
+	import { Howl } from 'howler'
+
+	class PumoMenu extends HTMLElement {
+		#sfx: any = ''
+
+		// Stable handler references so removeEventListener can find them
+		#handleTheme = (e: MouseEvent) => this.#handleColorScheme(e)
+		#handleClose = () => {
+			const menu = this.querySelector(
+				'dialog#modal__start',
+			) as HTMLDialogElement
+			this.#sfx.once('play', () => this.#sfx.seek(0.25))
+			this.#sfx.play()
+			menu.open = false
+		}
+		#handleMouseOver = () => this.#sfx.play()
+		#handleMouseLeave = () => this.#sfx.stop()
+
+		connectedCallback() {
+			console.log(
+				'%c[PumoComponents]:',
+				'background-color: orange; color: black; font-weight: bold; padding-inline: 0.5em; padding-block: 0.25em; border-radius: 5px;',
+				'pumo-menu is successfully connected!',
+			)
+
+			const sfx = this.getAttribute('sfx') as string
+			this.#sfx = new Howl({ src: [sfx] })
+
+			this.querySelector<HTMLElement>('#theme-toggler')?.addEventListener(
+				'click',
+				this.#handleTheme,
+			)
+
+			this.querySelector<HTMLButtonElement>(
+				'.modal__action button',
+			)?.addEventListener('click', this.#handleClose)
+
+			this.querySelectorAll<HTMLLIElement>('.startmenu__list li').forEach(
+				list => {
+					list.addEventListener('mouseover', this.#handleMouseOver)
+					list.addEventListener('mouseleave', this.#handleMouseLeave)
+				},
+			)
+
+			const proTips = [
+				"Do alt + n if you're on desktop",
+				'ESC to escape this menu',
+				'I recommend listening to heat abnormal',
+				'I forgot what I was gonna say..',
+				'Dark theme is the coolest trust',
+				'Broken website + no responsive',
+				'Hachimi hachimi',
+				'Mambo Mambo! Omatsuri Mambo!',
+			]
+			const proTipSpan = this.querySelector('#pro-tip') as HTMLElement
+			proTipSpan.innerHTML =
+				proTips[Math.floor(Math.random() * proTips.length)]
+		}
+
+		disconnectedCallback() {
+			console.log(
+				'%c[PumoComponents]:',
+				'background-color: black; color: orange; font-weight: bold; padding-inline: 0.5em; padding-block: 0.25em; border-radius: 5px;',
+				'pumo-menu is disconnected!',
+			)
+
+			this.querySelector<HTMLElement>(
+				'#theme-toggler',
+			)?.removeEventListener('click', this.#handleTheme)
+
+			this.querySelector<HTMLButtonElement>(
+				'.modal__action button',
+			)?.removeEventListener('click', this.#handleClose)
+
+			this.querySelectorAll<HTMLLIElement>('.startmenu__list li').forEach(
+				list => {
+					list.removeEventListener('mouseover', this.#handleMouseOver)
+					list.removeEventListener(
+						'mouseleave',
+						this.#handleMouseLeave,
+					)
+				},
+			)
+
+			this.#sfx?.unload()
+		}
+
+		#handleColorScheme(event: MouseEvent) {
+			const root = document.documentElement
+			const theme =
+				root.getAttribute('data-theme') == 'light' ? 'dark' : 'light'
+
+			const toggler = this.querySelector<HTMLElement>('#theme-toggler')
+			const rect = toggler!.getBoundingClientRect()
+			const x = rect.left + rect.width / 2
+			const y = rect.top + rect.height / 2
+
+			const maxRadius = Math.hypot(
+				Math.max(x, window.innerWidth - x),
+				Math.max(y, window.innerHeight - y),
+			)
+
+			if (!document.startViewTransition) {
+				root.setAttribute('data-theme', theme)
+				localStorage.setItem('theme', theme)
+				return
+			}
+
+			const transition = document.startViewTransition(() => {
+				root.setAttribute('data-theme', theme)
+				localStorage.setItem('theme', theme)
+			})
+
+			transition.ready.then(() => {
+				document.documentElement.animate(
+					{
+						clipPath: [
+							`circle(0px at ${x}px ${y}px)`,
+							`circle(${maxRadius}px at ${x}px ${y}px)`,
+						],
+					},
+					{
+						duration: 500,
+						easing: 'ease-in-out',
+						pseudoElement: '::view-transition-new(root)',
+					},
+				)
+			})
+		}
+	}
+
+	customElements.define('pumo-menu', PumoMenu)
+</script>
+
+<style>
+	button.menu-btn {
+		--btn-size: 2.5rem;
+
+		padding: 0.9em;
+		display: inline-flex;
+		align-items: center;
+		alignment-baseline: middle;
+		user-select: none;
+		justify-content: center;
+		background: oklch(from var(--clr-secondary) l c h / 17.1%);
+		margin-left: auto;
+		color: inherit;
+		background: transparent;
+		border: none;
+		border-radius: 2px;
+
+		&:is(:hover, :focus-visible) {
+			outline: 1px dashed var(--clr-base-content);
+		}
+	}
+
+	#theme-toggler {
+		display: inline-flex;
+		justify-content: center;
+		color: light-dark(var(--clr-secondary), var(--clr-base));
+		padding: 0.15em;
+		border-radius: 5em;
+		align-items: center;
+		user-select: none;
+
+		backface-visibility: hidden;
+
+		svg {
+			width: 0.85em;
+		}
+	}
+
+	:global([data-theme="light"]) {
+		& #theme-toggler svg:first-child {
+			display: none;
+		}
+	}
+
+	:global([data-theme="dark"]) {
+		& #theme-toggler svg:last-child {
+			display: none;
+		}
+	}
+</style>

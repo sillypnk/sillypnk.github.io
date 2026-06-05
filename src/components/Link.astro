@@ -1,0 +1,27 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+interface Props extends HTMLAttributes<'a'> {
+    href: string
+    external?: boolean
+    class?: any
+    noUnderline?: boolean
+}
+
+const {
+    href,
+    external,
+    class: className,
+    noUnderline = false,
+    ...rest
+} = Astro.props
+---
+
+<a
+    href={href}
+    target={external ? '_blank' : '_self'}
+    class:list={['link', noUnderline && 'link--no-underline', className]}
+    {...rest}
+>
+    <slot />
+</a>

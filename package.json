@@ -1,14 +1,30 @@
 {
-  "name": "adachi-rei-portfolio",
-  "type": "module",
+  "name": "pumochii",
   "version": "0.0.1",
+  "dependencies": {
+    "@astrojs/mdx": "^6.0.1",
+    "@astrojs/svelte": "^8.1.2",
+    "@playform/compress": "^0.2.3",
+    "animejs": "^4.4.1",
+    "astro": "^6.4.3",
+    "astro-iconset": "^0.0.5",
+    "astro-seo": "^1.1.0",
+    "gravatar-url": "^4.0.2",
+    "howler": "^2.2.4",
+    "svelte": "^5.56.1"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
-  "dependencies": {
-    "astro": "^5.17.1"
+  "type": "module",
+  "devDependencies": {
+    "@astrojs/cloudflare": "^13.6.1",
+    "@biomejs/biome": "^2.4.16",
+    "@types/howler": "^2.2.13",
+    "lightningcss": "^1.32.0",
+    "wrangler": "^4.98.0"
   }
 }

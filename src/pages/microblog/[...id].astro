@@ -1,0 +1,49 @@
+---
+import MicroblogIcon from '🧡/assets/icons/desktop/notepad.png'
+
+// ﹒⭒﹒⭒﹒⭒﹒ Assets ﹒⭒﹒⭒﹒⭒﹒ //
+import DesktopNav from '🧡/components/Desktop/Nav.astro'
+
+// ﹒⭒﹒⭒﹒⭒﹒ Components ﹒⭒﹒⭒﹒⭒﹒ //
+import PageHead from '🧡/components/PageHead.astro'
+import RenderMicroblog from '🧡/components/RenderMicroblog.astro'
+import PostNavigation from '🧡/components/PostNavigation.astro'
+import Card from '🧡/components/UI/Card.astro'
+import Breadcrumbs from '🧡/components/UI/Breadcrumbs.astro'
+
+// ﹒⭒﹒⭒﹒⭒﹒ Layouts ﹒⭒﹒⭒﹒⭒﹒ //
+import Desktop from '🧡/layouts/Desktop.astro'
+
+import { render } from 'astro:content'
+
+import { getAllMicroblogs, getAdjacentMicroblogs } from '🧡/lib/data-utils.ts'
+
+export async function getStaticPaths() {
+	const microblogs = await getAllMicroblogs()
+
+	return microblogs.map(microblog => ({
+		params: { id: microblog.id },
+		props: microblog,
+	}))
+}
+
+const microblog = Astro.props
+const currentPostId = Astro.params.id
+const navigation = await getAdjacentMicroblogs(currentPostId)
+
+const { Content } = await render(microblog)
+---
+
+<Desktop>
+	<PageHead slot="head" title={'Microblogs | ' + currentPostId} />
+	<DesktopNav icon={MicroblogIcon} to="microblog" slot="nav">
+		<Breadcrumbs items={[{ label: "Microblog", icon: "microblog/breadcrumbs/pixelated-note", href: "/microblog" }, { label: microblog.id, icon: "microblog/breadcrumbs/library" }]} />
+	 </DesktopNav>
+
+	<!-- Microblogs -->
+	<Card contentStyles="padding-inline: 1.5rem; padding-block: 1rem;">
+		<RenderMicroblog entry={microblog}> <Content /> </RenderMicroblog>
+	</Card>
+
+	<PostNavigation olderPost={navigation.older} newerPost={navigation.newer} />
+</Desktop>

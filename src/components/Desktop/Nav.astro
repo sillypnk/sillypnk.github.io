@@ -1,0 +1,221 @@
+---
+import Link from '🧡/components/Link.astro'
+// import Bars from '🧡/components/UI/Bars.astro'
+import Card from '🧡/components/UI/Card.astro'
+
+import { Image } from 'astro:assets'
+import { Icon } from 'astro-iconset/components'
+
+//*****   Props  ******//
+interface Props {
+	icon: ImageMetadata
+	to: string
+}
+
+const { icon, to } = Astro.props
+---
+
+<aside class="desktop__nav">
+	<Card
+		contentStyles="padding-block-end: 1em; padding-block-start: 0; padding-inline: 0; block-size: max-content;"
+		alternate
+	>
+		<Link
+			class="btn u-group--flex"
+			style="width: max-content; position: absolute;"
+			href="/"
+			aria-label="Go back"
+			noUnderline
+		>
+			<Icon name="arrow_left" />
+		</Link>
+
+		<!-- Nav Icon -->
+		<div
+			class="u-group--grid"
+			style="place-items: center; margin-bottom: 2em;"
+		>
+			<Image
+				style="pointer-events: none; margin-block-start: 2em;"
+				src={icon}
+				alt="Nav Icon"
+				priority
+			/>
+
+			<Link href={"/" + to.toLowerCase()}
+				>{to.charAt(0).toUpperCase() + to.slice(1)}</Link
+			>
+		</div>
+
+		<slot name="links" />
+	</Card>
+
+	<!-- TODO: Mini music component -->
+	<!-- <pumo-minimusic>
+				</pumo-minimusic> -->
+
+	<slot />
+
+	<!-- TODO: Some stuff -->
+	<!-- <article class="box" style="padding: 0; width: 15rem; height: 3rem;">
+		<div
+			style="padding: 0; display: flex; align-items: center; height: 100%;"
+		>
+			<div id="music" class="music-btn">
+				<Bars style="gap: 0.1em;" bars={5} size="xs" />
+			</div>
+			<div class="scroll-container">
+				<span class="animate-scroll"
+					>sans. - Toby Fox<span id="is-playing"></span></span
+				>
+			</div>
+		</div>
+	</article> -->
+
+	<article class="box" style="padding: 0; width: 15rem; height: unset;">
+		<div style="padding: 0; display: flex; align-items: center">
+			<div
+				class="scroll-container"
+				style="
+								text-align: left;
+								margin-left: 0.4rem;
+								height: 2.2rem;
+							"
+			>
+				<input
+					id="search"
+					type="text"
+					style="
+									height: 100%;
+									font-family: var(--font-tickerbit);
+									background: none;
+									color: light-dark(
+										var(--clr-secondary),
+										var(--clr-base)
+									);
+									width: 100%;
+								"
+					placeholder="Search..."
+				>
+			</div>
+			<div
+				class="music-btn"
+				style="
+								border-right: none;
+								border-left: 2px solid var(--clr-base-content);
+								color: light-dark(
+									var(--clr-secondary),
+									var(--clr-base)
+								);
+							"
+			>
+				<svg
+					style="width: 1.2em"
+					fill="currentColor"
+					viewBox="0 0 400 400"
+					id="Search"
+					version="1.1"
+					xml:space="preserve"
+					xmlns="http://www.w3.org/2000/svg"
+					xmlns:xlink="http://www.w3.org/1999/xlink"
+					stroke="currentColor"
+				>
+					<g id="SVGRepo_iconCarrier">
+						<g id="XMLID_14_">
+							<polygon
+								id="XMLID_15_"
+								points="160,26.7 186.7,26.7 213.3,26.7 213.3,0 186.7,0 160,0 133.3,0 106.7,0 106.7,26.7 133.3,26.7 "
+							></polygon>
+							<polygon
+								id="XMLID_126_"
+								points="106.7,53.3 106.7,26.7 80,26.7 53.3,26.7 53.3,53.3 80,53.3 "
+							></polygon>
+							<polygon
+								id="XMLID_127_"
+								points="240,53.3 266.7,53.3 266.7,26.7 240,26.7 213.3,26.7 213.3,53.3 "
+							></polygon>
+							<polygon
+								id="XMLID_128_"
+								points="53.3,80 53.3,53.3 26.7,53.3 26.7,80 26.7,106.7 53.3,106.7 "
+							></polygon>
+							<polygon
+								id="XMLID_130_"
+								points="266.7,106.7 293.3,106.7 293.3,80 293.3,53.3 266.7,53.3 266.7,80 "
+							></polygon>
+							<rect
+								height="26.7"
+								id="XMLID_131_"
+								width="26.7"
+								x="80"
+								y="106.7"
+							></rect>
+							<rect
+								height="26.7"
+								id="XMLID_132_"
+								width="26.7"
+								x="106.7"
+								y="80"
+							></rect>
+							<polygon
+								id="XMLID_133_"
+								points="293.3,160 293.3,186.7 293.3,213.3 320,213.3 320,186.7 320,160 320,133.3 320,106.7 293.3,106.7 293.3,133.3 "
+							></polygon>
+							<polygon
+								id="XMLID_134_"
+								points="26.7,160 26.7,133.3 26.7,106.7 0,106.7 0,133.3 0,160 0,186.7 0,213.3 26.7,213.3 26.7,186.7 "
+							></polygon>
+							<polygon
+								id="XMLID_135_"
+								points="53.3,213.3 26.7,213.3 26.7,240 26.7,266.7 53.3,266.7 53.3,240 "
+							></polygon>
+							<polygon
+								id="XMLID_136_"
+								points="293.3,240 293.3,213.3 266.7,213.3 266.7,240 266.7,266.7 293.3,266.7 "
+							></polygon>
+							<polygon
+								id="XMLID_137_"
+								points="80,266.7 53.3,266.7 53.3,293.3 80,293.3 106.7,293.3 106.7,266.7 "
+							></polygon>
+							<polygon
+								id="XMLID_138_"
+								points="213.3,266.7 213.3,293.3 240,293.3 266.7,293.3 266.7,266.7 240,266.7 "
+							></polygon>
+							<polygon
+								id="XMLID_139_"
+								points="160,293.3 133.3,293.3 106.7,293.3 106.7,320 133.3,320 160,320 186.7,320 213.3,320 213.3,293.3 186.7,293.3 "
+							></polygon>
+							<rect
+								height="26.7"
+								id="XMLID_140_"
+								width="26.7"
+								x="293.3"
+								y="293.3"
+							></rect>
+							<rect
+								height="26.7"
+								id="XMLID_141_"
+								width="26.7"
+								x="320"
+								y="320"
+							></rect>
+							<rect
+								height="26.7"
+								id="XMLID_142_"
+								width="26.7"
+								x="346.7"
+								y="346.7"
+							></rect>
+							<rect
+								height="26.7"
+								id="XMLID_143_"
+								width="26.7"
+								x="373.3"
+								y="373.3"
+							></rect>
+						</g>
+					</g>
+				</svg>
+			</div>
+		</div>
+	</article>
+</aside>

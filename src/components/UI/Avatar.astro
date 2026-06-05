@@ -1,0 +1,45 @@
+---
+import type { HTMLAttributes } from "astro/types"
+import { Image } from "astro:assets"
+
+import gravatarUrl from "gravatar-url";
+
+interface Props extends HTMLAttributes<'div'> {
+  email: string;
+  size?: number;
+  alt?: string;
+  fallback?: "mp" | "identicon" | "monsterid" | "wavatar" | "retro" | "robohash" | "blank";
+  rounded?: boolean;
+  imgStyles?: string;
+}
+
+const {
+  email,
+  size = 80,
+  alt = "Avatar",
+  fallback = "identicon",
+  rounded = true,
+  imgStyles = "",
+  ...props
+} = Astro.props;
+
+const avatarSrc   = gravatarUrl(email, { size: size * 2, default: fallback });
+const radius        = rounded ? "50%" : "4px";
+---
+
+<div class="avatar" {...props}>
+	<div class="avatar-inner" style={imgStyles}>
+		<Image
+			src={avatarSrc}
+			width={size}
+			height={size}
+			{alt}
+		/>
+</div>
+
+<style define:vars={{ size, radius }}>
+	.avatar-inner {
+		width: var(--size);
+	 	border-radius: var(--radius);
+	}
+</style>

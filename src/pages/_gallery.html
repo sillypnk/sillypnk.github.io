@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- 🎨 Color Scheme -->
+        <script>
+            const colorScheme = localStorage.getItem('theme')
+            document.documentElement.setAttribute(
+                'data-theme',
+                colorScheme || 'light',
+            )
+        </script>
+
+        <link rel="stylesheet" type="text/css" href="../styles.css">
+        <script src="../scripts/utils/custom-cursor.js" type="module"></script>
+        <script src="../scripts/components/menu.js" type="module"></script>
+        <script src="../scripts/components/statusbar.js" type="module"></script>
+
+        <!-- [✨] SEO Stuff -->
+        <link
+            rel="icon"
+            type="image/png"
+            href="../assets/favicon/favicon-96x96.png"
+            sizes="96x96"
+        >
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            href="../assets/favicon/favicon.svg"
+        >
+        <!-- <link rel="shortcut icon" href="../assets/favicon/favicon.ico"> -->
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="../assets/favicon/apple-touch-icon.png"
+        >
+        <meta
+            name="apple-mobile-web-app-title"
+            content="PumoReiichi! - 📸 Gallery"
+        >
+        <link rel="manifest" href="../assets/favicon/site.webmanifest">
+
+        <title>PumoReiichi! - 📸 Gallery</title>
+        <meta
+            name="description"
+            content="A personal portfolio which heavily inspired by a neocities developer @nenrikido. Don't forget to check them out!"
+        >
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Facebook Meta Tags -->
+        <meta property="og:url" content="https://sillypnk.github.io">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="PumoReiichi! - 📸 Gallery">
+        <meta
+            property="og:description"
+            content="A personal room which heavily inspired by a neocities developer @nenrikido. Don't forget to check them out!"
+        >
+        <meta
+            property="og:image"
+            content="https://opengraph.b-cdn.net/production/images/12044105-dd81-4b92-a2f2-010f9961830b.png?token=zw8LmFbfH3LIIH4ARZXzlSmxTqVKmRXePPUc1dDsUVQ&height=604&width=1200&expires=33296792141"
+        >
+
+        <!-- Twitter Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta property="twitter:domain" content="sillypnk.github.io">
+        <meta property="twitter:url" content="https://sillypnk.github.io">
+        <meta name="twitter:title" content="PumoReiichi!">
+        <meta
+            name="twitter:description"
+            content="A personal portfolio which heavily inspired by a neocities developer @nenrikido. Don't forget to check them out!"
+        >
+        <meta
+            name="twitter:image"
+            content="https://opengraph.b-cdn.net/production/images/12044105-dd81-4b92-a2f2-010f9961830b.png?token=zw8LmFbfH3LIIH4ARZXzlSmxTqVKmRXePPUc1dDsUVQ&height=604&width=1200&expires=33296792141"
+        >
+    </head>
+
+    <body>
+        <audio
+            src="../assets/media/audio/[Toby Fox] His Theme.mp3"
+            id="music-player"
+        ></audio>
+
+        <pumo-statusbar></pumo-statusbar>
+        <pumo-menu></pumo-menu>
+
+        <img
+            class="adachiRei"
+            src="../assets/media/adachi-victory.gif"
+            alt="Adachi Rei Plushie Dancing"
+        >
+
+        <div class="desktop">
+            <div class="desktop__nav">
+                <div
+                    class="card"
+                    style="
+            padding: 1em 0.2em;
+            height: 100%;
+            width: 100%;
+            margin-bottom: 0;
+            color: light-dark(var(--clr-secondary), var(--clr-base));
+          "
+                >
+                    <div class="card__content">
+                        <!-- Nav Icon -->
+                        <img
+                            style="pointer-events: none"
+                            src="../assets/icons/desktop/file_blue_grad.png"
+                            alt="Directory Icon"
+                        >
+
+                        <a href="/pages/gallery.html" class="link">Gallery</a>
+                    </div>
+                </div>
+
+                <div
+                    class="card"
+                    style="
+            position: static;
+            width: 15rem;
+            margin-block: 1.2rem;
+            color: var(--clr-base-content);
+          "
+                >
+                    <div
+                        class="card__content"
+                        style="padding: 0; display: flex; align-items: center"
+                    >
+                        <div id="music" class="music-btn">
+                            <img
+                                id="is-playing-img"
+                                src="/assets/media/musical-notes.gif"
+                                alt="Musical Note"
+                                style="max-width: 100%; mix-blend-mode: darken"
+                            >
+                        </div>
+                        <div class="scroll-container">
+                            <span class="animate-scroll">
+                                His Theme - Toby Fox
+                                <span id="is-playing"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="card"
+                    style="position: static; width: 15rem; margin-top: 0"
+                >
+                    <div
+                        class="card__content"
+                        style="padding: 0; display: flex; align-items: center"
+                    >
+                        <div
+                            class="scroll-container"
+                            style="text-align: left; margin-left: 0.4rem; height: 2.2rem"
+                        >
+                            <input
+                                id="search"
+                                type="text"
+                                style="
+                  height: 100%;
+                  font-family: Tickerbit;
+                  background: none;
+                  color: light-dark(var(--clr-secondary), var(--clr-base));
+                  width: 100%;
+                "
+                                placeholder="Search..."
+                            >
+                        </div>
+                        <div
+                            class="music-btn"
+                            style="
+                border-right: none;
+                border-left: 2px solid var(--clr-base-content);
+                color: light-dark(var(--clr-secondary), var(--clr-base));
+              "
+                        >
+                            <svg
+                                style="width: 1.2em"
+                                fill="currentColor"
+                                viewBox="0 0 400 400"
+                                id="Search"
+                                version="1.1"
+                                xml:space="preserve"
+                                xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                stroke="currentColor"
+                            >
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g
+                                    id="SVGRepo_tracerCarrier"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                ></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <g id="XMLID_14_">
+                                        <polygon
+                                            id="XMLID_15_"
+                                            points="160,26.7 186.7,26.7 213.3,26.7 213.3,0 186.7,0 160,0 133.3,0 106.7,0 106.7,26.7 133.3,26.7 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_126_"
+                                            points="106.7,53.3 106.7,26.7 80,26.7 53.3,26.7 53.3,53.3 80,53.3 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_127_"
+                                            points="240,53.3 266.7,53.3 266.7,26.7 240,26.7 213.3,26.7 213.3,53.3 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_128_"
+                                            points="53.3,80 53.3,53.3 26.7,53.3 26.7,80 26.7,106.7 53.3,106.7 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_130_"
+                                            points="266.7,106.7 293.3,106.7 293.3,80 293.3,53.3 266.7,53.3 266.7,80 "
+                                        ></polygon>
+                                        <rect
+                                            height="26.7"
+                                            id="XMLID_131_"
+                                            width="26.7"
+                                            x="80"
+                                            y="106.7"
+                                        ></rect>
+                                        <rect
+                                            height="26.7"
+                                            id="XMLID_132_"
+                                            width="26.7"
+                                            x="106.7"
+                                            y="80"
+                                        ></rect>
+                                        <polygon
+                                            id="XMLID_133_"
+                                            points="293.3,160 293.3,186.7 293.3,213.3 320,213.3 320,186.7 320,160 320,133.3 320,106.7 293.3,106.7 293.3,133.3 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_134_"
+                                            points="26.7,160 26.7,133.3 26.7,106.7 0,106.7 0,133.3 0,160 0,186.7 0,213.3 26.7,213.3 26.7,186.7 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_135_"
+                                            points="53.3,213.3 26.7,213.3 26.7,240 26.7,266.7 53.3,266.7 53.3,240 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_136_"
+                                            points="293.3,240 293.3,213.3 266.7,213.3 266.7,240 266.7,266.7 293.3,266.7 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_137_"
+                                            points="80,266.7 53.3,266.7 53.3,293.3 80,293.3 106.7,293.3 106.7,266.7 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_138_"
+                                            points="213.3,266.7 213.3,293.3 240,293.3 266.7,293.3 266.7,266.7 240,266.7 "
+                                        ></polygon>
+                                        <polygon
+                                            id="XMLID_139_"
+                                            points="160,293.3 133.3,293.3 106.7,293.3 106.7,320 133.3,320 160,320 186.7,320 213.3,320 213.3,293.3 186.7,293.3 "
+                                        ></polygon>
+                                        <rect
+                                            height="26.7"
+                                            id="XMLID_140_"
+                                            width="26.7"
+                                            x="293.3"
+                                            y="293.3"
+                                        ></rect>
+                                        <rect
+                                            height="26.7"
+                                            id="XMLID_141_"
+                                            width="26.7"
+                                            x="320"
+                                            y="320"
+                                        ></rect>
+                                        <rect
+                                            height="26.7"
+                                            id="XMLID_142_"
+                                            width="26.7"
+                                            x="346.7"
+                                            y="346.7"
+                                        ></rect>
+                                        <rect
+                                            height="26.7"
+                                            id="XMLID_143_"
+                                            width="26.7"
+                                            x="373.3"
+                                            y="373.3"
+                                        ></rect>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <main class="desktop__cards">
+                <div style="display: flex; gap: 5rem; place-items: center">
+                    <article
+                        class="card"
+                        style="
+              width: 25rem;
+              height: auto;
+              position: static;
+              color: light-dark(var(--clr-secondary), var(--clr-base));
+            "
+                    >
+                        <div class="card__titleBar">
+                            <img
+                                src="../assets/icons/minimize.svg"
+                                alt="Minimize Icon"
+                                width="16"
+                            >
+                            <img
+                                src="../assets/icons/restore_down.svg"
+                                alt="Restore Down Icon"
+                                height="12"
+                            >
+                            <img
+                                src="../assets/icons/close.svg"
+                                alt="Close Icon"
+                                width="16"
+                            >
+                        </div>
+
+                        <div
+                            class="card__content"
+                            style="padding-inline: 1.2rem; padding-block: 1.5rem"
+                        >
+                            <div class="gallery">
+                                <div
+                                    style="
+                    display: flex;
+                    align-items: center;
+                    vertical-align: middle;
+                    gap: 0.7rem;
+                    margin-bottom: 15px;
+                  "
+                                >
+                                    <div class="avatar">
+                                        <div
+                                            style="width: 3rem; border-radius: 30em"
+                                        >
+                                            <picture>
+                                                <!-- Fallbacks -->
+                                                <source
+                                                    srcset="../assets/media/avatar.webp"
+                                                    type="image/webp"
+                                                >
+                                                <source
+                                                    srcset="../assets/media/avatar.jpg"
+                                                    type="image/jpeg"
+                                                >
+                                                <img
+                                                    src="../assets/media/avatar.jpg"
+                                                    style="
+                            width: 110%;
+                            height: 110%;
+                            object-position: -3px -7px;
+                          "
+                                                    alt="Avatar Image"
+                                                >
+                                            </picture>
+                                        </div>
+                                    </div>
+                                    <div style="display: block">
+                                        <span
+                                            style="
+                        font-size: 1rem;
+                        line-height: 1px;
+                        text-decoration: underline;
+                        text-underline-offset: 5px;
+                      "
+                                            >James Pendon</span
+                                        >
+                                    </div>
+                                    <div
+                                        style="margin-left: auto; color: dimgray"
+                                    >
+                                        <svg
+                                            style="width: 27px"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <g
+                                                id="SVGRepo_bgCarrier"
+                                                stroke-width="0"
+                                            ></g>
+                                            <g
+                                                id="SVGRepo_tracurrentColorerCarrier"
+                                                stroke-linecurrentcap="round"
+                                                stroke-linejoin="round"
+                                            ></g>
+                                            <g
+                                                id="SVGRepo_icurrentColoronCarrier"
+                                            >
+                                                <path
+                                                    d="M18 12H18.01M12 12H12.01M6 12H6.01M13 12C13 12.5523 12.5523 13 12 13C11.4477 13 11 12.5523 11 12C11 11.4477 11.4477 11 12 11C12.5523 11 13 11.4477 13 12ZM19 12C19 12.5523 18.5523 13 18 13C17.4477 13 17 12.5523 17 12C17 11.4477 17.4477 11 18 11C18.5523 11 19 11.4477 19 12ZM7 12C7 12.5523 6.55228 13 6 13C5.44772 13 5 12.5523 5 12C5 11.4477 5.44772 11 6 11C6.55228 11 7 11.4477 7 12Z"
+                                                    stroke="currentColor"
+                                                    stroke-width="2"
+                                                    stroke-linecurrentcap="round"
+                                                    stroke-linejoin="round"
+                                                ></path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="gallery__container">
+                                    <div>
+                                        <img
+                                            src="../assets/media/me-01.jpg"
+                                            alt="A young boy with his little sister taking a picture together"
+                                        >
+                                    </div>
+                                    <div>
+                                        <img
+                                            src="../assets/media/me-02.jpg"
+                                            style="object-position: 0 -50px"
+                                            alt="A young boy with his little sister taking a picture together"
+                                        >
+                                    </div>
+                                    <div>
+                                        <img
+                                            src="../assets/media/me-03.jpg"
+                                            alt="A young boy with his little sister taking a picture together"
+                                        >
+                                    </div>
+                                    <div>
+                                        <img
+                                            src="../assets/media/me-04.jpg"
+                                            alt="A young boy with his little sister taking a picture together"
+                                        >
+                                    </div>
+                                    <div>
+                                        <img
+                                            src="../assets/media/me-05.jpg"
+                                            alt="A young boy with his little sister taking a picture together"
+                                        >
+                                    </div>
+                                    <div>
+                                        <img
+                                            src="../assets/media/me-06.jpg"
+                                            alt="A young boy with his little sister taking a picture together"
+                                        >
+                                    </div>
+                                    <div>
+                                        <img
+                                            src="../assets/media/me-07.jpg"
+                                            alt="A young boy with his little sister taking a picture together"
+                                        >
+                                    </div>
+                                </div>
+                                <div
+                                    style="display: flex; gap: 6.5px; place-items: center; margin-top: 1.3rem; margin-bottom: 0.15rem;"
+                                >
+                                    <div class="avatar-group">
+                                        <div class="avatar">
+                                            <div
+                                                style="width: 23px; border-radius: 5em;"
+                                            >
+                                                <img
+                                                    src="https://scontent.fmnl37-1.fna.fbcdn.net/v/t39.30808-6/482028954_1171926984664211_3797634051098524412_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=Gc-DALavj7UQ7kNvwE2WBKO&_nc_oc=AdkT2vSZPeflEovRaDYFZd4VNqvMkx-Tm6iHIfMtJaOKYJ9RXBJ4TJeHAi75WNwdCaY&_nc_zt=23&_nc_ht=scontent.fmnl37-1.fna&_nc_gid=cPZRaPZuswZ50ToUUqh7wA&oh=00_AfcWKxz405GLydwuM-QRD7Xm7owhHoVuMuCNT5HNa1aeDw&oe=69061907"
+                                                    alt="Kyouto's profile picture"
+                                                >
+                                            </div>
+                                        </div>
+                                        <div class="avatar">
+                                            <div
+                                                style="width: 23px; border-radius: 5em;"
+                                            >
+                                                <img
+                                                    src="https://scontent.fmnl3-4.fna.fbcdn.net/v/t39.30808-6/557625472_1499810884552946_1355521495720099203_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=FAGcsmz_ZlwQ7kNvwHODxSk&_nc_oc=Adk4pSn0oIdeKz4wt8qWGNVPQiwV2VkVdvKCojXk_ZX5I8Uk5ImgNdwvEBClUiupXzg&_nc_zt=23&_nc_ht=scontent.fmnl3-4.fna&_nc_gid=a9dxktp1rxXWKrlW-8Zt7w&oh=00_AfcdobaTVYetgCN8PLzt9ZVr-BejOTy53DRcZKTBE-MADw&oe=69063B51"
+                                                    alt="Haru's Profile Picture"
+                                                >
+                                            </div>
+                                        </div>
+                                        <div class="avatar">
+                                            <div
+                                                style="width: 23px; border-radius: 5em;"
+                                            >
+                                                <img
+                                                    src="https://scontent.fmnl3-2.fna.fbcdn.net/v/t39.30808-6/550102881_758346613646525_6142350670307132073_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=70felmbVjLMQ7kNvwH_DdmN&_nc_oc=AdnIHCyWWttSyCunpXwUE1gPuY4Tc6jJSoxKh7OIvVQvRamY9XWfjvB_QYYlAqMx3GE&_nc_zt=23&_nc_ht=scontent.fmnl3-2.fna&_nc_gid=VIwTw8vZ9u4himoduGpBvw&oh=00_Afd5wlTT0pJhx2Lh6R-Id6tSwgteEHRHflfeizVj67YH7Q&oe=69061102"
+                                                    alt="Diaz's Profile Picture"
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p style="display: inline-block;">
+                                        Liked by Diaz and others
+                                    </p>
+                                </div>
+                                <div class="gallery__description">
+                                    <p>
+                                        <span
+                                            style="font-weight: 600; margin-right: 2px; letter-spacing: 1px;"
+                                            >james_pendon</span
+                                        >
+                                        Random pictures that we've taken back
+                                        from my childhood days
+                                    </p>
+                                </div>
+                                <p style="color: dimgray; margin-top: 1.5px;">
+                                    view all 240 comments
+                                </p>
+                            </div>
+                            <!-- <div class="gallery__action" style="padding: 0 1.5rem">
+              <button title="Like Post">
+                <img width="25" src="../assets/icons/heart-01.svg" alt="" />
+              </button>
+              <button title="Comment">
+                <svg
+                  style="
+                    color: light-dark(var(--clr-secondary), var(--clr-base));
+                    width: 1.5em;
+                  "
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracurrentColorerCarrier"
+                    stroke-linecurrentcap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_icurrentColoronCarrier">
+                    <path
+                      fill-rule="evenodd"
+                      currentclip-rule="evenodd"
+                      d="M16.1266 22.1995C16.7081 22.5979 17.4463 23.0228 18.3121 23.3511C19.9903 23.9874 21.244 24.0245 21.8236 23.9917C23.1167 23.9184 23.2907 23.0987 22.5972 22.0816C21.8054 20.9202 21.0425 19.6077 21.1179 18.1551C22.306 16.3983 23 14.2788 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23C13.4578 23 14.8513 22.7159 16.1266 22.1995ZM12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21C13.3697 21 14.6654 20.6947 15.825 20.1494C16.1635 19.9902 16.5626 20.0332 16.8594 20.261C17.3824 20.6624 18.1239 21.1407 19.0212 21.481C19.4111 21.6288 19.7674 21.7356 20.0856 21.8123C19.7532 21.2051 19.4167 20.4818 19.2616 19.8011C19.1018 19.0998 18.8622 17.8782 19.328 17.2262C20.3808 15.7531 21 13.9503 21 12C21 7.02944 16.9706 3 12 3Z"
+                      fill="currentColor"
+                    ></path>
+                  </g>
+                </svg>
+              </button>
+              <button title="Share Post">
+                <img width="20" src="../assets/icons/paper_plane.svg" alt="" />
+              </button>
+              <button class="bookmark" title="Bookmark Post">
+                <img src="../assets/icons/bookmark.svg" alt="" />
+              </button>
+            </div> -->
+                            <!-- <div class="gallery__description" style="padding: 0 1.5rem">
+              <span>50 likes</span>
+              <p>
+                <span>PumoReiichi</span>
+                A picture with my little sister in a shoes shop(?) I don't
+                remember this picture that much :/
+              </p>
+            </div>
+            <span class="gallery__time" style="padding: 0 1.5rem">
+              6 years ago
+            </span> -->
+                        </div>
+                    </article>
+
+                    <aside class="action-bar">
+                        <div class="action-bar__item action-bar__item--heart">
+                            <button
+                                class="btn btn--error btn--soft-on-hover btn--rounded"
+                                id="likes"
+                            >
+                                <svg
+                                    style="width: 2.5em;"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <g
+                                        id="SVGRepo_bgCarrier"
+                                        stroke-width="0"
+                                    ></g>
+                                    <g
+                                        id="SVGRepo_tracurrentColorerCarrier"
+                                        stroke-linecurrentcap="round"
+                                        stroke-linejoin="round"
+                                    ></g>
+                                    <g id="SVGRepo_icurrentColoronCarrier">
+                                        <path
+                                            d="M9 2H5v2H3v2H1v6h2v2h2v2h2v2h2v2h2v2h2v-2h2v-2h2v-2h2v-2h2v-2h2V6h-2V4h-2V2h-4v2h-2v2h-2V4H9V2zm0 2v2h2v2h2V6h2V4h4v2h2v6h-2v2h-2v2h-2v2h-2v2h-2v-2H9v-2H7v-2H5v-2H3V6h2V4h4z"
+                                            fill="currentColor"
+                                        ></path>
+                                    </g>
+                                </svg>
+                            </button>
+                            <label for="likes">114k</label>
+                        </div>
+                        <div class="action-bar__item">
+                            <button
+                                class="btn btn--soft-on-hover btn--rounded"
+                                id="comments"
+                            >
+                                <svg
+                                    style="width: 2.5em"
+                                    fill="currentColor"
+                                    viewBox="0 0 22 22"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    id="memory-comment-text"
+                                >
+                                    <g
+                                        id="SVGRepo_bgCarrier"
+                                        stroke-width="0"
+                                    ></g>
+                                    <g
+                                        id="SVGRepo_tracurrentColorerCarrier"
+                                        stroke-linecurrentcap="round"
+                                        stroke-linejoin="round"
+                                    ></g>
+                                    <g id="SVGRepo_icurrentColoronCarrier">
+                                        <path
+                                            d="M2 2H20V3H21V17H20V18H12V19H11V20H10V21H6V18H2V17H1V3H2V2M3 4V16H8V19H9V18H10V17H11V16H19V4H3M5 7H17V9H5V7M5 11H15V13H5V11Z"
+                                        ></path>
+                                    </g>
+                                </svg>
+                            </button>
+                            <label for="comments">11.1k</label>
+                        </div>
+
+                        <div
+                            class="action-bar__item action-bar__item--bookmark"
+                        >
+                            <button
+                                class="btn btn--warning btn--soft-on-hover btn--rounded"
+                                id="bookmark"
+                            >
+                                <svg
+                                    style="width: 2.5em;"
+                                    fill="currentColor"
+                                    viewBox="0 0 22 22"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    id="memory-bookmark"
+                                >
+                                    <g
+                                        id="SVGRepo_bgCarrier"
+                                        stroke-width="0"
+                                    ></g>
+                                    <g
+                                        id="SVGRepo_tracurrentColorerCarrier"
+                                        stroke-linecurrentcap="round"
+                                        stroke-linejoin="round"
+                                    ></g>
+                                    <g id="SVGRepo_icurrentColoronCarrier">
+                                        <path
+                                            d="M5 2H17V3H18V20H16V19H14V18H12V17H10V18H8V19H6V20H4V3H5V2M6 4V17H7V16H9V15H10V14H12V15H13V16H15V17H16V4H6Z"
+                                        ></path>
+                                    </g>
+                                </svg>
+                            </button>
+                            <label for="bookmark">1.5k</label>
+                        </div>
+
+                        <div class="action-bar__item action-bar__item--share">
+                            <button
+                                class="btn btn--info btn--soft-on-hover btn--rounded"
+                                id="share"
+                            >
+                                <svg
+                                    style="width: 2em;"
+                                    fill="currentColor"
+                                    version="1.1"
+                                    id="Layer_1"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    viewBox="0 0 512 512"
+                                    xml:space="preserve"
+                                >
+                                    <g
+                                        id="SVGRepo_bgCarrier"
+                                        stroke-width="0"
+                                    ></g>
+                                    <g
+                                        id="SVGRepo_tracerCarrier"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    ></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <g>
+                                            <g>
+                                                <polygon
+                                                    points="122.435,211.478 122.435,178.087 33.391,178.087 33.391,211.478 0,211.478 0,300.522 33.391,300.522 33.391,333.913 122.435,333.913 122.435,300.522 155.826,300.522 155.826,211.478 "
+                                                ></polygon>
+                                            </g>
+                                        </g>
+                                        <g>
+                                            <g>
+                                                <polygon
+                                                    points="478.609,33.391 478.609,0 400.696,0 400.696,33.391 367.304,33.391 367.304,77.913 322.783,77.913 322.783,111.304 400.696,111.304 400.696,144.696 478.609,144.696 478.609,111.304 512,111.304 512,33.391 "
+                                                ></polygon>
+                                            </g>
+                                        </g>
+                                        <g>
+                                            <g>
+                                                <rect
+                                                    x="155.826"
+                                                    y="178.087"
+                                                    width="55.652"
+                                                    height="33.391"
+                                                ></rect>
+                                            </g>
+                                        </g>
+                                        <g>
+                                            <g>
+                                                <rect
+                                                    x="155.826"
+                                                    y="300.522"
+                                                    width="55.652"
+                                                    height="33.391"
+                                                ></rect>
+                                            </g>
+                                        </g>
+                                        <g>
+                                            <g>
+                                                <rect
+                                                    x="211.478"
+                                                    y="144.696"
+                                                    width="55.652"
+                                                    height="33.391"
+                                                ></rect>
+                                            </g>
+                                        </g>
+                                        <g>
+                                            <g>
+                                                <rect
+                                                    x="211.478"
+                                                    y="333.913"
+                                                    width="55.652"
+                                                    height="33.391"
+                                                ></rect>
+                                            </g>
+                                        </g>
+                                        <g>
+                                            <g>
+                                                <rect
+                                                    x="267.13"
+                                                    y="111.304"
+                                                    width="55.652"
+                                                    height="33.391"
+                                                ></rect>
+                                            </g>
+                                        </g>
+                                        <g>
+                                            <g>
+                                                <rect
+                                                    x="267.13"
+                                                    y="367.304"
+                                                    width="55.652"
+                                                    height="33.391"
+                                                ></rect>
+                                            </g>
+                                        </g>
+                                        <g>
+                                            <g>
+                                                <polygon
+                                                    points="478.609,400.696 478.609,367.304 400.696,367.304 400.696,400.696 322.783,400.696 322.783,434.087 367.304,434.087 367.304,478.609 400.696,478.609 400.696,512 478.609,512 478.609,478.609 512,478.609 512,400.696 "
+                                                ></polygon>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </button>
+                            <label for="share">1,180</label>
+                        </div>
+                    </aside>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>

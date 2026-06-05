@@ -1,11 +1,751 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+// ﹒⭒﹒⭒﹒⭒﹒ Assets ﹒⭒﹒⭒﹒⭒﹒ //
+// ﹒⭒﹒⭒﹒⭒﹒ Components ﹒⭒﹒⭒﹒⭒﹒ //
+import DesktopApps from '🧡/components/Desktop/Apps.astro'
+import PageHead from '🧡/components/PageHead.astro'
+import Card from '🧡/components/UI/Card.astro'
+import RenderMicroblog from '🧡/components/RenderMicroblog.astro'
+import YTMusicPresence from '🧡/components/bento/YTMusicPresence.svelte'
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// ﹒⭒﹒⭒﹒⭒﹒ Layouts ﹒⭒﹒⭒﹒⭒﹒ //
+import Desktop from '🧡/layouts/Desktop.astro'
+
+import { Picture } from 'astro:assets'
+import { Icon } from 'astro-iconset/components'
+
+import { getRecentMicroblog } from '🧡/lib/data-utils.ts'
+import { Content as UpdateLogsContent } from '🧡/content/bento/update_logs.md'
+import { Content as WelcomeContent } from '🧡/content/bento/welcome.md'
+
+const recentMicroblog = await getRecentMicroblog()
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<Desktop>
+	<PageHead slot="head" title="Home" />
+	<DesktopApps slot="apps" />
+	<fragment slot="maximize" />
+
+	<div class="bento">
+		<!-- Profile Avatar, Banner and Details -->
+		<Card contentStyles="overflow-x: hidden;">
+			<article class="prose">
+				<WelcomeContent />
+			</article>
+
+			<!-- <h2>#Welcome!</h2>
+			<p>Hello and welcome!</p>
+			<aside>
+				<Image
+					style="float: left; width: 40%; height: auto;"
+					src={AdachiChibi}
+					alt="adachi chibi"
+					priority
+				/>
+			</aside> -->
+
+			<!-- <div class="banner">
+				<div>
+					<Picture
+						src={BannerImg}
+						formats={["avif", "webp"]}
+						alt="Banner"
+						priority
+					/>
+				</div>
+			</div>
+
+			<div style="margin-inline: 1rem;">
+				<div
+					class="avatar avatar--status"
+					style="margin-top: -3.7rem; margin-bottom: 0.3rem;"
+				>
+					<div
+						style="width: clamp(6.5rem, 1.5vw, 8rem); border-radius: 100%; border: 3px solid light-dark(var(--clr-base), transparent);"
+					>
+						<Picture
+							style="object-position: -20px -10px; width: 150%;"
+							src={AboutMeAvatar}
+							formats={["webp"]}
+							alt="Avatar"
+							priority
+						/>
+					</div>
+				</div>
+
+				<div style="display: grid; grid-template-areas: 'stack';">
+					<h3
+						style="margin-bottom: 0; font-family: var(--font-yuruka-std); line-height: 1.5; grid-area: stack;"
+					>
+						PumoChii
+					</h3>
+					<h3
+						class="has-text-reveal"
+						style="margin-bottom: 0; font-family: var(--font-yuruka-std); line-height: 1.5; grid-area: stack;"
+					>
+						PumoChii
+					</h3>
+				</div>
+				<div
+					class="pill pill--sm pill--outlined"
+					style="--pill-color: var(--clr-base-content); border-radius: 0.8em; padding-inline: 4px; margin: 0;"
+				>
+					🧡 Adachi Rei
+				</div>
+				<div
+					class="pill pill--sm pill--outlined pill--grad"
+					style="--pill-color: linear-gradient(180deg,oklch(0.3835 0.219 266.32) 25%, oklch(0.5463 0.2226 285.48) 100%); border-radius: 0.8em; padding-inline: 4px; margin: 0;"
+				>
+					🌠 <span>Stargazer</span>
+				</div>
+				<p
+					style="color: var(--clr-non-avail); line-height: 1.5em; margin-top: 0.5em;"
+				>
+					@sillypnk
+					<span style="font-size: 5px;">●</span>
+					he/him
+				</p> -->
+
+			<!-- <section style="margin-block: 1.5rem; font-size: 0.85em;">
+                            <div style="margin-bottom: 1.5em;">
+                                <div
+                                    class="u-group--flex items--centered"
+                                    style="margin-bottom: 1em; gap: 0;"
+                                >
+                                    <div class="accents accents-opp">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                    <div class="stripes stripes-opp"></div>
+                                    <div class="pill pill-profile pill--sm">
+                                        <p>Description</p>
+                                    </div>
+                                    <div class="stripes"></div>
+                                    <div class="accents">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </div>
+
+                                <ul style="margin-left: 1.4rem;">
+                                    <p>
+                                        I am a self-taught student who has an
+                                        aspiration to become a web developer in the
+                                        future!
+                                    </p>
+                                </ul>
+                            </div>
+
+                            <div style="margin-bottom: 1.5em;">
+                                <div
+                                    class="u-group--flex items--centered"
+                                    style="margin-bottom: 1em; gap: 0;"
+                                >
+                                    <div class="accents accents-opp">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                    <div class="stripes stripes-opp"></div>
+                                    <div class="pill pill-profile pill--sm">
+                                        <p>Hobbies</p>
+                                    </div>
+                                    <div class="stripes"></div>
+                                    <div class="accents">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </div>
+                                <div style="margin-left: 1.4rem;">
+                                    <div
+                                        class="pill pill--neutral pill--sm"
+                                        style="border-radius: 0; padding: 4px 0.8em;"
+                                    >
+                                        Reading entertaining books
+                                    </div>
+                                    <span
+                                        class="pill pill--neutral pill--sm"
+                                        style="border-radius: 0; padding: 4px 0.8em;"
+                                        >Mostly watches anime</span
+                                    >
+                                    <span
+                                        class="pill pill--neutral pill--sm"
+                                        style="border-radius: 0; padding: 4px 0.8em;"
+                                        >Coding</span
+                                    >
+                                    <span
+                                        class="pill pill--neutral pill--sm pill--outlined"
+                                        style="border-radius: 0; padding: 4px 0.8em;"
+                                        >Doodling</span
+                                    >
+                                    <span
+                                        class="pill pill--neutral pill--sm pill--outlined"
+                                        style="border-radius: 0; padding: 4px 0.8em;"
+                                        >Finding Open Source Software</span
+                                    >
+                                </div>
+                            </div>
+                        </section> -->
+			<!-- </div> -->
+		</Card>
+
+		<Card contentStyles="padding: 1.5rem;" header="Recent Microblog">
+			<Icon name="hash" slot="header_icon" />
+
+			<RenderMicroblog entry={recentMicroblog}>
+				<Fragment set:html={recentMicroblog.rendered?.html}></Fragment>
+			</RenderMicroblog>
+		</Card>
+
+		<article
+			class="box"
+			style="place-content: center; padding-block: 1rem;"
+		>
+			<div class="fade-container">
+				<div
+					class="fade--horizontal scroll-container"
+					style="display: flex; place-items: center;"
+				>
+					<div
+						class="animate-scroll"
+						style="color: var(--clr-base-content); font-size: 1.5rem;"
+					>
+						<span>現実じゃない</span>
+						<span>現実じゃない</span>
+						<span>現実じゃない</span>
+						<span>現実じゃない</span>
+						<span>現実じゃない</span>
+					</div>
+				</div>
+			</div>
+		</article>
+
+		<article class="box" style="padding: 0; display: block;">
+			<div
+				style="height: 100%; width: 100%; background: url('/static/bento/orange_stacked_steps.png') center / cover no-repeat;"
+			></div>
+		</article>
+
+		<Card contentStyles="padding: 0; position: relative;" header="Music">
+			<Icon name="music" slot="header_icon" />
+
+			<YTMusicPresence client:load>
+				<!-- NOTE: This is just for an icon where the album art is unavailable -->
+				<Icon name="music_note" style="width: 35%; height: auto;" />
+
+				<fragment slot="state_loading">
+					<div
+						class="u-group--flex"
+						style="flex-direction: column; justify-content: center; height: 100%; width: 100%; text-align: center;"
+					>
+						<img
+							src="/static/adachi_rei/chibi-02.png"
+							alt="Mini version of Adachi Rei holding an umbrella while sweating profusely."
+							style="height: auto; width: min(15em, 100%);"
+						>
+						<h6 style="margin-bottom: 0;">Loading presence...</h6>
+					</div>
+				</fragment>
+			</YTMusicPresence>
+		</Card>
+
+		<Card header="Update Log" contentStyles="padding: 1.5rem;">
+			<Icon name="update_log" slot="header_icon" />
+			<article class="prose">
+				<UpdateLogsContent />
+			</article>
+		</Card>
+
+		<article class="box adachi-line">
+			<!-- it's adachi's horizontal line! -->
+			<svg
+				style="width: 100%; height: 100%;"
+				viewBox="0 0 500 140"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<g
+					fill="none"
+					stroke="#111"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="2.5"
+				>
+					<!-- Left lead — full to left -->
+					<line x1="0" x2="130" y1="70" y2="70" />
+
+					<!-- Tick pair 1 -->
+					<line x1="130" x2="130" y1="45" y2="95" />
+					<line x1="144" x2="144" y1="45" y2="95" />
+
+					<!-- Straight to zigzag -->
+					<line x1="144" x2="200" y1="70" y2="70" />
+
+					<!-- Zigzag -->
+					<polyline
+						points="200,70 216,42 232,98 248,42 264,98 280,42 296,98 312,42 328,70"
+					/>
+
+					<!-- Straight from zigzag -->
+					<line x1="328" x2="356" y1="70" y2="70" />
+
+					<!-- Tick pair 2 -->
+					<line x1="356" x2="356" y1="45" y2="95" />
+					<line x1="370" x2="370" y1="45" y2="95" />
+
+					<!-- Right lead — full to right -->
+					<line x1="370" x2="500" y1="70" y2="70" />
+				</g>
+			</svg>
+			<!-- it's adachi's vertical line! -->
+			<svg
+				style="width: 100%; height: 100%;"
+				viewBox="0 0 140 500"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<g
+					fill="none"
+					stroke="#111"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="2.5"
+				>
+					<!-- Top lead — full to top -->
+					<line x1="70" x2="70" y1="0" y2="130" />
+
+					<!-- Tick pair 1 -->
+					<line x1="45" x2="95" y1="130" y2="130" />
+					<line x1="45" x2="95" y1="144" y2="144" />
+
+					<!-- Straight to zigzag -->
+					<line x1="70" x2="70" y1="144" y2="200" />
+
+					<!-- Zigzag -->
+					<polyline
+						points="70,200 42,216 98,232 42,248 98,264 42,280 98,296 42,312 70,328"
+					/>
+
+					<!-- Straight from zigzag -->
+					<line x1="70" x2="70" y1="328" y2="356" />
+
+					<!-- Tick pair 2 -->
+					<line x1="45" x2="95" y1="356" y2="356" />
+					<line x1="45" x2="95" y1="370" y2="370" />
+
+					<!-- Bottom lead — full to bottom -->
+					<line x1="70" x2="70" y1="370" y2="500" />
+				</g>
+			</svg>
+		</article>
+	</div>
+
+	<!-- <Masonry>
+        <Card style="width: 17rem; height: max-content;" header="Weekday">
+            <Icon
+                name="sun_&_cloud"
+                slot="header_icon"
+                style="margin-left: 0.5rem;"
+            />
+
+            <div style="overflow: hidden; text-align: center;">
+                <div id="adachiRei-day"></div>
+                <div
+                    id="adachiRei-container"
+                    style="
+									place-items: center;
+									margin-top: 10px;
+									display: flex;
+									flex-direction: column;
+									gap: 0.8rem;
+								"
+                >
+                    <div
+                        style="
+										display: inline-flex;
+										place-items: center;
+										gap: 0.7rem;
+									"
+                    >
+                        <svg
+                            style="width: 1rem"
+                            version="1.0"
+                            id="Layer_1"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 64 64"
+                            enable-background="new 0 0 64 64"
+                            xml:space="preserve"
+                            fill="currentColor"
+                        >
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g
+                                id="SVGRepo_tracerCarrier"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            ></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <g>
+                                    <path
+                                        fill="currentColor"
+                                        d="M60,4h-7V3c0-1.657-1.343-3-3-3s-3,1.343-3,3v1H17V3c0-1.657-1.343-3-3-3s-3,1.343-3,3v1H4 C1.789,4,0,5.789,0,8v52c0,2.211,1.789,4,4,4h56c2.211,0,4-1.789,4-4V8C64,5.789,62.211,4,60,4z M18,53c0,0.553-0.447,1-1,1h-6 c-0.553,0-1-0.447-1-1v-5c0-0.553,0.447-1,1-1h6c0.553,0,1,0.447,1,1V53z M18,42c0,0.553-0.447,1-1,1h-6c-0.553,0-1-0.447-1-1v-5 c0-0.553,0.447-1,1-1h6c0.553,0,1,0.447,1,1V42z M18,31c0,0.553-0.447,1-1,1h-6c-0.553,0-1-0.447-1-1v-5c0-0.553,0.447-1,1-1h6 c0.553,0,1,0.447,1,1V31z M30,53c0,0.553-0.447,1-1,1h-6c-0.553,0-1-0.447-1-1v-5c0-0.553,0.447-1,1-1h6c0.553,0,1,0.447,1,1V53z M30,42c0,0.553-0.447,1-1,1h-6c-0.553,0-1-0.447-1-1v-5c0-0.553,0.447-1,1-1h6c0.553,0,1,0.447,1,1V42z M30,31 c0,0.553-0.447,1-1,1h-6c-0.553,0-1-0.447-1-1v-5c0-0.553,0.447-1,1-1h6c0.553,0,1,0.447,1,1V31z M42,53c0,0.553-0.447,1-1,1h-6 c-0.553,0-1-0.447-1-1v-5c0-0.553,0.447-1,1-1h6c0.553,0,1,0.447,1,1V53z M42,42c0,0.553-0.447,1-1,1h-6c-0.553,0-1-0.447-1-1v-5 c0-0.553,0.447-1,1-1h6c0.553,0,1,0.447,1,1V42z M42,31c0,0.553-0.447,1-1,1h-6c-0.553,0-1-0.447-1-1v-5c0-0.553,0.447-1,1-1h6 c0.553,0,1,0.447,1,1V31z M54,42c0,0.553-0.447,1-1,1h-6c-0.553,0-1-0.447-1-1v-5c0-0.553,0.447-1,1-1h6c0.553,0,1,0.447,1,1V42z M54,31c0,0.553-0.447,1-1,1h-6c-0.553,0-1-0.447-1-1v-5c0-0.553,0.447-1,1-1h6c0.553,0,1,0.447,1,1V31z M62,15H2V8 c0-1.104,0.896-2,2-2h7v4c0,1.657,1.343,3,3,3s3-1.343,3-3V6h30v4c0,1.657,1.343,3,3,3s3-1.343,3-3V6h7c1.104,0,2,0.896,2,2V15z"
+                                    ></path>
+                                </g>
+                            </g>
+                        </svg>
+                        <p>
+                            It is now:
+                            <span id="adachiRei-date">Sep 27, 2025</span>
+                        </p>
+                    </div>
+
+                    <div
+                        style="
+										display: inline-flex;
+										place-items: center;
+										gap: 0.4rem;
+									"
+                    >
+                        <svg
+                            style="width: 1.5rem"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g
+                                id="SVGRepo_tracurrentColorerCarrier"
+                                stroke-linecurrentcap="round"
+                                stroke-linejoin="round"
+                            ></g>
+                            <g id="SVGRepo_icurrentColoronCarrier">
+                                <path
+                                    d="M12 7V12L14.5 10.5M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecurrentcap="round"
+                                    stroke-linejoin="round"
+                                ></path>
+                            </g>
+                        </svg>
+                        <p>
+                            Current time:
+                            <span id="adachiRei-time">7:17:10 PM</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </Card>
+
+        <Card style="width: 17rem; height: max-content" header="Music">
+        	<Image src={PixelatedNoteIcon} style="width: 1.5em; height: 1.5em; margin-left: 0.5rem;" slot="header_icon" alt="" />
+
+            <h2>#MUSIC</h2>
+            <div
+                class="music-player"
+                style="
+								height: 3rem;
+								position: relative;
+								left: 0;
+								bottom: 0;
+							"
+            >
+                <button
+                    id="music-play"
+                    style="
+									border: none;
+									cursor: pointer;
+									background: none;
+								"
+                >
+                    <Icon
+                        id="music-play_icon"
+                        name="misc/play"
+                        width="12"
+                        height="12"
+                    />
+                </button>
+                <input id="seekbar" type="range" min="0" max="216" value="0">
+                <span aria-label="Music Duration" style="font-size: 0.7em"
+                    ><span id="duration-now"></span>/
+                    <span id="duration-time"></span></span
+                >
+            </div>
+
+            <div
+                class="card"
+                style="
+								width: 100%;
+								margin-top: 1rem;
+								margin-inline: 0;
+								position: relative;
+								height: 19rem;
+								box-shadow: none;
+							"
+            >
+                <div
+                    class="card__content"
+                    style="
+									padding-inline: 1rem;
+									margin: 0;
+									overflow-y: auto;
+								"
+                >
+                    <div>
+                        <Icon name="music_note" width="15" />
+                        <span style="text-decoration: underline">PLAYLIST</span>
+                    </div>
+                    <div class="music-player__playlist">
+                        <ul
+                            class="list"
+                            id="mini-playlist"
+                            style='
+											--list-style: url("/src/assets/icons/star-01.svg");
+										'
+                        ></ul>
+                    </div>
+                </div>
+            </div>
+        </Card>
+    </Masonry> -->
+</Desktop>
+
+<style>
+	.banner {
+		/*debugging purposes*/
+		/*outline: 2px solid red;*/
+		position: relative;
+		display: inline-flex;
+		vertical-align: middle;
+
+		& > div {
+			display: block;
+			aspect-ratio: 3.5 / 1;
+			overflow: hidden;
+		}
+
+		img {
+			height: 100%;
+			width: 100%;
+			object-fit: cover;
+		}
+	}
+
+	.bento {
+		display: grid;
+		grid-template-columns: 10rem 1fr 1fr;
+		grid-template-rows: 17rem 4rem 17.5rem 5rem;
+		grid-template-areas:
+			"a a b b"
+			"a a c c"
+			"d e f f"
+			"d e g g";
+		gap: 1.5rem;
+		min-width: 0;
+
+		@media (max-width: 1024px) {
+			grid-template-columns: 1fr 6.6rem;
+			grid-template-rows: none;
+			grid-template-areas:
+				"a g"
+				"b b"
+				"c c"
+				"d d"
+				"f f"
+				"e e";
+		}
+
+		@media (max-width: 640px) or (max-width: 950px) {
+			grid-template-columns: 1fr;
+			/*grid-template-rows: repeat(2, 1fr) 4rem 1fr 10rem 1fr;*/
+			/*grid-template-rows: repeat(6, auto);*/
+			grid-template-rows: 1fr 18rem auto auto 5rem 18rem auto;
+			grid-template-areas:
+				"a"
+				"b"
+				"c"
+				"e"
+				"d"
+				"f"
+				"g";
+		}
+	}
+
+	.bento :global(:is(.card, .box)) {
+		height: 100%;
+		min-width: 100%;
+		margin: 0;
+	}
+	.bento :global(.card:first-child) {
+		grid-area: a;
+	}
+	.bento :global(.card:nth-child(2)) {
+		grid-area: b;
+	}
+	.bento :global(.box:nth-child(3)) {
+		grid-area: c;
+	}
+	.bento :global(.box:nth-child(4)) {
+		grid-area: d;
+	}
+	.bento :global(.card:nth-child(5)) {
+		grid-area: e;
+	}
+	.bento :global(.card:nth-child(6)) {
+		grid-area: f;
+	}
+	.bento :global(.box:nth-child(7)) {
+		grid-area: g;
+	}
+
+	.adachi-line {
+		padding: 0;
+		justify-content: center;
+		display: block;
+		background: var(--clr-base-content);
+
+		container: adachiLine / inline-size;
+
+		svg:first-child {
+			display: block;
+		}
+		svg:last-child {
+			display: none;
+		}
+
+		@container adachiLine (max-width: 10rem) {
+			svg:first-child {
+				display: none;
+			}
+			svg:last-child {
+				display: block;
+			}
+		}
+	}
+
+	/*
+	.bento {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+        grid-template-rows: 18rem 8rem 7rem;
+		grid-template-columns: 19rem 10rem 1fr;
+		grid-template-rows: 21.5rem 4rem auto;
+		grid-template-areas:
+			"a a b b"
+			"a a c c"
+			"d e f f";
+		gap: 1.5rem;
+
+		@media (max-width: 640px) {
+			grid-template-columns: none;
+			grid-template-rows: repeat(6, 1fr);
+			grid-template-areas:
+				"a"
+				"b"
+				"c"
+				"d"
+				"e"
+				"f";
+		}
+	}
+
+	.bento :is(:global(.card), :global(.box)) {
+		height: 100%;
+		width: 100%;
+		margin: 0;
+	}
+	.bento :global(.card:first-child) {
+		grid-area: a;
+	}
+	.bento :global(.card:nth-child(2)) {
+		grid-area: b;
+	}
+	.bento :global(.box:nth-child(3)) {
+		grid-area: c;
+	}
+	.bento :global(.card:nth-child(4)) {
+		grid-area: d;
+	}
+	.bento :global(.card:last-child) {
+		grid-area: f;
+	}
+	.bento :global(.box:nth-child(5)) {
+		grid-area: e;
+	}
+	*/
+
+	:global(.pill.pill-profile) {
+		--pill-color: light-dark(var(--clr-secondary), var(--clr-base));
+		--pill-color-content: light-dark(var(--clr-base), var(--clr-secondary));
+		--pill-py: 0;
+		border-radius: 0;
+		position: relative;
+		place-items: center;
+		font-size: 0.85em;
+		margin: 0;
+		letter-spacing: 2px;
+		width: calc(100% - 12rem);
+		clip-path: polygon(
+			calc(0% + 2%) 0%,
+			100% 0%,
+			calc(100% - 2%) 100%,
+			0% 100%
+		);
+	}
+
+	.text-fadeout {
+		position: relative;
+		height: 100%;
+		width: 100%;
+		mask-image: linear-gradient(to bottom, black 10%, transparent 90%);
+	}
+</style>
+
+<!-- <style>
+    .updates {
+        padding-block: 0.8rem;
+        border: 2px solid var(--clr-base-content);
+        height: 20rem;
+
+        & > .updates-list {
+            height: 100%;
+            overflow: auto;
+            padding-inline: 2rem;
+        }
+
+        & > .updates-list h5 {
+            font-size: 1.6rem;
+            text-align: center;
+            inline-size: 100%;
+            letter-spacing: 1.5px;
+            position: relative;
+            color: currentColor;
+
+            &::after {
+                content: "";
+                z-index: -1;
+                background: var(--clr-base-content);
+                position: absolute;
+                height: 12px;
+                inline-size: calc(100% - 30px);
+                top: 28px;
+                left: 15px;
+                /* display: block; */
+            }
+        }
+
+        & > .updates-list span {
+            color: light-dark(var(--clr-secondary), var(--clr-base));
+            margin-right: 5px;
+        }
+    }
+
+    [data-icon="play_arrow-right"] {
+        color: oklch(68.623% 0.20428 42.484);
+        margin-right: 0.5rem;
+    }
+</style> -->
+
+<!-- <script src="../lib/misc/week.ts"></script> -->
+<!-- <script src="../lib/misc/muuri.ts"></script> -->
+<!-- <script src="../lib/mini-music.js"></script> -->

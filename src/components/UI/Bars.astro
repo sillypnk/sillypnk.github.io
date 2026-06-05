@@ -1,0 +1,115 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+interface Props extends HTMLAttributes<'div'> {
+	bars: number
+	size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+	duration?: string
+	vertical?: boolean
+	class?: any
+}
+
+const {
+	bars,
+	size = "md",
+	duration = '0.65s',
+	vertical,
+	class: className,
+	...rest
+} = Astro.props
+---
+
+<pumo-bars data-bars={bars}>
+	<div
+		class:list={["bars-container", vertical && "bars--vertical", size && size === "md" ? "" : `bars--${size}`, className]}
+		{...rest}
+	></div>
+</pumo-bars>
+
+<script>
+	import { randomInt } from '🧡/lib/utils.ts'
+
+	class PumoBars extends HTMLElement {
+		connectedCallback() {
+			const barsContainer = this.querySelector(
+				'.bars-container',
+			) as HTMLElement
+
+			const bars = Number(this.getAttribute('data-bars'))
+
+			for (let i = 0; i < bars; i++) {
+				let rnd_delay = randomInt(0.5, 10.5)
+
+				const bar = document.createElement('div')
+				bar.classList.add('bar')
+				bar.setAttribute('data-delay', rnd_delay.toString())
+				barsContainer.appendChild(bar)
+			}
+		}
+	}
+	customElements.define('pumo-bars', PumoBars)
+</script>
+
+<style define:vars={{ duration }} is:global>
+	.bars-container {
+		display: flex;
+		flex-direction: row;
+		gap: 0.5em;
+		width: 100%;
+		height: 100%;
+		align-items: center;
+
+		& > .bar {
+			display: block;
+			border-radius: 5em;
+			width: 100%;
+			height: 100%;
+			background-color: var(--clr-base-content);
+			animation: height-anim var(--duration, 1s) attr(data-delay s, 0s)
+				cubic-bezier(0.4, 0, 0.2, 1) infinite alternate both;
+		}
+
+		&.bars--xs > .bar {
+			width: 0.15rem;
+		}
+		&.bars--sm > .bar {
+			width: 0.25rem;
+		}
+		&.bars--lg > .bar {
+			width: 0.8rem;
+		}
+		&.bars--xl > .bar {
+			width: 1.1rem;
+		}
+
+		&.bars--vertical {
+			flex-direction: column;
+			width: 100%;
+			height: 100%;
+
+			& > .bar {
+				height: 0.35rem;
+				width: 100%;
+				animation-name: width-anim;
+			}
+
+			&::not(.bars--xs):not(.bars--sm):not(.bars--lg):not(.bars--xl)
+				> .bar {
+				height: 100%;
+			}
+
+			&.bars--sm > .bar {
+				height: 0.25rem;
+				width: 100%;
+			}
+			&.bars--lg > .bar {
+				height: 0.8rem;
+				width: 100%;
+			}
+			&.bars--xl > .bar {
+				height: 1.1rem;
+				width: 100%;
+			}
+		}
+	}
+</style>

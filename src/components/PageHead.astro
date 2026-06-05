@@ -1,0 +1,46 @@
+---
+import { SITE } from '🧡/consts'
+import { SEO, type SEOProps } from 'astro-seo'
+
+const { props }: { props: SEOProps } = Astro
+
+const defaultSEO: SEOProps = {
+	title: props.title || SITE.title,
+	titleTemplate: 'PumoChii | %s',
+	description: props.description || SITE.description,
+	canonical: SITE.href,
+
+	openGraph: {
+		basic: {
+			title: SITE.title,
+			image: '/static/twitter-card.png',
+			type: 'website',
+			url: Astro.url,
+		},
+	},
+
+	// TODO: Twitter image and other stuff
+}
+
+const combinedProps = { ...props, ...defaultSEO }
+---
+
+<SEO {...combinedProps} />
+
+<!-- <title>{title}</title>
+<meta name="description" content={description}> -->
+
+<!-- <meta property="og:title" content={title}> -->
+<!-- <meta property="og:description" content={description}> -->
+<!-- <meta property="og:image" content={image}> -->
+<!-- <meta property="og:image:alt" content={title}> -->
+<!-- <meta property="og:type" content="website">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content={title}>
+<meta property="og:url" content={Astro.url}>
+
+<meta name="twitter:title" content={title}>
+<meta name="twitter:description" content={description}> -->
+<!-- <meta name="twitter:image" content={image}> -->
+<!-- <meta name="twitter:image:alt" content={title}> -->
+<!-- <meta name="twitter:card" content="summary_large_image"> -->

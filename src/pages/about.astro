@@ -1,0 +1,529 @@
+---
+import DirectoryIcon from '🧡/assets/icons/desktop/directory.png'
+
+import DesktopNav from '🧡/components/Desktop/Nav.astro'
+import PageHead from '🧡/components/PageHead.astro'
+// import Link from '🧡/components/Link.astro'
+import Card from '🧡/components/UI/Card.astro'
+import Breadcrumbs from '🧡/components/UI/Breadcrumbs.astro'
+
+import Desktop from '🧡/layouts/Desktop.astro'
+
+import { Icon } from 'astro-iconset/components'
+
+import { Content } from '🧡/content/about.mdx'
+---
+
+<Desktop>
+	<PageHead title="About" slot="head" />
+
+	<DesktopNav icon={DirectoryIcon} to="about" slot="nav">
+		<Breadcrumbs items={[{ label: 'About', icon: 'about__info' }]} />
+		<!-- TODO: Nav Links for about me -->
+		<!-- <fragment slot="links">
+			<span class="nav-divider">Links</span>
+			<ul class="nav-list">
+				<li>
+					<Link class="btn" href="#about-me" noUnderline
+						>about me</Link
+					>
+				</li>
+				<li>
+					<Link class="btn" href="#about-me" noUnderline
+						>Hobbies & Stuff</Link
+					>
+				</li>
+				<li>
+					<Link class="btn" href="#about-me" noUnderline>Stats</Link>
+				</li>
+			</ul>
+		</fragment> -->
+	</DesktopNav>
+
+	<Card header="Know more about me!">
+		<Icon name="chat_bubble" slot="header_icon" />
+
+		<article class="prose">
+			<Content />
+		</article>
+	</Card>
+
+	<!-- <div class="bento">
+        <Card header="Profile" contentStyles="padding: 0; overflow-x: hidden;">
+            <Icon
+                name="silhouette"
+                slot="header_icon"
+                style="margin-left: 0.5rem;"
+            />
+
+            <div class="banner">
+                <div>
+                    <Picture
+                        src={BannerImg}
+                        formats={["avif", "webp"]}
+                        alt="Banner"
+                        priority
+                    />
+                </div>
+            </div>
+
+            <div style="margin-inline: 1rem;">
+                <div class="avatar avatar--status" data-status="🧡">
+                    <div
+                        style="width: 8rem; border-radius: 100%; border: 5px solid light-dark(var(--clr-base), transparent); margin-top: -3.7rem; margin-bottom: 0.3rem;"
+                    >
+                        <Picture
+                            style="object-position: -27px -10px; width: 140%;"
+                            src={AboutMeAvatar}
+                            formats={["webp"]}
+                            alt="Avatar"
+                            priority
+                        />
+                    </div>
+                </div>
+
+                <h3
+                    style="margin-bottom: 0; font-size: 1.65em; font-family: var(--font-yuruka-std); line-height: 1.5;"
+                >
+                    PumoReiichi
+                </h3>
+                <div
+                    class="pill pill--sm pill--outlined"
+                    style="--pill-color: var(--clr-base-content); border-radius: 0.8em; padding-inline: 4px; margin: 0;"
+                >
+                    🧡 Adachi Rei
+                </div>
+                <div
+                    class="pill pill--sm pill--outlined pill--grad"
+                    style="--pill-color: linear-gradient(180deg,oklch(0.3835 0.219 266.32) 25%, oklch(0.5463 0.2226 285.48) 100%); border-radius: 0.8em; padding-inline: 4px; margin: 0;"
+                >
+                    🌠 <span>Stargazer</span>
+                </div>
+                <p
+                    style="color: var(--clr-non-avail); line-height: 1.5em; margin-top: 0.5em;"
+                >
+                    @sillypnk
+                    <span style="font-size: 5px;">●</span>
+                    he/him
+                </p>
+
+                <!-- <section style="margin-block: 1.5rem; font-size: 0.85em;">
+                        <div style="margin-bottom: 1.5em;">
+                            <div
+                                class="u-group--flex items--centered"
+                                style="margin-bottom: 1em; gap: 0;"
+                            >
+                                <div class="accents accents-opp">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                                <div class="stripes stripes-opp"></div>
+                                <div class="pill pill-profile pill--sm">
+                                    <p>Description</p>
+                                </div>
+                                <div class="stripes"></div>
+                                <div class="accents">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+
+                            <ul style="margin-left: 1.4rem;">
+                                <p>
+                                    I am a self-taught student who has an
+                                    aspiration to become a web developer in the
+                                    future!
+                                </p>
+                            </ul>
+                        </div>
+
+                        <div style="margin-bottom: 1.5em;">
+                            <div
+                                class="u-group--flex items--centered"
+                                style="margin-bottom: 1em; gap: 0;"
+                            >
+                                <div class="accents accents-opp">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                                <div class="stripes stripes-opp"></div>
+                                <div class="pill pill-profile pill--sm">
+                                    <p>Hobbies</p>
+                                </div>
+                                <div class="stripes"></div>
+                                <div class="accents">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div style="margin-left: 1.4rem;">
+                                <div
+                                    class="pill pill--neutral pill--sm"
+                                    style="border-radius: 0; padding: 4px 0.8em;"
+                                >
+                                    Reading entertaining books
+                                </div>
+                                <span
+                                    class="pill pill--neutral pill--sm"
+                                    style="border-radius: 0; padding: 4px 0.8em;"
+                                    >Mostly watches anime</span
+                                >
+                                <span
+                                    class="pill pill--neutral pill--sm"
+                                    style="border-radius: 0; padding: 4px 0.8em;"
+                                    >Coding</span
+                                >
+                                <span
+                                    class="pill pill--neutral pill--sm pill--outlined"
+                                    style="border-radius: 0; padding: 4px 0.8em;"
+                                    >Doodling</span
+                                >
+                                <span
+                                    class="pill pill--neutral pill--sm pill--outlined"
+                                    style="border-radius: 0; padding: 4px 0.8em;"
+                                    >Finding Open Source Software</span
+                                >
+                            </div>
+                        </div>
+                    </section>
+            </div>
+        </Card>
+
+         <Card
+                contentStyles="background-image: url(https://c.tenor.com/zrIOVdWEAKcAAAAC/tenor.gif); background-repeat: no-repeat; background-position: -100% 0; background-size: 100% 100%;"
+            > </Card>
+        <Card header="Know more about me!">
+            <Icon name="chat_bubble" slot="header_icon" />
+            <article class="prose"><Content /></article>
+        </Card>
+
+        <Card contentStyles="place-content: center;" noIcon>
+            <div class="fade-container">
+                <div
+                    class="fade--horizontal scroll-container"
+                    style="display: flex; place-items: center;"
+                >
+                    <div
+                        class="animate-scroll"
+                        style="color: var(--clr-base-content); font-size: 1.5rem;"
+                    >
+                        <span>現実じゃない</span>
+                        <span>現実じゃない</span>
+                        <span>現実じゃない</span>
+                        <span>現実じゃない</span>
+                        <span>現実じゃない</span>
+                    </div>
+                </div>
+            </div>
+        </Card>
+
+        <Card>
+            <h3 style="margin-bottom: 0.1rem;">#Friends</h3>
+            <div
+                style="
+                            --_divider-color: light-dark(oklch(0.7448 0 0), oklch(0.3264 0 0));
+                            --_divider-m: 1px 0;
+                            height: 10px;
+                          "
+                class="divider"
+            ></div>
+            <ul>
+                <li>Mashiko</li>
+                <li>Kyouto</li>
+                <li>DiazNutz</li>
+                <li>Haru</li>
+                <li>Ruiiz</li>
+                <li>Tekekens</li>
+            </ul>
+        </Card>
+
+        <article class="box" style="padding-inline: 2rem;">
+            <Bars
+                bars={20}
+                style="justify-content: center;"
+                size="sm"
+                vertical
+            />
+            <!-- <svg
+                    style="transform: rotate(90deg) scale(2.2); margin-top: 10rem; "
+                    version="1.1"
+                    id="squiggly-line-svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    x="0px"
+                    y="0px"
+                    viewBox="0 0 92.8 12"
+                    style="enable-background:new 0 0 92.8 12;"
+                    xml:space="preserve"
+                >
+                    <path
+                        class="squiggly-line"
+                        d="M1.4,6c0,0,9-9,18,0s18,0,18,0s9-9,18,0s18,0,18,0s9-9,18,0"
+                    />
+                </svg>
+        </article>
+
+        <Card contentStyles="padding: 0;" header="Music of the day!">
+            <Icon name="music" slot="header_icon" />
+
+            <div class="status">
+                <div
+                    style="display: block; grid-row: 1; grid-column: 1 / 3; width: 100%;"
+                >
+                    <h5>Music of the Day!</h5>
+                </div>
+                <div
+                    class="avatar"
+                    style="grid-row: 2; grid-column: 1; place-self: center;"
+                >
+                    <div style="width: 6rem; border-radius: 0.3rem;">
+                        <!-- <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Neovim-mark.svg/250px-Neovim-mark.svg.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail" alt="Application Icon" width="100" height="100" />
+                        <Image
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCgOj10xZf7FPJWSYYwncrE6uYHylodDlEpA&s"
+                            alt="Application Icon"
+                            width="100"
+                            height="100"
+                        />
+                    </div>
+                </div>
+                <div
+                    style="grid-row: 2; grid-column: 2; display: flex; flex-direction: column; justify-content: center;"
+                >
+                    <span
+                        style="color: light-dark(oklch(from var(--clr-secondary) calc(l + 0.2) c h), oklch(from var(--clr-primary) calc(l - 0.1) c h)); line-height: 1.5rem; font-size: 17px;"
+                    >
+                        <span style="color: oklch(0.74664 0.17633 58.951);"
+                            >Heat Abnormal</span
+                        ></span
+                    >
+                    <span style="color: var(--clr-non-avail); font-size: 14px;"
+                        >by Iyowa (Ft. Adachi Rei)</span
+                    >
+                    <span style="color: var(--clr-non-avail); font-size: 13px;"
+                        >on (Single)</span
+                    >
+                </div>
+                <div
+                    style="grid-row: 3; grid-column: 1 / 3; margin-bottom: 0.2rem;"
+                >
+                    <div class="progress">
+                        <div class="progress__label">
+                            <span>1:24</span><span>4:00</span>
+                        </div>
+                        <div class="progress__container">
+                            <div class="progress__bar" data-value="35"></div>
+                        </div>
+                    </div>
+                </div>
+                <div style="grid-row: 4; grid-column: 1 / 3;">
+                    <div class="u-group--flex" style="align-items: initial;">
+                        <Link
+                            href="https://music.youtube.com/watch?v=DySBODRQEuw"
+                            class="btn"
+                            style="width: 100%; margin-inline: 0;"
+                            external
+                            noUnderline
+                        >
+                            <Icon name="yt_music" style="width: 1.5em;" />
+                            <span style="line-height: 1;"
+                                >Play on YT Music</span
+                            >
+                        </Link>
+                        <button class="btn" style="margin-inline: 0;">
+                            <Icon name="user_play" style="1.5em;" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </Card>
+    </div> -->
+</Desktop>
+
+<style>
+	.banner {
+		/*debugging purposes*/
+		/*outline: 2px solid red;*/
+		position: relative;
+		display: inline-flex;
+		vertical-align: middle;
+
+		& > div {
+			display: block;
+			aspect-ratio: 3.5 / 1;
+			overflow: hidden;
+		}
+
+		img {
+			height: 100%;
+			width: 100%;
+			object-fit: cover;
+			/*object-position: 45%;*/
+		}
+	}
+
+	.bento {
+		display: grid;
+		/*grid-template-columns: 1fr 1fr;
+            grid-template-rows: 18rem 8rem 7rem;*/
+		grid-template-columns: 19rem 9rem 1fr;
+		grid-template-rows: 17rem 8rem auto;
+		grid-template-areas:
+			"a a b b"
+			"a a c c"
+			"d e f f";
+		gap: 1.5rem;
+	}
+
+	.bento :global(.card) {
+		height: 100%;
+		margin: 0;
+	}
+	.bento :global(.card:first-child) {
+		grid-area: a;
+	}
+	.bento :global(.card:nth-child(2)) {
+		grid-area: b;
+	}
+	.bento :global(.card:nth-child(3)) {
+		grid-area: c;
+	}
+	.bento :global(.card:nth-child(4)) {
+		grid-area: d;
+	}
+	.bento :global(.card:last-child) {
+		grid-area: f;
+	}
+	.bento :global(.box:nth-child(5)) {
+		grid-area: e;
+	}
+
+	.squiggly-line {
+		fill: none;
+		stroke: #fc8c03;
+		stroke-width: 4;
+		stroke-miterlimit: 10;
+		stroke-dasharray: 100;
+		animation: squiggle 1.6s 5s linear infinite;
+	}
+	@keyframes squiggle {
+		to {
+			stroke-dashoffset: -200;
+		}
+	}
+
+	:global(.pill.pill-profile) {
+		--pill-color: light-dark(var(--clr-secondary), var(--clr-base));
+		--pill-color-content: light-dark(var(--clr-base), var(--clr-secondary));
+		--pill-py: 0;
+		border-radius: 0;
+		position: relative;
+		place-items: center;
+		font-size: 0.85em;
+		margin: 0;
+		letter-spacing: 2px;
+		width: calc(100% - 12rem);
+		clip-path: polygon(
+			calc(0% + 2%) 0%,
+			100% 0%,
+			calc(100% - 2%) 100%,
+			0% 100%
+		);
+	}
+
+	.status {
+		display: grid;
+		grid-template-rows: repeat(4, auto);
+		grid-template-columns: repeat(2, auto);
+		gap: 8px;
+		inline-size: 100%;
+
+		padding-block: 0.8rem;
+		padding-inline: 0.8em;
+		background-color: inherit;
+
+		h5 {
+			z-index: 1;
+			position: relative;
+			margin-left: 0.5em;
+		}
+		h5::before {
+			content: "#";
+			font-family: var(--font-yuruka-std);
+			position: absolute;
+			left: -15px;
+			top: 20px;
+			z-index: -1;
+			color: white;
+			opacity: 10%;
+			font-size: 10rem;
+		}
+	}
+	[data-theme="dark"] .status {
+		background-color: oklch(
+			from var(--clr-primary) calc(l - 0.8) c h /
+			50%
+		);
+	}
+
+	/*.stripes {
+        background-image: repeating-linear-gradient(
+            -69deg,
+            transparent 0px 5px,
+            light-dark(
+                    oklch(from var(--clr-secondary) calc(l + 0.1) c h),
+                    oklch(from var(--clr-base) calc(l - 0.1) c h)
+                )
+                5px 7px
+        );
+        clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+        width: 50px;
+        height: 21px;
+        margin-left: -2px;
+    }
+    .stripes-opp {
+        background-image: repeating-linear-gradient(
+            111deg,
+            transparent 0px 5px,
+            light-dark(
+                    oklch(from var(--clr-secondary) calc(l + 0.1) c h),
+                    oklch(from var(--clr-base) calc(l - 0.1) c h)
+                )
+                5px 7px
+        );
+        margin-left: 0;
+        margin-right: -2px;
+    }
+
+    .accents {
+        display: flex;
+        gap: 4px;
+
+        & span {
+            display: inline-flex;
+            width: 10px;
+            height: 21px;
+            background: oklch(from currentColor calc(l + 0.1) c h);
+            transform: skewX(-20deg);
+        }
+
+        & span:nth-child(2) {
+            background: oklch(from currentColor calc(l + 0.25) c h);
+            width: 7px;
+        }
+
+        & span:nth-child(3) {
+            background: oklch(from currentColor calc(l + 0.5) c h);
+            width: 5px;
+        }
+    }
+    .accents-opp {
+        transform: rotate3d(0, 1, 0, 180deg);
+        & span {
+            transform: skewX(20deg);
+        }
+    }*/
+</style>

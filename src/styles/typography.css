@@ -1,0 +1,83 @@
+/* ---------------------- */
+@font-face {
+	font-family: Tickerbit;
+	src: url("../assets/fonts/Tickerbit/Tickerbit-regular.otf");
+	font-weight: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: Tickerbit;
+	src: url("../assets/fonts/Tickerbit/Tickerbit-italic.otf");
+	font-weight: normal;
+	font-style: italic;
+	font-display: swap;
+}
+
+/* ---------------------- */
+@font-face {
+	font-family: "PixelMplus";
+	src: url("../assets/fonts/pixelmplus/PixelMplus12-Regular.ttf");
+	font-weight: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "PixelMplus";
+	src: url("../assets/fonts/pixelmplus/PixelMplus12-Bold.ttf");
+	font-weight: bold;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Zpix";
+	src: url("../assets/fonts/zpix.ttf");
+	font-weight: normal;
+	font-display: swap;
+}
+
+/* ---------------------- */
+
+/* @font-face { */
+/* 	font-family: "lINE Seed JP"; */
+/* 	src: url("../assets/fonts/LINE_Seed_JP/LINESeedJP-Regular.ttf"); */
+/* 	font-weight: 400; */
+/* 	font-display: swap; */
+/* } */
+/**/
+/* @font-face { */
+/* 	font-family: "lINE Seed JP"; */
+/* 	src: url("../assets/fonts/LINE_Seed_JP/LINESeedJP-Bold.ttf"); */
+/* 	font-weight: 700; */
+/* 	font-display: swap; */
+/* } */
+/**/
+/* @font-face { */
+/* 	font-family: "lINE Seed JP"; */
+/* 	src: url("../assets/fonts/LINE_Seed_JP/LINESeedJP-ExtraBold.ttf"); */
+/* 	font-weight: 800; */
+/* 	font-display: swap; */
+/* } */
+/**/
+/* @font-face { */
+/* 	font-family: "lINE Seed JP"; */
+/* 	src: url("../assets/fonts/LINE_Seed_JP/LINESeedJP-Thin.ttf"); */
+/* 	font-weight: 100; */
+/* 	font-display: swap; */
+/* } */
+
+/* ---------------------- */
+
+@font-face {
+	font-family: "Yuruka STD";
+	src: url("../assets/fonts/fot-yuruka-std.ttf");
+	font-weight: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Raster Forge";
+	src: url("../assets/fonts/Raster Forge.ttf");
+	font-weight: normal;
+	font-display: swap;
+}

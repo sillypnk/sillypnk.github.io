@@ -1,0 +1,305 @@
+@layer base {
+	*,
+	*::before,
+	*::after {
+		scrollbar-color: oklch(from var(--clr-base-content) l c h / 64.8%)
+			transparent;
+		scrollbar-width: thin;
+	}
+
+	::selection {
+		background-color: var(--clr-base-content);
+		color: light-dark(var(--clr-secondary), var(--clr-base));
+	}
+	::-moz-selection {
+		background-color: var(--clr-base-content);
+		color: light-dark(var(--clr-secondary), var(--clr-base));
+	}
+
+	html {
+		scrollbar-gutter: stable;
+	}
+
+	::view-transition-old(root),
+	::view-transition-new(root) {
+		animation: none;
+		mix-blend-mode: normal;
+	}
+
+	body {
+		--bg-size: 45px;
+		--circle-size: 1.5px;
+		--bg-color: light-dark(
+			var(--clr-primary),
+			oklch(from var(--clr-secondary) calc(l + 0.05) c h)
+		);
+
+		/* Default font family */
+		font-family: var(--font-zpix);
+		font-weight: normal;
+		letter-spacing: 0.7px;
+		/*line-height: 1.3rem;*/
+
+		position: relative;
+		color: oklch(from var(--clr-base-content) calc(l + 0.07) c h);
+		background: var(--clr-bg);
+		overflow-y: auto;
+		overflow-x: hidden;
+		height: min(100%, 100dvh);
+		width: min(100%, 100dvw);
+
+		&::before {
+			content: "";
+			position: fixed;
+			inset: 0;
+			pointer-events: none;
+			z-index: 0;
+			/*background: radial-gradient(
+				circle at var(--circle-size) var(--circle-size),
+				light-dark(
+						oklch(7.72% 0 299deg / 20%),
+						oklch(100% 0.0001 271.152deg / 25%)
+					)
+					var(--circle-size),
+				transparent 0
+			);*/
+			/*background-size: var(--bg-size) var(--bg-size);
+			background-repeat: repeat;*/
+			animation: bg-scroll 40s linear infinite;
+			background:
+				linear-gradient(
+					45deg,
+					transparent 49%,
+					var(--bg-color) 49%,
+					var(--bg-color) 51%,
+					transparent 51%
+				),
+				linear-gradient(
+					-45deg,
+					transparent 49%,
+					var(--bg-color) 49%,
+					var(--bg-color) 51%,
+					transparent 51%
+				);
+			background-size: 40px 40px;
+		}
+	}
+
+	:is(h1, h2, h3, h4, h5, h6) {
+		font-family: var(--font-tickerbit);
+		letter-spacing: 1.6px;
+		font-style: normal;
+		text-box-trim: trim-both;
+		text-wrap-style: balance;
+		margin-block: 1.5rem;
+		/* color: var(--clr-base-content); */
+		background-image: linear-gradient(
+			180deg,
+			var(--clr-base-content) 0%,
+			oklch(0.632 0.2195 29.12 / 60%) 100%
+		);
+		background-clip: text;
+		color: transparent;
+
+		&.has-text-reveal {
+			animation: text-reveal-01 2.5s cubic-bezier(0.72, 0, 0.14, 0.99)
+				forwards;
+			background: var(--clr-base-content);
+			color: light-dark(var(--clr-secondary), var(--clr-primary));
+			padding-left: 5px;
+			width: fit-content;
+		}
+		&:has(+ &.has-text-reveal) {
+			animation: fade-in 3.7s cubic-bezier(0.72, 0, 0.14, 0.99) forwards;
+			width: fit-content;
+		}
+	}
+
+	h1 {
+		font-size: var(--text-6xl);
+		font-weight: 800;
+	}
+
+	h2 {
+		font-size: var(--text-5xl);
+		font-weight: 700;
+	}
+
+	h3 {
+		font-size: var(--text-4xl);
+		font-weight: 400;
+	}
+
+	h4 {
+		font-size: var(--text-3xl);
+		letter-spacing: 5px;
+		/*line-height: 3em;*/
+	}
+	.prose h4 {
+		line-height: 0.8em;
+		margin-top: 1.15rem;
+	}
+
+	h5 {
+		font-size: var(--text-2xl);
+		font-weight: 450;
+		letter-spacing: 1px;
+		line-height: 2em;
+	}
+
+	h6 {
+		font-size: var(--text-xl);
+		letter-spacing: 3px;
+		font-weight: bold;
+	}
+
+	li {
+		list-style-position: inside;
+		line-height: 1.5;
+	}
+	li > :is(ul, ol) {
+		padding-left: 1.5rem;
+		list-style-type: square;
+	}
+	li:has(> ul),
+	li:has(> ol) {
+		font-weight: bold;
+	}
+
+	li > ul > li,
+	li > ol > li {
+		font-weight: normal;
+	}
+
+	p {
+		font-size: var(--text-base);
+		letter-spacing: 0.5px;
+		line-height: 1.2em;
+		text-wrap-style: pretty;
+	}
+	.prose p:has(+ p) {
+		margin-bottom: 1.15rem;
+	}
+	.not-prose > * {
+		all: revert;
+	}
+
+	/* THEME STUFF */
+	[data-theme="light"] {
+		--clr-bg: var(--clr-base);
+		color-scheme: light;
+	}
+
+	[data-theme="dark"] {
+		--clr-bg: var(--clr-secondary);
+		/*FEATURE: maybe at v2*/
+		/*--clr-base-content: var(--clr-shion);*/
+		color-scheme: dark;
+	}
+	/* Maybe at V2 */
+	/*[data-theme="tsukumo_shion"] {
+		--clr-bg: var(--clr-secondary);
+		--clr-base-content: oklch(0.5721 0.259 316.06);
+		color-scheme: dark;
+	}*/
+
+	::scroll-marker-group {
+		position: absolute;
+		anchor-name: --carousel;
+		top: anchor(bottom);
+		left: calc(anchor(left) - 10%);
+		right: calc(anchor(right) - 10%);
+		inline-size: 45px;
+
+		overflow-x: auto;
+		scroll-snap-type: mandatory;
+		/* stylelint-disable-line declaration-property-value-no-unknown */
+		overscroll-behavior-x: contain;
+
+		display: grid;
+		gap: 0.6em;
+		place-content: safe center;
+		justify-self: center;
+		grid-auto-columns: 0.5rem;
+		grid-auto-flow: column;
+		margin-block: 0.5rem;
+		scroll-behavior: smooth;
+		scrollbar-width: none;
+
+		padding: 5px 10px;
+
+		/* space for focus and scroll */
+		scroll-padding-inline: 10px;
+		mask: linear-gradient(
+			to right,
+			transparent 0,
+			black 10px,
+			black calc(100% - 10px),
+			transparent 100%
+		);
+	}
+
+	mark {
+		background-color: var(--clr-base-content);
+		color: light-dark(var(--clr-secondary), var(--clr-base));
+		padding: 2px;
+	}
+
+	del,
+	s {
+		text-decoration-color: light-dark(
+			var(--clr-secondary),
+			var(--clr-base)
+		);
+	}
+
+	q {
+		font-style: italic;
+	}
+
+	code {
+		background-color: oklch(36.32% 0 83deg);
+		font-family: monospace;
+		letter-spacing: 1.5px;
+		color: var(--clr-base);
+		padding-block: 2px;
+		padding-inline: 5px;
+		border-radius: 3px;
+	}
+
+	progress {
+		display: inline-block;
+		appearance: none;
+		accent-color: var(--clr-primary);
+		border: none;
+		background-color: var(--clr-primary);
+		color: var(--clr-base-content);
+		height: 0.5rem;
+		width: 20rem;
+		margin-left: 1rem;
+
+		&::-webkit-progress-bar {
+			background-color: light-dark(
+				var(--clr-primary),
+				oklch(from var(--clr-secondary) calc(l + 0.12) c h)
+			);
+		}
+
+		&::-webkit-progress-value {
+			background-color: var(--clr-base-content);
+		}
+
+		&::-moz-progress-bar {
+			background-color: var(--clr-base-content);
+		}
+	}
+
+	input {
+		border: none;
+
+		&:focus {
+			border: none;
+			outline: none;
+		}
+	}
+}

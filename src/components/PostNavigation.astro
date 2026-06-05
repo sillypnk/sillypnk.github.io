@@ -1,0 +1,58 @@
+---
+import Link from './Link.astro'
+import { Icon } from 'astro-iconset/components'
+
+const { newerPost, olderPost } = Astro.props
+---
+
+<nav class="p-nav">
+	<!-- Previous Post / Older Post -->
+	<Link
+		href={olderPost ? `/microblog/${olderPost.id}` : '#'}
+		class:list={['btn', 'u-group--flex', !olderPost && 'btn--disabled']}
+		style="width: 100%; justify-content: start; margin: 0;"
+		aria-disabled={!olderPost}
+		noUnderline
+	>
+		<Icon name="arrow_left" />
+		<span>Previous Post</span>
+	</Link>
+
+	<!-- Next Post / Newer Post -->
+	<Link
+		href={newerPost ? `/microblog/${newerPost.id}` : '#'}
+		class:list={['btn', 'u-group--flex', !newerPost && 'btn--disabled']}
+		style="width: 100%; justify-content: end; margin: 0;"
+		aria-disabled={!newerPost}
+		noUnderline
+	>
+		<span>Next Post</span>
+		<Icon name="arrow_right" />
+	</Link>
+</nav>
+
+<style>
+	.p-nav {
+		display: flex;
+		gap: 1.5rem;
+		flex-direction: row;
+		width: 100%;
+		padding-inline: 1.25rem;
+
+		@container desktop-cards (max-width: 20rem) {
+			flex-direction: column;
+			gap: 7px;
+		}
+	}
+
+	[data-icon] {
+		width: 2.5em;
+		color: var(--clr-base-content);
+	}
+	[data-icon="arrow_left"] {
+		margin-right: 2rem;
+	}
+	[data-icon="arrow_right"] {
+		margin-left: 2rem;
+	}
+</style>

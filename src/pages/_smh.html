@@ -1,0 +1,1356 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- 🎨 Color Scheme -->
+        <script>
+            const colorScheme = localStorage.getItem('theme')
+            document.documentElement.setAttribute(
+                'data-theme',
+                colorScheme || 'light',
+            )
+        </script>
+
+        <link rel="stylesheet" type="text/css" href="../styles.css">
+        <script src="../scripts/utils/custom-cursor.js" type="module"></script>
+        <script src="../scripts/components/menu.js" type="module"></script>
+        <script src="../scripts/components/statusbar.js" type="module"></script>
+        <script
+            src="../scripts/components/mini-music.js"
+            type="module"
+        ></script>
+        <script src="../scripts/components/loader.js" type="module"></script>
+
+        <!-- [✨] SEO Stuff -->
+        <link
+            rel="icon"
+            type="image/png"
+            href="/favicon/favicon-96x96.png"
+            sizes="96x96"
+        >
+        <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg">
+        <!-- <link rel="shortcut icon" href="/favicon/favicon.ico" > -->
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/favicon/apple-touch-icon.png"
+        >
+        <meta
+            name="apple-mobile-web-app-title"
+            content="PumoReiichi! - 👤 About"
+        >
+        <link rel="manifest" href="/favicon/site.webmanifest">
+
+        <title>PumoReiichi! - 👤 About</title>
+        <meta
+            name="description"
+            content="A personal portfolio which heavily inspired by a neocities developer @nenrikido. Don't forget to check them out!"
+        >
+
+        <!-- Facebook Meta Tags -->
+        <meta property="og:url" content="https://sillypnk.github.io">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="PumoReiichi! - 👤 About">
+        <meta
+            property="og:description"
+            content="A personal portfolio which heavily inspired by a neocities developer @nenrikido. Don't forget to check them out!"
+        >
+        <meta
+            property="og:image"
+            content="https://opengraph.b-cdn.net/production/images/12044105-dd81-4b92-a2f2-010f9961830b.png?token=zw8LmFbfH3LIIH4ARZXzlSmxTqVKmRXePPUc1dDsUVQ&height=604&width=1200&expires=33296792141"
+        >
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Twitter Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta property="twitter:domain" content="sillypnk.github.io">
+        <meta property="twitter:url" content="https://sillypnk.github.io">
+        <meta name="twitter:title" content="PumoReiichi! - 👤 About">
+        <meta
+            name="twitter:description"
+            content="A personal portfolio which heavily inspired by a neocities developer @nenrikido. Don't forget to check them out!"
+        >
+        <meta
+            name="twitter:image"
+            content="https://opengraph.b-cdn.net/production/images/12044105-dd81-4b92-a2f2-010f9961830b.png?token=zw8LmFbfH3LIIH4ARZXzlSmxTqVKmRXePPUc1dDsUVQ&height=604&width=1200&expires=33296792141"
+        >
+    </head>
+
+    <body>
+        <audio
+            src="/assets/media/audio/[uglyburger0] Friday Theme.mp3"
+            id="minimusic-audio"
+        ></audio>
+
+        <!--  ✦•··············• Loading Screen •··············•✦ -->
+        <pumo-loader></pumo-loader>
+        <!-- ✦•······················•✦•······················•✦ -->
+
+        <main class="content">
+            <img
+                class="adachiRei"
+                src="/assets/media/adachi-victory.gif"
+                alt="Adachi Rei Plushie Dancing"
+            >
+
+            <pumo-statusbar></pumo-statusbar>
+            <pumo-menu></pumo-menu>
+
+            <div class="desktop">
+                <nav class="desktop__nav">
+                    <article
+                        class="card"
+                        style="
+						position: static;
+						padding: 1em 0.2em;
+						height: 100%;
+						width: 100%;
+					"
+                    >
+                        <div class="card__content">
+                            <!-- Nav Icon -->
+                            <img
+                                style="pointer-events: none"
+                                src="/assets/icons/desktop/directory.png"
+                                alt="Directory Icon"
+                            >
+
+                            <a href="/pages/about.html" class="link">About</a>
+                            <img
+                                src="/assets/icons/down_arrow.svg"
+                                style="margin-block: 0.5rem"
+                                alt="Down Arrow Icon"
+                                width="25"
+                            >
+                            <ul
+                                class="list"
+                                style="margin-inline: 45px; --list-gap: 0.3em"
+                            >
+                                <li>
+                                    <a href="#about_me" class="link">
+                                        about me
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#interests" class="link">
+                                        interests
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#skills" class="link"> skills </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <pumo-minimusic> </pumo-minimusic>
+
+                    <article
+                        class="card"
+                        style="position: static; width: 15rem; margin-top: 0"
+                    >
+                        <div
+                            class="card__content"
+                            style="padding: 0; display: flex; align-items: center"
+                        >
+                            <div
+                                class="scroll-container"
+                                style="
+								text-align: left;
+								margin-left: 0.4rem;
+								height: 2.2rem;
+							"
+                            >
+                                <input
+                                    id="search"
+                                    type="text"
+                                    style="
+									height: 100%;
+									font-family: Tickerbit;
+									background: none;
+									color: light-dark(
+										var(--clr-secondary),
+										var(--clr-base)
+									);
+									width: 100%;
+								"
+                                    placeholder="Search..."
+                                >
+                            </div>
+                            <div
+                                class="music-btn"
+                                style="
+								border-right: none;
+								border-left: 2px solid var(--clr-base-content);
+								color: light-dark(
+									var(--clr-secondary),
+									var(--clr-base)
+								);
+							"
+                            >
+                                <svg
+                                    style="width: 1.2em"
+                                    fill="currentColor"
+                                    viewBox="0 0 400 400"
+                                    id="Search"
+                                    version="1.1"
+                                    xml:space="preserve"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    stroke="currentColor"
+                                >
+                                    <g id="SVGRepo_iconCarrier">
+                                        <g id="XMLID_14_">
+                                            <polygon
+                                                id="XMLID_15_"
+                                                points="160,26.7 186.7,26.7 213.3,26.7 213.3,0 186.7,0 160,0 133.3,0 106.7,0 106.7,26.7 133.3,26.7 "
+                                            ></polygon>
+                                            <polygon
+                                                id="XMLID_126_"
+                                                points="106.7,53.3 106.7,26.7 80,26.7 53.3,26.7 53.3,53.3 80,53.3 "
+                                            ></polygon>
+                                            <polygon
+                                                id="XMLID_127_"
+                                                points="240,53.3 266.7,53.3 266.7,26.7 240,26.7 213.3,26.7 213.3,53.3 "
+                                            ></polygon>
+                                            <polygon
+                                                id="XMLID_128_"
+                                                points="53.3,80 53.3,53.3 26.7,53.3 26.7,80 26.7,106.7 53.3,106.7 "
+                                            ></polygon>
+                                            <polygon
+                                                id="XMLID_130_"
+                                                points="266.7,106.7 293.3,106.7 293.3,80 293.3,53.3 266.7,53.3 266.7,80 "
+                                            ></polygon>
+                                            <rect
+                                                height="26.7"
+                                                id="XMLID_131_"
+                                                width="26.7"
+                                                x="80"
+                                                y="106.7"
+                                            ></rect>
+                                            <rect
+                                                height="26.7"
+                                                id="XMLID_132_"
+                                                width="26.7"
+                                                x="106.7"
+                                                y="80"
+                                            ></rect>
+                                            <polygon
+                                                id="XMLID_133_"
+                                                points="293.3,160 293.3,186.7 293.3,213.3 320,213.3 320,186.7 320,160 320,133.3 320,106.7 293.3,106.7 293.3,133.3 "
+                                            ></polygon>
+                                            <polygon
+                                                id="XMLID_134_"
+                                                points="26.7,160 26.7,133.3 26.7,106.7 0,106.7 0,133.3 0,160 0,186.7 0,213.3 26.7,213.3 26.7,186.7 "
+                                            ></polygon>
+                                            <polygon
+                                                id="XMLID_135_"
+                                                points="53.3,213.3 26.7,213.3 26.7,240 26.7,266.7 53.3,266.7 53.3,240 "
+                                            ></polygon>
+                                            <polygon
+                                                id="XMLID_136_"
+                                                points="293.3,240 293.3,213.3 266.7,213.3 266.7,240 266.7,266.7 293.3,266.7 "
+                                            ></polygon>
+                                            <polygon
+                                                id="XMLID_137_"
+                                                points="80,266.7 53.3,266.7 53.3,293.3 80,293.3 106.7,293.3 106.7,266.7 "
+                                            ></polygon>
+                                            <polygon
+                                                id="XMLID_138_"
+                                                points="213.3,266.7 213.3,293.3 240,293.3 266.7,293.3 266.7,266.7 240,266.7 "
+                                            ></polygon>
+                                            <polygon
+                                                id="XMLID_139_"
+                                                points="160,293.3 133.3,293.3 106.7,293.3 106.7,320 133.3,320 160,320 186.7,320 213.3,320 213.3,293.3 186.7,293.3 "
+                                            ></polygon>
+                                            <rect
+                                                height="26.7"
+                                                id="XMLID_140_"
+                                                width="26.7"
+                                                x="293.3"
+                                                y="293.3"
+                                            ></rect>
+                                            <rect
+                                                height="26.7"
+                                                id="XMLID_141_"
+                                                width="26.7"
+                                                x="320"
+                                                y="320"
+                                            ></rect>
+                                            <rect
+                                                height="26.7"
+                                                id="XMLID_142_"
+                                                width="26.7"
+                                                x="346.7"
+                                                y="346.7"
+                                            ></rect>
+                                            <rect
+                                                height="26.7"
+                                                id="XMLID_143_"
+                                                width="26.7"
+                                                x="373.3"
+                                                y="373.3"
+                                            ></rect>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                    </article>
+                </nav>
+
+                <div
+                    class="desktop__cards"
+                    style="height: clamp(max-content, 100vw, auto)"
+                >
+                    <article
+                        class="card"
+                        style="width: 50rem; height: 35rem; position: static"
+                    >
+                        <div class="card__titleBar" id="about_me">
+                            <img
+                                src="/assets/icons/minimize.svg"
+                                alt="Minimize Icon"
+                                width="16"
+                            >
+                            <img
+                                src="/assets/icons/restore_down.svg"
+                                alt="Restore Down Icon"
+                                height="12"
+                            >
+                            <img
+                                src="/assets/icons/close.svg"
+                                alt="Close Icon"
+                                width="16"
+                            >
+                        </div>
+
+                        <div class="card__content" style="margin-top: 1rem">
+                            <div style="text-align: left">
+                                <h2 style="font-size: 2.5rem">#ABOUT</h2>
+                            </div>
+
+                            <article
+                                class="card card--noshadow"
+                                style="
+								height: 85%;
+								width: auto;
+								margin: 2rem 0.5rem;
+							"
+                            >
+                                <div
+                                    class="card__content"
+                                    style="
+									display: flex;
+									gap: 1.5rem;
+									overflow: auto;
+									padding: 0;
+								"
+                                >
+                                    <section
+                                        style="
+										display: block;
+										padding-left: 1.5rem;
+										padding-block: 1.5rem;
+										padding-right: 1.7rem;
+										width: 25rem;
+										text-align: center;
+										border-right: 1px solid
+											oklch(
+												43.495% 0.00005 271.152 / 0.506
+											);
+										overflow-y: auto;
+										overflow-x: hidden;
+										height: 100%;
+										background: radial-gradient(
+											185% 125% at 50% 10%,
+											transparent 50%,
+											var(--clr-base-content) 100%
+										);
+										z-index: 0;
+										inset: 0;
+									"
+                                    >
+                                        <div
+                                            class="avatar avatar--status"
+                                            style="margin-bottom: 1rem"
+                                            data-status="🧡"
+                                        >
+                                            <div
+                                                style="
+												width: 7rem;
+												border-radius: 5em;
+												outline: 2px dashed
+													var(--clr-base-content);
+												outline-offset: 5px;
+												margin-top: 15px;
+											"
+                                            >
+                                                <img
+                                                    src="/assets/media/avatar_aboutme.jpg"
+                                                    style="
+													height: 300%;
+													width: 300%;
+													object-position: -12em -20px;
+												"
+                                                    alt="Avatar: About Page"
+                                                >
+                                            </div>
+                                        </div>
+
+                                        <h3
+                                            style="
+											font-family:
+												&quot;Tickerbit&quot;, monospace;
+											font-size: 1.3rem;
+											margin-bottom: 5px;
+										"
+                                        >
+                                            James Alvin Pendon
+                                        </h3>
+                                        <p
+                                            style="
+											color: light-dark(
+												oklch(
+													from var(--clr-secondary)
+														0.595 c h
+												),
+												oklch(
+													from var(--clr-base) l c h /
+														50%
+												)
+											);
+											font-style: italic;
+										"
+                                        >
+                                            <!-- <q class="animate--typewriter">[The Reader Looks at you with-</q> -->
+                                            <!-- <q class="animate--typewriter">[despair and anguish]</q> -->
+                                            <q
+                                                class="animate--typewriter"
+                                                style="--chars: 26; --delay: 0s"
+                                                >I want to reach...</q
+                                            >
+                                            <q
+                                                class="animate--typewriter"
+                                                style="
+												--chars: 26;
+												--delay: 2.2s;
+												margin-top: -10px;
+											"
+                                                >the epilogue of this life.</q
+                                            >
+                                        </p>
+
+                                        <!-- Badges/Pills -->
+                                        <div
+                                            style="
+											margin-top: 0.8rem;
+											text-align: center;
+										"
+                                        >
+                                            <div
+                                                class="pill pill--subtle pill--sm"
+                                                style="
+												--pill-color: oklch(
+													0.6467 0.148 257.82
+												);
+											"
+                                            >
+                                                <p>💤 Very lazy</p>
+                                            </div>
+
+                                            <div
+                                                class="pill pill--subtle pill--sm"
+                                                style="
+												--pill-color: oklch(
+													0.7868 0.1998 147.71
+												);
+											"
+                                            >
+                                                <p>🌲 Natured</p>
+                                            </div>
+
+                                            <div
+                                                class="pill pill--subtle pill--sm"
+                                                style="
+												--pill-color: oklch(0.7 0.1 90);
+												--pill-px: 0.5rem;
+											"
+                                            >
+                                                <p>🐴 Meisho Doto</p>
+                                            </div>
+
+                                            <div
+                                                class="pill pill--subtle pill--sm"
+                                                style="
+												--pill-color: oklch(
+													56.347% 0.24089 260.834
+												);
+												--pill-px: 0.5rem;
+											"
+                                            >
+                                                <p>✨ Constellation</p>
+                                            </div>
+                                        </div>
+
+                                        <p
+                                            style="
+											color: light-dark(
+												var(--clr-secondary),
+												oklch(
+													from var(--clr-base) l c h /
+														80%
+												)
+											);
+											margin-block: 0.8rem;
+										"
+                                        >
+                                            A Brother, a Developer, and a
+                                            Reader.
+                                        </p>
+
+                                        <div
+                                            id="description"
+                                            style="
+											color: light-dark(
+												var(--clr-secondary),
+												oklch(
+													from var(--clr-base) l c h /
+														80%
+												)
+											);
+										"
+                                        >
+                                            <!-- TODO: Music? -->
+                                            <!--   <div class="card card--noshadow" -->
+                                            <!--     style="border: 1px solid var(--clr-base); border-radius: 5px; background-color: oklch(from var(--clr-secondary) calc(l + 0.1) c h / 90%); position: static; margin: 0;"> -->
+                                            <!--     <div class="card__content" -->
+                                            <!--       style="text-align: left; display: flex; place-items: left; height: 100%; width: 100%; padding: 5px;"> -->
+                                            <!--       <div class="avatar"> -->
+                                            <!--         <div style=" -->
+                                            <!--   width: 4rem; -->
+                                            <!--   border-radius: 5px; -->
+                                            <!-- "> -->
+                                            <!--           <picture> -->
+                                            <!--             <source srcset="/assets/media/avatar.webp" type="image/webp" > -->
+                                            <!--             <source srcset="/assets/media/avatar.jpg" type="image/jpeg" > -->
+                                            <!--             <img src="/assets/media/avatar.jpg" style=" -->
+                                            <!--       width: 100%; -->
+                                            <!--       height: 100%; -->
+                                            <!--     " alt="An avatar for the dialog" > -->
+                                            <!--           </picture> -->
+                                            <!--         </div> -->
+                                            <!--       </div> -->
+                                            <!--       <div style="display: inline; margin-left: 10px;"> -->
+                                            <!---->
+                                            <!--         <h6 style="font-size: 1em; letter-spacing: 1px;">Your Gaze, Crepucular</h6> -->
+                                            <!--         <p>by Tatsuyaki Kitani</p> -->
+                                            <!--       </div> -->
+                                            <!--     </div> -->
+                                            <!--   </div> -->
+                                        </div>
+                                    </section>
+
+                                    <section
+                                        style="
+										display: block;
+										width: 100%;
+										height: 100%;
+										overflow: auto;
+										padding-right: 1rem;
+										padding-top: 1rem;
+									"
+                                    >
+                                        <div
+                                            class="card card--noshadow"
+                                            style="
+											position: static;
+											margin: 0;
+											border-width: 1px;
+											height: 6rem;
+											width: 100%;
+											/* Banner Image */
+											background-image: url(https://c.tenor.com/Hzi_aGFeNoAAAAAC/tenor.gif);
+											background-repeat: no-repeat;
+											background-size: cover;
+											box-shadow: 2px 2px 2px 0
+												var(--clr-base-content);
+											background-position-y: -5rem;
+										"
+                                        ></div>
+
+                                        <div style="display: flex; gap: 10px">
+                                            <article
+                                                class="card card--noshadow"
+                                                style="
+												position: static;
+												margin-top: 1rem;
+												margin-inline: 0;
+												padding-block: 0.52rem;
+												padding-inline: 1rem;
+												border-width: 1px;
+												box-shadow: 2px 2px 2px 0
+													light-dark(
+														var(--clr-secondary),
+														var(--clr-base)
+													);
+												border-color: light-dark(
+													var(--clr-secondary),
+													var(--clr-base)
+												);
+												/* background-color: light-dark(var(--clr-secondary), var(--clr-base)); */
+												background-color: light-dark(
+													oklch(
+														from
+															var(--clr-secondary)
+															l c h / 10%
+													),
+													oklch(
+														from var(--clr-base) l c
+															h / 10%
+													)
+												);
+												color: light-dark(
+													var(--clr-secondary),
+													var(--clr-base)
+												);
+											"
+                                            >
+                                                <div
+                                                    class="card__content"
+                                                    style="padding: 0"
+                                                >
+                                                    <h4
+                                                        style="
+														text-transform: uppercase;
+														border-bottom: 1px
+															dashed
+															light-dark(
+																var(
+																	--clr-secondary
+																),
+																var(--clr-base)
+															);
+														margin-bottom: 10px;
+													"
+                                                    >
+                                                        📝 Introduction
+                                                    </h4>
+                                                    <p
+                                                        style="
+														margin-inline: 5px;
+														text-wrap: pretty;
+														text-align: left;
+													"
+                                                    >
+                                                        Hello and welcome to my
+                                                        personal room! I made
+                                                        this website fully
+                                                        dedicated to the
+                                                        character that I really
+                                                        like--a vocal
+                                                        synthesizer,
+                                                        <a
+                                                            class="link"
+                                                            href="https://vocalsynth.fandom.com/wiki/Adachi_Rei"
+                                                            target="_blank"
+                                                            style="display: inline"
+                                                            >Adachi Rei</a
+                                                        >!
+                                                        <em
+                                                            >(This is actually
+                                                            our final project
+                                                            for our subject)</em
+                                                        >
+                                                        <br>
+                                                        My real name is
+                                                        <mark
+                                                            >James Alvin Pendon</mark
+                                                        >
+                                                        (I go by the name of
+                                                        <code>PumoReiichi</code>
+                                                        online)
+                                                        <br>
+                                                        I am currently a student
+                                                        in SHS, and an aspiring
+                                                        full stack developer. I
+                                                        can get pretty
+                                                        enthusiastic when it
+                                                        comes to web dev and new
+                                                        technology stuff 😅
+                                                        <br>
+                                                    </p>
+                                                    <h4
+                                                        style="
+														text-transform: uppercase;
+														border-bottom: 1px
+															dashed
+															light-dark(
+																var(
+																	--clr-secondary
+																),
+																var(--clr-base)
+															);
+														margin-bottom: 10px;
+													"
+                                                    >
+                                                        👤 Character
+                                                    </h4>
+                                                    <ul
+                                                        style="
+														list-style: circle;
+														margin-inline: 30px;
+														margin-block: 10px;
+													"
+                                                    >
+                                                        <li>
+                                                            October 1, 2008
+                                                            &nbsp;|&nbsp; 17 y/o
+                                                        </li>
+                                                        <li>ISFP-T</li>
+                                                        <li>
+                                                            <svg
+                                                                style="
+																width: 1.35em;
+																vertical-align: middle;
+															"
+                                                                viewBox="0 0 36 36"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                aria-hidden="true"
+                                                                role="img"
+                                                                class="iconify iconify--twemoji"
+                                                                preserveAspectRatio="xMidYMid meet"
+                                                                fill="#000000"
+                                                            >
+                                                                <g
+                                                                    id="SVGRepo_bgCarrier"
+                                                                    stroke-width="0"
+                                                                ></g>
+                                                                <g
+                                                                    id="SVGRepo_tracerCarrier"
+                                                                    stroke-linecap="round"
+                                                                    stroke-linejoin="round"
+                                                                ></g>
+                                                                <g
+                                                                    id="SVGRepo_iconCarrier"
+                                                                >
+                                                                    <path
+                                                                        fill="#CE1126"
+                                                                        d="M36 27a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V9a4 4 0 0 1 4-4h28a4 4 0 0 1 4 4v18z"
+                                                                    ></path>
+                                                                    <path
+                                                                        fill="#0038A8"
+                                                                        d="M32 5H4a4 4 0 0 0-4 4v9h36V9a4 4 0 0 0-4-4z"
+                                                                    ></path>
+                                                                    <path
+                                                                        fill="#EEE"
+                                                                        d="M1.313 29.945l17.718-11.881L1.33 6.041A3.975 3.975 0 0 0 0 9v18c0 1.171.512 2.214 1.313 2.945z"
+                                                                    ></path>
+                                                                    <path
+                                                                        fill="#FCD116"
+                                                                        d="M16.07 16.52l.043 1.153l1.115.294l-1.083.396l.065 1.152l-.712-.908l-1.075.417l.643-.957l-.73-.893l1.11.316zM1.603 7.982l.866.763l.98-.607l-.458 1.059l.88.745l-1.148-.108l-.437 1.066l-.251-1.125l-1.151-.086l.993-.586zm.431 17.213l.574 1l1.124-.257l-.774.854l.594.989l-1.052-.472l-.757.871l.123-1.148l-1.061-.45l1.128-.238zM10 18a3 3 0 1 1-6 0a3 3 0 0 1 6 0z"
+                                                                    ></path>
+                                                                    <path
+                                                                        d="M7.595 12.597l-.157 2.648l-.244-.036l.085-3.074L7 11.953l-.279.182l.085 3.074l-.244.036l-.157-2.648l-.353.218l.329 2.697h1.238l.329-2.697zm-1.19 10.806l.157-2.648l.244.036l-.086 3.074l.28.182l.279-.182l-.085-3.074l.244-.036l.157 2.648l.353-.218l-.329-2.698H6.381l-.329 2.698zm-3.647-2.004l1.985-1.759l.146.196l-2.233 2.113l.068.327l.327.069l2.113-2.235l.197.147L3.6 22.242l.404.094l1.675-2.139l-.438-.438l-.438-.438l-2.139 1.675zm8.484-6.799l-1.985 1.761l-.146-.197l2.233-2.113l-.068-.327l-.327-.069l-2.113 2.234l-.197-.146l1.761-1.985l-.404-.094l-1.675 2.139l.438.438l.438.438l2.139-1.675zm-9.645 2.805l2.649.157l-.037.244l-3.074-.086l-.182.28l.182.279l3.074-.085l.037.244l-2.649.157l.218.353l2.697-.329V17.38l-2.697-.328zm10.806 1.19l-2.649-.157l.037-.244l3.074.085l.182-.279l-.182-.28l-3.074.086l-.037-.244l2.649-.157l-.218-.353l-2.698.328v1.239l2.698.329zM3.6 13.758l1.761 1.985l-.197.146l-2.113-2.234l-.327.069l-.068.327l2.233 2.113l-.146.197L2.758 14.6l-.094.404l2.139 1.675l.438-.438l.438-.438l-1.675-2.139zm6.8 8.484l-1.761-1.985l.197-.147l2.113 2.235l.327-.069l.068-.327l-2.233-2.113l.146-.196l1.985 1.759l.094-.403l-2.139-1.675l-.438.438l-.438.438l1.675 2.139z"
+                                                                        fill="#FCD116"
+                                                                    ></path>
+                                                                </g>
+                                                            </svg>
+                                                        </li>
+                                                        <li>
+                                                            Vocaloid/SynthV/Utauloid
+                                                            Listener
+                                                        </li>
+                                                        <li>
+                                                            Likes watching anime
+                                                        </li>
+                                                        <li>
+                                                            Reads a lot of
+                                                            <code
+                                                                >/romance(straight,yuri)/action/cute/</code
+                                                            >
+                                                            mangas
+                                                        </li>
+                                                    </ul>
+                                                    <p
+                                                        style="
+														margin-inline: 5px;
+														text-wrap: pretty;
+														text-align: left;
+													"
+                                                    ></p>
+                                                </div>
+                                            </article>
+                                        </div>
+                                    </section>
+                                </div>
+                            </article>
+                        </div>
+                    </article>
+
+                    <article
+                        class="card"
+                        style="width: 50rem; height: 35rem; position: static"
+                    >
+                        <div class="card__titleBar" id="interests">
+                            <img
+                                src="/assets/icons/minimize.svg"
+                                alt="Minimize Icon"
+                                width="16"
+                            >
+                            <img
+                                src="/assets/icons/restore_down.svg"
+                                alt="Restore Down Icon"
+                                height="12"
+                            >
+                            <img
+                                src="/assets/icons/close.svg"
+                                alt="Close Icon"
+                                width="16"
+                            >
+                        </div>
+
+                        <div class="card__content" style="margin-top: 1rem">
+                            <h2>#INTERESTS</h2>
+                            <div style="overflow: auto; height: 90%">
+                                <section
+                                    class="row-1"
+                                    style="
+									display: flex;
+									gap: 1.5rem;
+									height: max-content;
+									padding: 1em;
+									overflow: auto;
+								"
+                                >
+                                    <div
+                                        class="col"
+                                        style="
+										display: flex;
+										gap: 1em;
+										flex-direction: column;
+									"
+                                    >
+                                        <article
+                                            class="card"
+                                            style="
+											box-shadow: 2px 2px 2px 0
+												var(--clr-base-content);
+											border: 1px solid
+												var(--clr-base-content);
+											position: static;
+											margin: 0;
+											padding: 1rem;
+											height: min-content;
+											width: 20rem;
+										"
+                                        >
+                                            <div
+                                                class="card__content"
+                                                style="padding: 0"
+                                            >
+                                                <h3>ANIME & MANGA:</h3>
+                                                <h4
+                                                    style="
+													font-style: italic;
+													margin-top: 1rem;
+													font-size: 0.85rem;
+													line-height: 15px;
+												"
+                                                >
+                                                    SERIES
+                                                </h4>
+                                                <ul
+                                                    class="list"
+                                                    style="
+													--list-style: url(&quot;/assets/icons/heart.svg&quot;);
+													--list-size: 1.3em;
+													--list-gap: 0.5em;
+													margin-top: 5px;
+												"
+                                                >
+                                                    <li>Solo Leveling</li>
+                                                    <li>Lord of Mysteries</li>
+                                                    <li>
+                                                        Umamusume: Pretty Derby
+                                                    </li>
+                                                    <li>
+                                                        Toilet Bound Hanako-kun
+                                                    </li>
+                                                    <li>
+                                                        The Greatest Estate
+                                                        Developer
+                                                    </li>
+                                                    <li>
+                                                        Kubo-chan won't let me
+                                                        be invisible
+                                                    </li>
+                                                    <li>
+                                                        The Fragrant Flower
+                                                        Blooms with Dignity
+                                                    </li>
+                                                    <li>
+                                                        The Fairytale-like You
+                                                        Goes on the Assault
+                                                    </li>
+                                                </ul>
+
+                                                <p style="margin-left: 1.5em">
+                                                    <em>and more...</em>
+                                                </p>
+
+                                                <h4
+                                                    style="
+													font-style: italic;
+													margin-top: 1rem;
+													font-size: 0.85rem;
+													line-height: 15px;
+												"
+                                                >
+                                                    MOVIES
+                                                </h4>
+                                                <ul
+                                                    class="list"
+                                                    style="
+													--list-style: url(&quot;/assets/icons/heart.svg&quot;);
+													--list-size: 1.3em;
+													--list-gap: 0.5em;
+													margin-top: 5px;
+												"
+                                                >
+                                                    <li>A Silent Voice</li>
+                                                    <li>
+                                                        The Tunnel to Summer,
+                                                        the Exit of Goodbyes
+                                                    </li>
+                                                    <li>
+                                                        Umamusume: Pretty Derby
+                                                        - The Beginning of a New
+                                                        Era
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </article>
+
+                                        <div
+                                            class="card"
+                                            style="
+											box-shadow: 2px 2px 2px 0
+												var(--clr-base-content);
+											border: 1px solid
+												var(--clr-base-content);
+											position: static;
+											margin: 0;
+											padding: 1rem;
+											width: 20rem;
+											height: max-content;
+										"
+                                        >
+                                            <div
+                                                class="card__content"
+                                                style="padding: 0"
+                                            >
+                                                <h3>HOBBIES:</h3>
+                                                <ul
+                                                    class="list"
+                                                    style="
+													--list-style: url(&quot;/assets/icons/rainbow.svg&quot;);
+													--list-size: 1.5em;
+													--list-gap: 0.5em;
+													margin-top: 5px;
+												"
+                                                >
+                                                    <li>Doodles</li>
+                                                    <li>Web dev</li>
+                                                    <li>Graphic Designing</li>
+                                                    <li>
+                                                        Reading manga/comics
+                                                    </li>
+                                                    <li>
+                                                        Exploring random amazing
+                                                        stuff
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="card"
+                                            style="
+											box-shadow: 2px 2px 2px 0
+												var(--clr-base-content);
+											border: 1px solid
+												var(--clr-base-content);
+											position: static;
+											margin: 0;
+											padding: 1rem;
+											height: max-content;
+											width: 20rem;
+										"
+                                        >
+                                            <div
+                                                class="card__content"
+                                                style="padding: 0"
+                                            >
+                                                <h3>VIDEO GAMES:</h3>
+                                                <h4
+                                                    style="
+													font-style: italic;
+													margin-top: 1rem;
+													font-size: 0.85rem;
+													line-height: 15px;
+												"
+                                                >
+                                                    GACHA
+                                                </h4>
+                                                <ul
+                                                    class="list"
+                                                    style="
+													--list-style: url(&quot;/assets/icons/star-02.svg&quot;);
+													--list-size: 1.2em;
+													--list-gap: 0.5em;
+													margin-top: 5px;
+												"
+                                                >
+                                                    <li>Wuthering Waves</li>
+                                                    <li>
+                                                        Umamusume: Pretty Derby
+                                                    </li>
+                                                </ul>
+
+                                                <h4
+                                                    style="
+													font-style: italic;
+													margin-top: 1rem;
+													font-size: 0.85rem;
+													line-height: 15px;
+												"
+                                                >
+                                                    RHYTHM
+                                                </h4>
+                                                <ul
+                                                    class="list"
+                                                    style="
+													--list-style: url(&quot;/assets/icons/star-02.svg&quot;);
+													--list-size: 1.2em;
+													--list-gap: 0.5em;
+													margin-top: 5px;
+												"
+                                                >
+                                                    <li>Malody</li>
+                                                    <li>Osu! Mania</li>
+                                                    <li>
+                                                        Hatsune Miku: Project
+                                                        Sekai
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        class="col"
+                                        style="
+										display: flex;
+										gap: 1em;
+										flex-direction: column;
+									"
+                                    >
+                                        <div
+                                            class="card"
+                                            style="
+											box-shadow: 2px 2px 2px 0
+												var(--clr-base-content);
+											border: 1px solid
+												var(--clr-base-content);
+											position: static;
+											margin: 0;
+											padding: 1rem;
+											width: 18rem;
+											height: auto;
+										"
+                                        >
+                                            <div
+                                                class="card__content"
+                                                style="padding: 0"
+                                            >
+                                                <h3>MUSIC:</h3>
+                                                <h4
+                                                    style="
+													font-style: italic;
+													margin-top: 1rem;
+													font-size: 0.85rem;
+													line-height: 15px;
+												"
+                                                >
+                                                    ENGLISH
+                                                </h4>
+                                                <ul
+                                                    class="list"
+                                                    style="
+													--list-style: url(&quot;/assets/icons/music_note.svg&quot;);
+													--list-size: 1.3em;
+													--list-gap: 0.2em;
+													margin-top: 5px;
+												"
+                                                >
+                                                    <li>Love.</li>
+                                                    <li>Machine Love</li>
+                                                    <li>Paper Bouquet</li>
+                                                    <li>Color Your Night</li>
+                                                    <li>Line Without A Hook</li>
+                                                    <li>
+                                                        Strawberry Champagne
+                                                    </li>
+                                                    <li>
+                                                        Through Patches of
+                                                        Violet
+                                                    </li>
+                                                    <li>
+                                                        This is what falling in
+                                                        love feels like.
+                                                    </li>
+                                                </ul>
+                                                <!-- ======== -->
+                                                <h4
+                                                    style="
+													font-style: italic;
+													margin-top: 1rem;
+													font-size: 0.85rem;
+													line-height: 15px;
+												"
+                                                >
+                                                    TAGALOG
+                                                </h4>
+                                                <ul
+                                                    class="list"
+                                                    style="
+													--list-style: url(&quot;/assets/icons/music_note.svg&quot;);
+													--list-size: 1.3em;
+													--list-gap: 0.2em;
+													margin-top: 5px;
+												"
+                                                >
+                                                    <li>Bitin</li>
+                                                    <li>Saan?</li>
+                                                    <li>Multo</li>
+                                                    <li>Piyesa</li>
+                                                    <li>Naiilang</li>
+                                                    <li>Di na Muli</li>
+                                                </ul>
+                                                <!-- ================ -->
+                                                <h4
+                                                    style="
+													font-style: italic;
+													margin-top: 1rem;
+													font-size: 0.85rem;
+													line-height: 15px;
+												"
+                                                >
+                                                    JAPANESE
+                                                </h4>
+                                                <ul
+                                                    class="list"
+                                                    style="
+													--list-style: url(&quot;/assets/icons/music_note.svg&quot;);
+													--list-size: 1.3em;
+													--list-gap: 0.2em;
+													margin-top: 5px;
+												"
+                                                >
+                                                    <li>Palette (パレット)</li>
+                                                    <li>
+                                                        Sukidakara
+                                                        (好きだから。)
+                                                    </li>
+                                                    <li>
+                                                        Umapyoi Densetsu
+                                                        (うまぴょい伝説)
+                                                    </li>
+                                                    <li>
+                                                        A Night to Sing with You
+                                                        (夜の歯車)
+                                                    </li>
+                                                </ul>
+                                                <!-- ================ -->
+                                                <h4
+                                                    style="
+													font-style: italic;
+													margin-top: 1rem;
+													font-size: 0.85rem;
+													line-height: 15px;
+												"
+                                                >
+                                                    GAMES
+                                                </h4>
+                                                <ul
+                                                    class="list"
+                                                    style="
+													--list-style: url(&quot;/assets/icons/music_note.svg&quot;);
+													--list-size: 1.3em;
+													--list-gap: 0.2em;
+													margin-top: 5px;
+												"
+                                                >
+                                                    <li>Undefeatable</li>
+                                                    <li>The Ancients</li>
+                                                    <li>Megalovania</li>
+                                                    <li>Burnout</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            class="card"
+                                            style="
+											box-shadow: 2px 2px 2px 0
+												var(--clr-base-content);
+											border: 1px solid
+												var(--clr-base-content);
+											position: static;
+											margin: 0;
+											padding: 1rem;
+											width: 18rem;
+											height: auto;
+										"
+                                        >
+                                            <div
+                                                class="card__content"
+                                                style="padding: 0"
+                                            >
+                                                <h3>MOVIES:</h3>
+                                                <ul
+                                                    class="list"
+                                                    style="
+													--list-style: url(&quot;/assets/icons/cog.svg&quot;);
+													--list-size: 1.3em;
+													--list-gap: 0.2em;
+													margin-top: 5px;
+												"
+                                                >
+                                                    <li>Sweet Home</li>
+                                                    <li>Squid Game</li>
+                                                    <li>Hacksaw Ridge</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article
+                        id="skills"
+                        class="card"
+                        style="width: 50rem; height: auto; position: static"
+                    >
+                        <div class="card__titleBar">
+                            <img
+                                src="/assets/icons/minimize.svg"
+                                alt="Minimize Icon"
+                                width="16"
+                            >
+                            <img
+                                src="/assets/icons/restore_down.svg"
+                                alt="Restore Down Icon"
+                                height="12"
+                            >
+                            <img
+                                src="/assets/icons/close.svg"
+                                alt="Close Icon"
+                                width="16"
+                            >
+                        </div>
+
+                        <div class="card__content" style="margin-top: 1rem">
+                            <h2>#SKILLS</h2>
+
+                            <div style="height: 90%; overflow: auto">
+                                <div
+                                    style="
+									padding: 1em;
+									display: flex;
+									flex-direction: column;
+									gap: 1.2rem;
+									height: max-content;
+									overflow: auto;
+								"
+                                >
+                                    <article
+                                        class="card"
+                                        style="
+										box-shadow: 2px 2px 2px 0
+											var(--clr-base-content);
+										border: 1px solid
+											var(--clr-base-content);
+										position: static;
+										margin: 0;
+										padding: 1rem;
+										width: 100%;
+										height: max-content;
+									"
+                                    >
+                                        <div
+                                            class="card__content"
+                                            style="padding: 0"
+                                        >
+                                            <h3>PROGRESS:</h3>
+                                            <ul
+                                                class="list"
+                                                style="
+												--list-style: url(&quot;/assets/icons/wrench.svg&quot;);
+												--list-size: 1.3em;
+												--list-gap: 0.5em;
+												margin-top: 5px;
+												letter-spacing: 1px;
+											"
+                                            >
+                                                <li>
+                                                    <span
+                                                        >Computer Literacy</span
+                                                    >
+                                                    <progress
+                                                        style="margin-left: 50px"
+                                                        max="100"
+                                                        value="80"
+                                                    ></progress>
+                                                </li>
+                                                <li>
+                                                    <span
+                                                        >Graphic Designing</span
+                                                    >
+                                                    <progress
+                                                        style="margin-left: 53px"
+                                                        max="100"
+                                                        value="65"
+                                                    ></progress>
+                                                </li>
+                                                <li>
+                                                    <span>Video Editing</span>
+                                                    <progress
+                                                        style="margin-left: 88px"
+                                                        max="100"
+                                                        value="37"
+                                                    ></progress>
+                                                </li>
+                                                <li>
+                                                    <span>Culinary</span>
+                                                    <progress
+                                                        style="margin-left: 126px"
+                                                        max="100"
+                                                        value="5"
+                                                    ></progress>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

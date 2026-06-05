@@ -1,0 +1,236 @@
+---
+// ﹒⭒﹒⭒﹒⭒﹒ Assets ﹒⭒﹒⭒﹒⭒﹒ //
+import MicroblogIcon from '🧡/assets/icons/desktop/notepad.png'
+//
+// ﹒⭒﹒⭒﹒⭒﹒ Components ﹒⭒﹒⭒﹒⭒﹒ //
+import DesktopNav from '🧡/components/Desktop/Nav.astro'
+import PageHead from '🧡/components/PageHead.astro'
+import RenderMicroblog from '🧡/components/RenderMicroblog.astro'
+import Card from '🧡/components/UI/Card.astro'
+import Breadcrumbs from '🧡/components/UI/Breadcrumbs.astro'
+import Avatar from '🧡/components/UI/Avatar.astro'
+
+// ﹒⭒﹒⭒﹒⭒﹒ Layouts ﹒⭒﹒⭒﹒⭒﹒ //
+import Desktop from '🧡/layouts/Desktop.astro'
+
+import { Icon } from 'astro-iconset/components'
+import { getAllMicroblogs, getPinnedMicroblog } from '🧡/lib/data-utils.ts'
+
+const microblogs = await getAllMicroblogs()
+const pinnedMicroblog = await getPinnedMicroblog()
+
+const posts = microblogs.filter(post => !post.data.pinned)
+---
+
+<Desktop>
+	<PageHead slot="head" title="Microblogs" />
+	<DesktopNav icon={MicroblogIcon} to="microblog" slot="nav">
+		<Breadcrumbs items={[{ label: "Microblog", icon: "microblog/breadcrumbs/pixelated-note" }]} />
+		<!-- TODO: Filtering options for microblogs -->
+		<!-- <fragment slot="links">
+			<span class="nav-divider">Filter</span>
+			<ul class="nav-list">
+				<li>
+					<button
+						command="toggle-popover"
+						commandfor="filter-menu"
+						class="btn"
+						style="anchor-name: --filter; justify-content: space-evenly;"
+					>
+						<svg
+							style="width: 1.10em;"
+							viewBox="0 0 24 24"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M21 6h-2m2 6h-5m5 6h-5m-9 2v-6.44q0-.28-.02-.41l-.09-.25c-.05-.1-.11-.18-.24-.34l-3.3-4.12q-.19-.22-.24-.34l-.09-.25C3 7.75 3 7.65 3 7.44V5.6c0-.56 0-.84.1-1.05a1 1 0 0 1 .45-.44C3.76 4 4.04 4 4.6 4h8.8c.56 0 .84 0 1.05.1a1 1 0 0 1 .44.45c.11.21.11.49.11 1.05v1.84c0 .2 0 .31-.02.41l-.09.25c-.05.1-.11.18-.24.34l-3.3 4.12q-.19.22-.24.34l-.09.25c-.02.1-.02.2-.02.41V17z"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linejoin="round"
+							/>
+						</svg>
+						Filter posts
+					</button>
+					<div
+						popover
+						class="c-menu"
+						id="filter-menu"
+						style="position-anchor: --filter;"
+					>
+						<label class="option filter-options">
+							<input type="radio" name="filter">
+
+							<div class="u-group--flex">
+								<span id="checkbox_card-value">By Date</span>
+							</div>
+						</label>
+						<label class="option filter-options">
+							<input type="radio" name="filter">
+
+							<div class="u-group--flex">
+								<span id="checkbox_card-value"
+									>By Alphabet</span
+								>
+							</div>
+						</label>
+					</div>
+				</li>
+			</ul>
+		</fragment> -->
+	</DesktopNav>
+
+	<article
+		class="box"
+		style="height: 18.95rem; box-shadow: none; padding: 0; margin-bottom: 2.5rem;"
+	>
+		<div
+			style="
+                   		display: grid;
+                   		grid-template-rows: 100%;
+                   		grid-template-areas: 'stack';
+                     	background-image: linear-gradient(
+                       	to bottom,
+                       	var(--clr-secondary) 50%,
+                       	oklch(from var(--clr-secondary) calc(l - 0.17) c h)
+                     	);
+                      height: 100%;
+                 	"
+		>
+			<div
+				style="
+                     		grid-area: stack;
+                   		"
+			>
+				<img
+					style="object-fit: cover; opacity: 20%; block-size: 100%; inline-size: 100%;"
+					src="https://c.tenor.com/WIVSqDS1iW4AAAAC/tenor.gif"
+					alt="Two anime horse girls dancing happily and cutely"
+				>
+			</div>
+			<div
+				style="
+                     		padding-inline: 30px;
+                     		padding-block: 20px;
+                     		grid-area: stack;
+                     		z-index: 1;
+                     		place-items: start;
+                   		"
+			>
+				<div style="margin-bottom: 1.2rem">
+					<Avatar
+						email="kumukuro@gmail.com"
+						alt="Adachi Rei looking at the camera"
+						imgStyles="outline: 1px solid var(--clr-base-content); outline-offset: 2px;"
+						style="width: clamp(6.55rem, 3.5vw, 7rem);"
+					/>
+				</div>
+				<h4
+					style="line-height: 0; color: transparent; margin-bottom: 0; font-family: var(--font-raster-forge);"
+				>
+					<span>PumoChii</span>
+				</h4>
+				<img
+					style="display: inline-block; vertical-align: middle; width: 1.5rem; height: auto;"
+					src="/static/star.gif"
+					alt="Spinning star from mario"
+				>
+				<a
+					class="link"
+					target="_blank"
+					style="text-decoration: none; font-size: var(--text-lg); margin-bottom: 10px;"
+					href="#"
+				>
+					@the_notsillypnk
+				</a>
+				<p
+					style="font-size: var(--text-sm); color: var(--clr-primary);"
+				>
+					An individual who shares their useless and pointless stuff
+					in the internet
+				</p>
+			</div>
+		</div>
+	</article>
+
+	{pinnedMicroblog && (
+		<Card
+			contentStyles="padding-inline: 1.5rem; padding-block: 1rem;"
+		>
+			<RenderMicroblog entry={pinnedMicroblog}>
+		  	<div slot="pinned">
+				   {pinnedMicroblog.data.pinned && (
+				    <div
+				        class="u-group--flex"
+				        style="color: gray; font-size: var(--text-base); gap: 0.83em; margin-bottom: 0.65rem;"
+				    >
+				        <Icon name="microblog/pin" style="width: var(--size-md);" />
+				        <span>Pinned</span>
+				    </div>
+					)}
+			  </div>
+
+				  <fragment set:html={pinnedMicroblog.rendered?.html} />
+	        </RenderMicroblog>
+		</Card>
+	)}
+
+	<!-- Microblogs -->
+	{posts.map((microblog) => (
+		<Card
+			contentStyles="padding-inline: 1.5rem; padding-block: 1rem;"
+		>
+	        <RenderMicroblog entry={microblog}>
+				<fragment set:html={microblog.rendered?.html} />
+	        </RenderMicroblog>
+		</Card>
+      )
+    )}
+</Desktop>
+
+<style>
+	.m-post-link {
+		position: absolute;
+		inset: 0;
+		text-decoration: none;
+		color: unset;
+		z-index: 1;
+		width: 100%;
+		height: 100%;
+		transition: all 0.3s ease-in-out;
+		opacity: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: var(--text-lg);
+		backdrop-filter: blur(10px);
+
+		&:hover {
+			opacity: 1;
+			font-size: calc(var(--text-lg) + 0.25em);
+		}
+	}
+</style>
+
+<!-- <style>
+	.filter-options {
+		display: grid;
+		grid-template-areas: "stack";
+
+		& > input[type="radio"] {
+			grid-area: stack;
+			width: 100%;
+			appearance: none;
+			visibility: hidden;
+		}
+
+		&:has(> input[type="radio"]:checked) {
+			outline: 1.5px dashed var(--clr-base-content);
+			outline-offset: -2px;
+		}
+
+		div {
+			grid-area: stack;
+		}
+	}
+</style> -->

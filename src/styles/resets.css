@@ -1,0 +1,17 @@
+@layer resets {
+	*,
+	*::before,
+	*::after {
+		padding: 0;
+		box-sizing: border-box;
+		margin: 0;
+		cursor: none;
+		scroll-behavior: smooth;
+	}
+
+	*:hover,
+	*:active,
+	*:focus {
+		cursor: none;
+	}
+}

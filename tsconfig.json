@@ -1,5 +1,28 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"]
+  "exclude": ["dist"],
+  "compilerOptions": {
+    "types": ["astro/client"],
+    "target": "esnext",
+    "module": "esnext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "strict": true,
+    "noErrorTruncation": true,
+    "useDefineForClassFields": true,
+    "verbatimModuleSyntax": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "🧡/consts": ["src/consts.ts"],
+      "🧡/components/*": ["src/components/*"],
+      "🧡/layouts/*": ["src/layouts/*"],
+      "🧡/styles/*": ["src/styles/*"],
+      "🧡/assets/*": ["src/assets/*"],
+      "🧡/lib/*": ["src/lib/*"],
+      "🧡/content/*": ["src/content/*"],
+    },
+    "jsx": "preserve",
+  },
 }
