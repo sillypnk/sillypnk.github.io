@@ -1,5 +1,4 @@
 import icon from 'astro-iconset'
-import playformCompress from '@playform/compress'
 
 import { defineConfig, fontProviders } from 'astro/config'
 import expressiveCode from 'astro-expressive-code'
@@ -24,7 +23,6 @@ export default defineConfig({
 		mdx(),
 		sitemap(),
 		icon({ iconDir: 'src/assets/icons' }),
-		playformCompress(),
 	],
 	server: {
 		host: true,
