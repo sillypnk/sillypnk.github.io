@@ -25,7 +25,9 @@ const posts = microblogs.filter(post => !post.data.pinned)
 <Desktop>
 	<PageHead slot="head" title="Microblogs" />
 	<DesktopNav icon={MicroblogIcon} to="microblog" slot="nav">
-		<Breadcrumbs items={[{ label: "Microblog", icon: "microblog/breadcrumbs/pixelated-note" }]} />
+		<Breadcrumbs
+			items={[{ label: "Microblog", icon: "microblog/breadcrumbs/pixelated-note" }]}
+		/>
 		<!-- TODO: Filtering options for microblogs -->
 		<!-- <fragment slot="links">
 			<span class="nav-divider">Filter</span>
@@ -126,7 +128,7 @@ const posts = microblogs.filter(post => !post.data.pinned)
 					/>
 				</div>
 				<h4
-					style="line-height: 0; color: transparent; margin-bottom: 0; font-family: var(--font-raster-forge);"
+					style="line-height: 0; color: transparent; margin-bottom: 0; font-family: var(--font-raster-forge); letter-spacing: 2px;"
 				>
 					<span>PumoChii</span>
 				</h4>
@@ -144,10 +146,10 @@ const posts = microblogs.filter(post => !post.data.pinned)
 					@the_notsillypnk
 				</a>
 				<p
-					style="font-size: var(--text-sm); color: var(--clr-primary);"
+					style="font-size: var(--text-base); color: var(--clr-primary);"
 				>
-					An individual who shares their useless and pointless stuff
-					in the internet
+					The posts of doom and random ramblings that aren't
+					significant to be put in a blog.
 				</p>
 			</div>
 		</div>

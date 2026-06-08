@@ -31,13 +31,22 @@
 	}
 }
 
-@keyframes appear-from-bottom {
+@keyframes hide-from-bottom {
 	from {
-		transform: translateY(50%);
+		opacity: 1;
+		transform: translateY(0);
 	}
 
 	to {
+		opacity: 0;
+		transform: translateY(10%);
+	}
+}
+
+@keyframes appear-from-bottom {
+	to {
 		transform: translateY(0);
+		opacity: 1;
 	}
 }
 
@@ -87,11 +96,17 @@
 
 @keyframes bg-scroll {
 	from {
-		background-position: 0 0;
+		background-position:
+			0 0,
+			0 0,
+			0 0;
 	}
 
 	to {
-		background-position: -100% 100%;
+		background-position:
+			-100% 100%,
+			-10% 10%,
+			-15% 5%;
 	}
 }
 

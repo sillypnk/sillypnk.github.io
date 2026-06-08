@@ -10,7 +10,6 @@ import YTMusicPresence from '🧡/components/bento/YTMusicPresence.svelte'
 // ﹒⭒﹒⭒﹒⭒﹒ Layouts ﹒⭒﹒⭒﹒⭒﹒ //
 import Desktop from '🧡/layouts/Desktop.astro'
 
-import { Picture } from 'astro:assets'
 import { Icon } from 'astro-iconset/components'
 
 import { getRecentMicroblog } from '🧡/lib/data-utils.ts'
@@ -191,7 +190,7 @@ const recentMicroblog = await getRecentMicroblog()
 			<!-- </div> -->
 		</Card>
 
-		<Card contentStyles="padding: 1.5rem;" header="Recent Microblog">
+		<Card contentStyles="padding: 1.5rem;" header="Latest Microblog">
 			<Icon name="hash" slot="header_icon" />
 
 			<RenderMicroblog entry={recentMicroblog}>
@@ -228,10 +227,13 @@ const recentMicroblog = await getRecentMicroblog()
 			></div>
 		</article>
 
-		<Card contentStyles="padding: 0; position: relative;" header="Music">
+		<Card
+			contentStyles="padding: 0; position: relative;"
+			header="Last Played"
+		>
 			<Icon name="music" slot="header_icon" />
 
-			<YTMusicPresence client:load>
+			<YTMusicPresence client:only="svelte">
 				<!-- NOTE: This is just for an icon where the album art is unavailable -->
 				<Icon name="music_note" style="width: 35%; height: auto;" />
 
@@ -251,7 +253,7 @@ const recentMicroblog = await getRecentMicroblog()
 			</YTMusicPresence>
 		</Card>
 
-		<Card header="Update Log" contentStyles="padding: 1.5rem;">
+		<Card header="Updates" contentStyles="padding: 1.5rem;">
 			<Icon name="update_log" slot="header_icon" />
 			<article class="prose">
 				<UpdateLogsContent />
@@ -559,15 +561,15 @@ const recentMicroblog = await getRecentMicroblog()
 			grid-template-columns: 1fr;
 			/*grid-template-rows: repeat(2, 1fr) 4rem 1fr 10rem 1fr;*/
 			/*grid-template-rows: repeat(6, auto);*/
-			grid-template-rows: 1fr 18rem auto auto 5rem 18rem auto;
+			grid-template-rows: repeat(2, 18rem) auto auto 5rem 18rem 5rem;
 			grid-template-areas:
 				"a"
 				"b"
 				"c"
 				"e"
-				"d"
+				"g"
 				"f"
-				"g";
+				"d";
 		}
 	}
 
@@ -745,7 +747,3 @@ const recentMicroblog = await getRecentMicroblog()
         margin-right: 0.5rem;
     }
 </style> -->
-
-<!-- <script src="../lib/misc/week.ts"></script> -->
-<!-- <script src="../lib/misc/muuri.ts"></script> -->
-<!-- <script src="../lib/mini-music.js"></script> -->

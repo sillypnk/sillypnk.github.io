@@ -1,7 +1,10 @@
 ---
 import umamusumeSFX from '🧡/assets/media/audio/sfx/umamusume_sfx_02.mp3'
-// import Avatar from '../../assets/media/avatar.png'
+
 import Avatar from '🧡/components/UI/Avatar.astro'
+import Link from '🧡/components/Link.astro'
+
+import { Icon } from 'astro-iconset/components'
 
 import { APPS } from '🧡/consts'
 ---
@@ -39,26 +42,66 @@ import { APPS } from '🧡/consts'
 					style="grid-area: avatar; width: min(8rem, 30vw);"
 					size={70}
 				/>
-
-				<!-- <div class="avatar" style="grid-area: avatar">
-					<div
-						style="
-                            width: min(8rem, 30vw);
-                            border-radius: 50em;
-                            outline: 1px solid var(--clr-base-content);
-                            outline-offset: 2px;
-                        "
+				<div
+					class="u-group--flex items--x-centered"
+					style="flex-direction: column; gap: 1px; margin-bottom: 0.85em;"
+				>
+					<h4
+						class="name"
+						style="grid-area: name;"
+						style="line-height: 0; margin: 0;"
 					>
-						<Picture
-							src={Avatar}
-							formats={["webp"]}
-							alt="Avatar"
-							priority
-						/>
-					</div>
-				</div> -->
-				<h6 class="name" style="grid-area: name;">PumoReiichi</h6>
-				<p
+						PumoChii
+					</h4>
+
+					<span class="u-text-sub" style="font-weigth: light;"
+						>@the_notsillypnk</span
+					>
+				</div>
+				<div
+					style="display: grid; grid-template-columns: repeat(auto-fill, minmax(2.75rem, 1fr)); gap: 0.25em; text-align: left;"
+				>
+					<Link
+						class="btn"
+						style="margin: 0;"
+						href="https://github.com/sillypnk/"
+						external
+						noUnderline
+					>
+						<Icon style="width: 2.5em;" name="socials/github" />
+					</Link>
+
+					<Link
+						class="btn"
+						style="margin: 0;"
+						href="https://www.tiktok.com/@reishichii?_r=1&_t=ZS-96yhJ0EgOSO"
+						external
+						noUnderline
+					>
+						<Icon style="width: 2.5em;" name="socials/tiktok" />
+					</Link>
+
+					<Link
+						class="btn"
+						style="margin: 0;"
+						href="https://www.last.fm/user/Pumoreiichi"
+						external
+						noUnderline
+					>
+						<Icon style="width: 2.5em;" name="socials/lastfm" />
+					</Link>
+					<Link
+						class="btn"
+						style="margin: 0;"
+						href="https://bsky.app/profile/pumoreiichi.bsky.social"
+						external
+						noUnderline
+					>
+						<Icon style="width: 2.5em;" name="socials/bluesky" />
+					</Link>
+				</div>
+
+				<!-- <p
 					style="
 						grid-area: details;
                     "
@@ -72,7 +115,7 @@ import { APPS } from '🧡/consts'
 					Processor: Vanilla
 					<br>
 					Since: August
-				</p>
+				</p> -->
 			</div>
 			<div class="modal__links">
 				<ul class="startmenu__list">
@@ -244,20 +287,6 @@ import { APPS } from '🧡/consts'
 					list.addEventListener('mouseleave', this.#handleMouseLeave)
 				},
 			)
-
-			const proTips = [
-				"Do alt + n if you're on desktop",
-				'ESC to escape this menu',
-				'I recommend listening to heat abnormal',
-				'I forgot what I was gonna say..',
-				'Dark theme is the coolest trust',
-				'Broken website + no responsive',
-				'Hachimi hachimi',
-				'Mambo Mambo! Omatsuri Mambo!',
-			]
-			const proTipSpan = this.querySelector('#pro-tip') as HTMLElement
-			proTipSpan.innerHTML =
-				proTips[Math.floor(Math.random() * proTips.length)]
 		}
 
 		disconnectedCallback() {

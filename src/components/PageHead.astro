@@ -5,21 +5,29 @@ import { SEO, type SEOProps } from 'astro-seo'
 const { props }: { props: SEOProps } = Astro
 
 const defaultSEO: SEOProps = {
-	title: props.title || SITE.title,
-	titleTemplate: 'PumoChii | %s',
+	title: props.title,
+	titleTemplate: SITE.title + ' | %s',
 	description: props.description || SITE.description,
 	canonical: SITE.href,
 
 	openGraph: {
 		basic: {
 			title: SITE.title,
-			image: '/static/twitter-card.png',
+			image: '',
 			type: 'website',
 			url: Astro.url,
 		},
+		optional: {
+			locale: SITE.locale,
+			siteName: SITE.title,
+		},
 	},
-
-	// TODO: Twitter image and other stuff
+	extend: {
+		link: [
+			{ rel: 'sitemap', href: '/sitemap-index.xml' },
+			{ rel: 'canonical', href: SITE.href },
+		],
+	},
 }
 
 const combinedProps = { ...props, ...defaultSEO }

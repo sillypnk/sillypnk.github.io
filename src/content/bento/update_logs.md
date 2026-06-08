@@ -1,4 +1,29 @@
-<h5 align="center">05/27/26</h5>
+<div align="center">
+
+#### 06/06/26
+
+</div>
+
+1. Web stuff
+	- [GisCus](https://giscus.app/) is now available at microblogs yippie!
+	You can comment and react now, isn't that cool?
+	(Once blogs are implemented, giscus will be available there too.)
+2. UI Changes
+	- Socials added; removed info stuff at menu.
+	- **[@mobile_viewport]** Box shadow decreased for cards 
+	- **[@mobile_viewport]** Fixed padding
+3. Dev stuff
+	- Site name changes to "sillypnk" instead.
+	- "Last played" widget no longer fetches LastFM's album only.
+	Added [ITunes](https://theapplewiki.com/wiki/ITunes) as a fallback for last.fm's album art.
+
+***
+
+<div align="center">
+
+#### 05/27/26
+
+</div>
 
 1. <span style="color:var(--clr-base-content);">**ReiOS Update V2**</span>
 2. <span>UI Changes</span>

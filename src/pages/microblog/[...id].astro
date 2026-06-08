@@ -35,10 +35,12 @@ const { Content } = await render(microblog)
 ---
 
 <Desktop>
-	<PageHead slot="head" title={'Microblogs | ' + currentPostId} />
+	<PageHead slot="head" title={'Microblogs - ' + currentPostId} />
 	<DesktopNav icon={MicroblogIcon} to="microblog" slot="nav">
-		<Breadcrumbs items={[{ label: "Microblog", icon: "microblog/breadcrumbs/pixelated-note", href: "/microblog" }, { label: microblog.id, icon: "microblog/breadcrumbs/library" }]} />
-	 </DesktopNav>
+		<Breadcrumbs
+			items={[{ label: "Microblog", icon: "microblog/breadcrumbs/pixelated-note", href: "/microblog" }, { label: microblog.id, icon: "microblog/breadcrumbs/library" }]}
+		/>
+	</DesktopNav>
 
 	<!-- Microblogs -->
 	<Card contentStyles="padding-inline: 1.5rem; padding-block: 1rem;">
@@ -46,4 +48,29 @@ const { Content } = await render(microblog)
 	</Card>
 
 	<PostNavigation olderPost={navigation.older} newerPost={navigation.newer} />
+
+	<script
+		src="https://giscus.app/client.js"
+		data-repo="sillypnk/silly-portfolio"
+		data-repo-id="R_kgDOQE1aag"
+		data-category="Announcements"
+		data-category-id="DIC_kwDOQE1aas4C-seV"
+		data-mapping="pathname"
+		data-strict="0"
+		data-reactions-enabled="1"
+		data-emit-metadata="0"
+		data-input-position="top"
+		data-theme="catppuccin_mocha"
+		data-lang="en"
+		data-loading="lazy"
+		crossorigin="anonymous"
+		async
+	>
+	</script>
 </Desktop>
+
+<style>
+	:global(.giscus) {
+		margin-top: 5rem;
+	}
+</style>

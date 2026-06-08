@@ -1,6 +1,13 @@
 <script lang="ts">
-	// import { type Snippet } from "svelte";
-  async function getTrack() {
+	interface Track {
+		title: string;
+		artist: string;
+		album: string;
+		art: string | undefined;
+		isNowPlaying: boolean;
+	};
+
+	async function getTrack(): Promise<Track> {
     const res = await fetch(
       `${window.location.origin}/api/lastfm`
     );
@@ -9,29 +16,24 @@
   }
 
   let track = getTrack();
-
   const { children, state_loading } = $props()
 </script>
 
 {#await track}
-  <!-- optional loading state -->
   {@render state_loading()}
 {:then track}
-    {@const isNowPlaying = track["@attr"]?.nowplaying === "true"}
-    {@const art = track.image?.[2]?.["#text"]}
-    {@const hasArt = art && !art.includes("2a96cbd8b46e442fc41c2b86b821562f")}
+    {@const isNowPlaying = track.isNowPlaying}
+    {@const art = track.art}
 
-    <div class="art-album" style:background-image={hasArt ? `url(${track.image?.[3]?.["#text"]});` : undefined}>
-	    <!-- <svg style="width: 15%; position: absolute; right: 0; top: 0; margin: 1rem; rotate: 10deg; opacity: 70%;" viewBox="0 0 100 100" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><g id="prefix__SVGRepo_iconCarrier"><style>.prefix__st95{fill:var(--clr-base-content)}</style><g id="prefix__Layer_2"><path class="prefix__st95" d="M50 2.5A47.56 47.56 0 0 0 2.5 50.13c2.5 63.17 92.5 63.15 95 0A47.56 47.56 0 0 0 50 2.5m0 74.9a27.3 27.3 0 0 1-27.27-27.27C23.47 31.47 37.38 23 50 23s26.53 8.47 27.27 27.07A27.3 27.3 0 0 1 50 77.4"/><path class="prefix__st95" d="M50 26.1c-15.94 0-23.7 12.49-24.16 24.1 0 13.25 10.84 24.1 24.16 24.1s24.16-10.85 24.16-24.17C73.71 38.59 65.95 26.11 50 26.1"/><path d="M41.06 52.53v10.46l21.8-13.42-21.8-12.3z" fill="#f1f1f1"/></g></g></svg> -->
-
+    <div class="art-album" style:background-image={art ? `url(${art});` : undefined}>
 	    <div class="lp-music">
-		    {#if hasArt}
+		    {#if art}
 			    <div class="avatar">
 					<div style="width: min(10.5rem, 30vw); border-radius: 0.5rem;">
 						<img
 							src={art}
-							alt="{track.name} Album Art"
-							loading="lazy"
+							alt="{track.title} Album Art"
+							loading="eager"
 							decoding="async"
 						/>
 					</div>
@@ -53,20 +55,20 @@
 							<svg style="width: var(--text-xs);" viewBox="0 0 24 24" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M2.83 8.33v7.34m4.59-11v14.66m13.75-11v7.34m-4.59-11v14.66M12 1v22" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="1.83"/></svg>
 
 							{#if isNowPlaying}
-		       					<span aria-label="now playing"></span> Now playing...
+		       					<span aria-label="now playing"></span> Now Listening...
 		         			{:else}
 		                  		<span>Last Played...</span>
 		              		{/if}
 						</div>
 						<span style="color: var(--clr-base); font-size: var(--text-base); font-weight: bold; letter-spacing: 2.5px;"
-							>{track.name}</span
+							>{track.title}</span
 						>
 					</div>
 					<span style="color: light-dark(oklch(from var(--clr-secondary) calc(l + 0.4) c h), oklch(from var(--clr-primary) calc(l - 0.1) c h)); font-size: var(--text-sm);"
-						>By {track.artist["#text"]}</span
+						>By {track.artist}</span
 					>
 					<span style="color: light-dark(oklch(from var(--clr-secondary) calc(l + 0.4) c h), oklch(from var(--clr-primary) calc(l - 0.1) c h)); font-size: var(--text-sm);"
-						>On {track.album["#text"]}</span
+						>On {track.album}</span
 					>
 			</div>
 		</div>

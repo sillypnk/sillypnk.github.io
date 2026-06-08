@@ -30,11 +30,42 @@
 </style>
 
 <script>
+	const attachGiscusListeners = (cursor: HTMLDivElement) => {
+		const frame = document.querySelector('iframe.giscus-frame')
+		if (frame) {
+			frame.addEventListener('mouseenter', () => {
+				cursor.style.display = 'none'
+			})
+			frame.addEventListener('mouseleave', () => {
+				cursor.style.display = ''
+			})
+			return
+		}
+
+		// Not in DOM yet — wait for it
+		const observer = new MutationObserver(() => {
+			const frame = document.querySelector('iframe.giscus-frame')
+			if (frame) {
+				observer.disconnect()
+				window.addEventListener('blur', () => {
+					cursor.style.display = 'none'
+				})
+				document.addEventListener('mousemove', () => {
+					if (cursor.style.display === 'none')
+						cursor.style.display = ''
+				})
+			}
+		})
+
+		observer.observe(document.body, { childList: true, subtree: true })
+	}
+
 	const init = () => {
 		const cursor = document.querySelector('.cursor') as HTMLDivElement
 		if (!cursor) return
 
-		// Restore last known position so cursor doesn't snap on page load
+		attachGiscusListeners(cursor)
+
 		let mouseX = Number(sessionStorage.getItem('cursorX') ?? 0)
 		let mouseY = Number(sessionStorage.getItem('cursorY') ?? 0)
 

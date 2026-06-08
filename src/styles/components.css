@@ -93,7 +93,6 @@
 				transform var(--icon-easing) var(--icon-duration),
 				width var(--icon-easing) var(--icon-duration);
 
-			svg,
 			img {
 				width: var(--icon-size);
 				height: var(--icon-size);
@@ -107,7 +106,7 @@
 			place-self: center;
 			text-align: center;
 			gap: 5px;
-			font-size: clamp(0.5rem, 0.95vw, 0.8rem);
+			font-size: var(--text-xs);
 			text-decoration: none;
 			line-height: 1.52rem;
 			color: var(--clr-base-content);
@@ -134,7 +133,7 @@
 
 		@media (max-width: 640px) {
 			padding-block: 2.5rem;
-			padding-inline: 0.5rem;
+			padding-inline: 0.85rem;
 			grid-template-columns: 1fr;
 		}
 	}
@@ -450,7 +449,7 @@
 
 		&:hover:is(:not(.btn--window, .btn--outlined, .btn--soft)) {
 			outline: 1.5px dashed var(--clr-base-content);
-			outline-offset: -4px;
+			outline-offset: -5px;
 		}
 
 		&:hover.btn--window {
@@ -606,14 +605,13 @@
 			display: none;
 		}
 
-		h6.name {
-			font-family: var(--font-yuruka-std);
-			font-size: var(--text-xl);
+		.name {
 			font-weight: 900;
 			height: auto;
 			letter-spacing: 0;
-			margin-bottom: 1.2rem;
-			line-height: 10px;
+			font-size: 2rem;
+			margin-block: 0.55rem;
+			line-height: 20px;
 		}
 		.avatar {
 			margin-bottom: 1rem;
@@ -747,6 +745,8 @@
 			border-bottom: 1px solid var(--clr-base-content);
 			border-top: 1px solid var(--clr-base-content);
 			padding-block: 15px;
+			padding-inline: 15px;
+			overflow: auto;
 
 			p {
 				font-size: clamp(0.75rem, 2vw, 1rem);
@@ -768,7 +768,7 @@
 
 			display: flex;
 			padding-inline: 1.5rem;
-			padding-block: 0.75rem;
+			padding-block: 0.55rem;
 			align-items: center;
 		}
 
@@ -828,9 +828,12 @@
 				grid-template-areas:
 					"avatar	name"
 					"avatar	details";
-				padding-inline: 0.5rem;
+				column-gap: 20px;
 				justify-content: unset;
 				text-align: left;
+				border-inline: unset;
+				border-bottom: 3.5px solid var(--clr-base-content);
+
 				p {
 					padding-left: 0;
 				}
@@ -1088,13 +1091,17 @@
 				)
 				100%
 		);
-		box-shadow: 12px 11px 0px -3px
-			oklch(from var(--clr-base-content) l c h / 82%);
+		box-shadow: 10px 10px 0px -3px
+			oklch(from var(--clr-base-content) l c h / 80%);
 		border: 2px solid var(--clr-base-content);
 		padding-inline: 0.5rem;
 		padding-top: 0.3rem;
 		block-size: min(100%, 100dvh);
 		inline-size: min(100%, 100dvw);
+
+		@media only screen and (max-width: 640px) {
+			box-shadow: 7px 7px 0px -3px var(--clr-base-content);
+		}
 	}
 
 	/* [ CARD ] */
@@ -1120,7 +1127,7 @@
 				100%
 		);
 		box-shadow: 10px 10px 0px -3px
-			oklch(from var(--clr-base-content) l c h / 75%);
+			oklch(from var(--clr-base-content) l c h / 80%);
 		border: 2px solid var(--clr-base-content);
 
 		& > .card__header {
@@ -1205,9 +1212,9 @@
 		@media (max-width: 640px) {
 			margin-top: 0;
 			margin-bottom: 2rem;
+			box-shadow: 7px 7px 0px -3px var(--clr-base-content);
 		}
 	}
-
 	.card,
 	.box {
 		transition:

@@ -8,10 +8,10 @@ import Notepad1Icon from '🧡/assets/icons/desktop/notepad-1.png'
 import WorldIcon from '🧡/assets/icons/desktop/world.png'
 
 export const SITE = {
-	title: 'PumoReiichi',
-	description:
-		"Pumoreiichi's personal portfolio with a theme of dedication to Adachi Rei 🧡",
-	href: 'https://pumochii.pages.dev',
+	title: 'PumoChii',
+	description: "🧡 PumoChii's silly personal portfolio",
+	href: 'https://sillypnk.is-a.dev',
+	locale: 'en-US',
 }
 
 export const APPS = [

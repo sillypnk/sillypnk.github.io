@@ -3,10 +3,12 @@
   "version": "0.0.1",
   "dependencies": {
     "@astrojs/mdx": "^6.0.1",
+    "@astrojs/sitemap": "^3.7.3",
     "@astrojs/svelte": "^8.1.2",
     "@playform/compress": "^0.2.3",
     "animejs": "^4.4.1",
     "astro": "^6.4.3",
+    "astro-expressive-code": "^0.42.0",
     "astro-iconset": "^0.0.5",
     "astro-seo": "^1.1.0",
     "gravatar-url": "^4.0.2",
@@ -22,6 +24,7 @@
   "type": "module",
   "devDependencies": {
     "@astrojs/cloudflare": "^13.6.1",
+    "@astrojs/compiler-rs": "^0.2.1",
     "@biomejs/biome": "^2.4.16",
     "@types/howler": "^2.2.13",
     "lightningcss": "^1.32.0",

@@ -19,8 +19,6 @@ import UITaskbar from '🧡/components/UI/Taskbar.astro'
 	<body>
 		<UICursor />
 
-		<!-- For loading screen purposes -->
-		<!-- <div class="content"> -->
 		<main class="desktop">
 			<slot name="apps" />
 			<slot name="nav" />
@@ -59,7 +57,6 @@ import UITaskbar from '🧡/components/UI/Taskbar.astro'
 				<slot />
 			</div>
 		</main>
-		<!-- </div> -->
 		<UITaskbar transition:persist />
 		<!-- <img
 			class="adachiRei"
@@ -88,6 +85,68 @@ import UITaskbar from '🧡/components/UI/Taskbar.astro'
 		document
 			.querySelectorAll('.card, .box')
 			.forEach(el => observer.observe(el))
+	})
+</script>
+
+<script>
+	document.addEventListener('astro:page-load', () => {
+		if (!document.querySelector('.giscus')) return
+
+		const syncGiscusTheme = () => {
+			const theme =
+				localStorage.getItem('theme') ??
+				document.documentElement.getAttribute('data-theme') ??
+				'light'
+			const frame = document.querySelector<HTMLIFrameElement>(
+				'iframe.giscus-frame',
+			)
+			if (!frame?.contentWindow) return
+
+			frame.contentWindow.postMessage(
+				{
+					giscus: {
+						setConfig: {
+							theme:
+								theme === 'dark'
+									? 'catppuccin_mocha'
+									: 'catppuccin_latte',
+						},
+					},
+				},
+				'https://giscus.app',
+			)
+		}
+
+		// Watch for theme toggles
+		const themeObserver = new MutationObserver(syncGiscusTheme)
+		themeObserver.observe(document.documentElement, {
+			attributes: true,
+			attributeFilter: ['data-theme'],
+		})
+
+		// Wait for iframe then sync
+		const frame = document.querySelector<HTMLIFrameElement>(
+			'iframe.giscus-frame',
+		)
+		if (frame) {
+			frame.addEventListener('load', syncGiscusTheme)
+			syncGiscusTheme()
+		} else {
+			const iframeObserver = new MutationObserver(() => {
+				const frame = document.querySelector<HTMLIFrameElement>(
+					'iframe.giscus-frame',
+				)
+				if (frame) {
+					iframeObserver.disconnect()
+					frame.addEventListener('load', syncGiscusTheme)
+					syncGiscusTheme()
+				}
+			})
+			iframeObserver.observe(document.body, {
+				childList: true,
+				subtree: true,
+			})
+		}
 	})
 </script>
 

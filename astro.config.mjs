@@ -1,13 +1,40 @@
-import mdx from '@astrojs/mdx'
-import { defineConfig, fontProviders } from 'astro/config'
-import cloudflare from '@astrojs/cloudflare'
 import icon from 'astro-iconset'
+import playformCompress from '@playform/compress'
+
+import { defineConfig, fontProviders } from 'astro/config'
+import expressiveCode from 'astro-expressive-code'
+import cloudflare from '@astrojs/cloudflare'
+import mdx from '@astrojs/mdx'
 import svelte from '@astrojs/svelte'
+import sitemap from '@astrojs/sitemap'
 
 export default defineConfig({
-	// site: 'https://pumochii.pages.dev',
+	site: 'https://sillypnk.is-a.dev',
 	adapter: cloudflare(),
-	integrations: [svelte(), mdx(), icon({ iconDir: 'src/assets/icons' })],
+	integrations: [
+		svelte(),
+		expressiveCode({
+			themes: ['ayu-dark', 'ayu-light'],
+			useDarkModeMediaQuery: false,
+			customizeTheme: theme => {
+				if (theme.name === 'ayu-dark') theme.name = 'dark'
+				if (theme.name === 'ayu-light') theme.name = 'light'
+			},
+		}),
+		mdx(),
+		sitemap(),
+		icon({ iconDir: 'src/assets/icons' }),
+		playformCompress(),
+	],
+	server: {
+		host: true,
+	},
+	devToolbar: {
+		enabled: false,
+	},
+	markdown: {
+		syntaxHighlight: false,
+	},
 	fonts: [
 		// Raster Forge //
 		{

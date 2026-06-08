@@ -42,31 +42,49 @@
 
 		position: relative;
 		color: oklch(from var(--clr-base-content) calc(l + 0.07) c h);
-		background: var(--clr-bg);
+		background-color: var(--clr-bg);
 		overflow-y: auto;
 		overflow-x: hidden;
 		height: min(100%, 100dvh);
 		width: min(100%, 100dvw);
 
-		&::before {
+		&:before {
+			--clr-mixed: color-mix(
+				in oklch,
+				light-dark(var(--clr-secondary), var(--clr-primary)),
+				light-dark(var(--clr-primary), var(--clr-secondary)) 75%
+			);
 			content: "";
 			position: fixed;
 			inset: 0;
 			pointer-events: none;
 			z-index: 0;
-			/*background: radial-gradient(
-				circle at var(--circle-size) var(--circle-size),
-				light-dark(
-						oklch(7.72% 0 299deg / 20%),
-						oklch(100% 0.0001 271.152deg / 25%)
-					)
-					var(--circle-size),
-				transparent 0
-			);*/
-			/*background-size: var(--bg-size) var(--bg-size);
-			background-repeat: repeat;*/
+			background-image:
+				radial-gradient(
+					circle at 1px 1px,
+					var(--clr-mixed) 1px,
+					transparent 0
+				),
+				radial-gradient(
+					circle at 1px 1px,
+					var(--clr-mixed) 1px,
+					transparent 0
+				),
+				radial-gradient(
+					circle at 1px 1px,
+					var(--clr-mixed) 1px,
+					transparent 0
+				);
+			background-size:
+				20px 20px,
+				30px 30px,
+				25px 25px;
+			background-position:
+				0 0,
+				10px 10px,
+				15px 5px;
 			animation: bg-scroll 40s linear infinite;
-			background:
+			/*background:
 				linear-gradient(
 					45deg,
 					transparent 49%,
@@ -80,7 +98,7 @@
 					var(--bg-color) 49%,
 					var(--bg-color) 51%,
 					transparent 51%
-				);
+				);*/
 			background-size: 40px 40px;
 		}
 	}
@@ -177,9 +195,27 @@
 		line-height: 1.2em;
 		text-wrap-style: pretty;
 	}
-	.prose p:has(+ p) {
+	.prose p:has(+ :is(p, .expressive-code)) {
 		margin-bottom: 1.15rem;
 	}
+	.expressive-code {
+		margin-block: 1.15rem;
+	}
+
+	hr {
+		border: none;
+		height: 2px;
+		background-color: color-mix(
+			in oklch,
+			currentColor,
+			light-dark(var(--clr-primary), var(--clr-secondary)) 75%
+		);
+	}
+
+	.prose hr {
+		margin-block: 2.25rem;
+	}
+
 	.not-prose > * {
 		all: revert;
 	}
