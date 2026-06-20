@@ -6,6 +6,10 @@ content:
     path: src/content/microblogs
     filename: "mpost-{month}-{day}-{year}.md"
     fields:
+      - name: body
+        type: rich-text
+        required: true
+        
       - name: date
         type: date
         default: ""
@@ -23,10 +27,6 @@ content:
       - name: tags
         type: string
         list: true
-
-      - name: body
-        type: rich-text
-        required: true
         
       - name: pinned
         type: boolean
