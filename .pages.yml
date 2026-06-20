@@ -1,0 +1,32 @@
+media: public/static/microblogs
+content:
+  - name: microblog
+    label: Microblogs
+    type: collection
+    path: src/content/microblogs
+    filename: "mpost-{month}-{day}-{year}"
+    fields:
+      - name: date
+        type: date
+        options:
+          time: true
+          format: "MM-dd-yy hh:mm a"
+        
+      - name: updatedDate
+        type: date
+        options:
+          time: true
+          format: "MM-dd-yy hh:mm a"
+        
+      - name: tags
+        type: string
+        list: true
+
+      - name: body
+        type: rich-text
+        required: true
+        
+      - name: pinned
+        type: boolean
+        
+      
