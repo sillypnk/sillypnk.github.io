@@ -3,17 +3,20 @@ import { glob } from 'astro/loaders'
 import { z } from 'astro/zod'
 
 const microblogs = defineCollection({
-    loader: glob({
-        pattern: '**/*.{md,mdx}',
-        base: './src/content/microblogs',
-    }),
-    schema: z.object({
-        date: z.coerce.date(),
-        updatedDate: z.coerce.date().optional(),
-        tags: z.array(z.string()).optional(),
-        pinned: z.boolean().optional().default(false),
-        images: z.array(z.string()).optional(),
-    }),
+	loader: glob({
+		pattern: '**/*.{md,mdx}',
+		base: './src/content/microblogs',
+	}),
+	schema: z.object({
+		date: z.string().transform(d => new Date(`${d}+08:00`)),
+		updatedDate: z
+			.string()
+			.transform(d => new Date(`${d}+08:00`))
+			.optional(),
+		tags: z.array(z.string()).optional(),
+		pinned: z.boolean().optional().default(false),
+		images: z.array(z.string()).optional(),
+	}),
 })
 
 // TODO: Blogs

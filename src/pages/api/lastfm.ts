@@ -7,7 +7,6 @@ const BLANK_ART = '2a96cbd8b46e442fc41c2b86b821562f'
  * Otherwise, falls into other sources to fetch for.
  * If it fails, it shows a fallback instead.
  */
-interface getAlbumArtProps {}
 async function getAlbumArt(
 	artist: string,
 	track: string,
