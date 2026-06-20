@@ -7,10 +7,7 @@ content:
     filename: "mpost-{month}-{day}-{year}.md"
     fields:
       - name: date
-        type: date
-        options:
-          time: true
-          format: "MM-dd-yy hh:mm a"
+        type: string
         
       - name: updatedDate
         type: date
