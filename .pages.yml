@@ -4,7 +4,7 @@ content:
     label: Microblogs
     type: collection
     path: src/content/microblogs
-    filename: "mpost-{month}-{day}-{year}.md"
+    filename: "mpost-{month}-{day}-{year}.{.md,.mdx}"
     fields:
       - name: date
         type: string
