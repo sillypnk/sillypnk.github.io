@@ -1,6 +1,3 @@
-
-
-
 media: public/static
 content:
   - name: microblog
@@ -10,9 +7,9 @@ content:
     filename: "mpost-{month}-{day}-{year}.md"
     commit:
       templates:
-        create: "📑 content(create): New microblog -> {name}"
-        update: "📑 content(update): Update microblog -> {name}"
-        delete: "📑 content(delete): Deleted microblog -> {name}"
+        create: "📑 content(create): New microblog -> {filename}"
+        update: "📑 content(update): Update microblog #({filename})"
+        delete: "📑 content(delete): Deleted microblog -> #({filename})"
         rename: "📑 content(rename): Renamed microblog {oldFilename} -> {newFilename}"
     fields:
       - name: body
