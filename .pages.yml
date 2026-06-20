@@ -15,14 +15,14 @@ content:
         default: ""
         options:
           time: true
-          format: "MM-dd-yy hh:mm a"
+          format: "MM/dd/yy hh:mm a"
         
       - name: updatedDate
         type: date
         default: ""
         options:
           time: true
-          format: "MM-dd-yy hh:mm a"
+          format: "MM/dd/yy hh:mm a"
         
       - name: tags
         type: string
