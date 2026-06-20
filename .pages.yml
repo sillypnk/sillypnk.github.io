@@ -1,4 +1,4 @@
-media: public/static/microblogs
+media: public/static/
 content:
   - name: microblog
     label: Microblogs
