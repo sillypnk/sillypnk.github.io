@@ -7,7 +7,7 @@ content:
     filename: "mpost-{month}-{day}-{year}.{.md,.mdx}"
     fields:
       - name: date
-        type: string
+        type: date
         default: ""
         options:
           time: true
