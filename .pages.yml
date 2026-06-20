@@ -13,10 +13,12 @@ content:
         rename: "📑 content(rename): Renamed microblog {oldFilename} -> {newFilename}"
     fields:
       - name: body
+        label: Content
         type: rich-text
         required: true
         
       - name: date
+        label: Date Published
         type: date
         default: ""
         options:
@@ -24,6 +26,7 @@ content:
           format: yyyy-MM-dd'T'HH:mm:ssXXX
         
       - name: updatedDate
+        label: Edited Date
         type: date
         default: ""
         options:
@@ -31,10 +34,10 @@ content:
           format: yyyy-MM-dd'T'HH:mm:ssXXX
         
       - name: tags
+        label: Tags
         type: string
         list: true
         
       - name: pinned
+        label: Is post pinned?
         type: boolean
-        
-      
