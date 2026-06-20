@@ -8,9 +8,14 @@ content:
     fields:
       - name: date
         type: string
+        default: ""
+        options:
+          time: true
+          format: "MM-dd-yy hh:mm a"
         
       - name: updatedDate
         type: date
+        default: ""
         options:
           time: true
           format: "MM-dd-yy hh:mm a"
